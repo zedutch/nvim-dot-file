@@ -49,7 +49,7 @@ endif
 filetype plugin indent on
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent smartindent
 set incsearch ignorecase smartcase hlsearch
-" set wildmode=longest,list,full wildmenu
+set wildmode=longest,list,full wildmenu
 set ruler laststatus=2 showcmd showmode
 set wrap breakindent
 set encoding=utf-8
@@ -101,7 +101,7 @@ nnoremap <leader>rr :RustRun<CR>
 nnoremap <leader>rf :RustFmt<CR>
 
 """ Plugin configuration
-if has("gui_running")
+if exists("g:neovide")
     colorscheme nightfox
 endif
 
@@ -134,10 +134,6 @@ lua << EOF
         show_hidden = false,
     }
     require('telescope').load_extension('projects')
-    require('nvim-lsp-installer').setup {
-        --log_level = vim.log.levels.DEBUG
-    }
     require('trouble').setup {}
     require('gitsigns').setup {}
-    require('feline').setup {}
 EOF

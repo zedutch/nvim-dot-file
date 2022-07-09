@@ -1,3 +1,7 @@
+require('nvim-lsp-installer').setup {
+    --log_level = vim.log.levels.DEBUG
+}
+
 local null_ls = require("null-ls")
 null_ls.setup {
     sources = {
