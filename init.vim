@@ -94,25 +94,26 @@ nnoremap <C-s> :w<CR>
 nnoremap <leader>gb :Gitsigns blame_line<CR>
 " Comments
 nmap <leader>cc <Plug>NERDCommenterToggle
-if has('win32')
-    nmap <C-/> <Plug>NERDCommenterToggle
-    vmap <C-/> <Plug>NERDCommenterToggle<CR>gv
-else
-    nmap <C-_> <Plug>NERDCommenterToggle
-    vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
-endif
+nmap <C-/> <Plug>NERDCommenterToggle
+vmap <C-/> <Plug>NERDCommenterToggle<CR>gv
 " Rust
 nnoremap <leader>rr :RustRun<CR>
 nnoremap <leader>rf :RustFmt<CR>
 
 """ Plugin configuration
-colorscheme nightfox
+if has("gui_running")
+    colorscheme nightfox
+endif
+
 set guifont=RobotoMono\ Nerd\ Font:h14
 
 " Load config files
 lua require('cfg.feline')
 lua require('cfg.null-ls')
 lua require('cfg.cmp')
+
+" disable perl
+let g:loaded_perl_provider = 0
 
 " nvim-cmp
 set completeopt=menu,menuone,noselect
