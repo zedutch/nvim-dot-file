@@ -11,6 +11,7 @@ Plug 'ahmedkhalf/project.nvim'
 " Language server
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'neovim/nvim-lspconfig'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 " Code completion
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -101,8 +102,9 @@ nnoremap <leader>rf :RustFmt<CR>
 colorscheme nightfox
 set guifont=RobotoMono\ Nerd\ Font:h14
 
-" feline
+" Load config files
 lua require('cfg.feline')
+lua require('cfg.null-ls')
 
 " nvim-cmp
 set completeopt=menu,menuone,noselect
