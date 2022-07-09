@@ -5,9 +5,13 @@ null_ls.setup {
         null_ls.builtins.diagnostics.editorconfig_checker,
         
         -- Python
-        null_ls.builtins.diagnostics.pylint,
+        null_ls.builtins.diagnostics.pylint.with({
+            extra_args = {
+                "--load-plugins=pylint_django,pylint_quotes",
+            },
+        }),
         null_ls.builtins.formatting.isort,
-        null_ls.builtins.formatting.autopep8,
+        -- null_ls.builtins.formatting.autopep8,
 
         -- Javascript
         null_ls.builtins.diagnostics.eslint,
@@ -15,6 +19,11 @@ null_ls.setup {
 
         -- CSS
         null_ls.builtins.diagnostics.stylelint,
+
+        -- HTML
+        null_ls.builtins.formatting.prettier.with({
+            filetypes = { "html", "json", "yaml", "markdown" },
+        }),
 
         -- Git
         null_ls.builtins.code_actions.gitsigns,

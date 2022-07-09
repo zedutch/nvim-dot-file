@@ -29,6 +29,7 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'alvan/vim-closetag'
 Plug 'Yggdroot/indentLine'
+Plug 'folke/trouble.nvim'
 
 call plug#end()
 
@@ -56,8 +57,14 @@ set textwidth=0
 set hidden
 set number
 set title
-set termguicolors
+set cursorline
+set signcolumn=auto:1-2
+set showmatch
 set clipboard+=unnamedplus
+
+if has("termguicolors")
+    set termguicolors
+end
 
 
 """ Key mappings
@@ -105,6 +112,7 @@ set guifont=RobotoMono\ Nerd\ Font:h14
 " Load config files
 lua require('cfg.feline')
 lua require('cfg.null-ls')
+lua require('cfg.cmp')
 
 " nvim-cmp
 set completeopt=menu,menuone,noselect
@@ -120,54 +128,15 @@ let g:vim_markdown_conceal_code_blocks = 0
 let g:NERDSpaceDelims = 1
 
 lua << EOF
-    require('project_nvim').setup {}
+    require('project_nvim').setup {
+        silent_chdir = true,
+        show_hidden = false,
+    }
     require('telescope').load_extension('projects')
     require('nvim-lsp-installer').setup {
         --log_level = vim.log.levels.DEBUG
     }
+    require('trouble').setup {}
     require('gitsigns').setup {}
     require('feline').setup {}
-    local cmp = require('cmp')
-    cmp.setup {
-        snippet = {
-            expand = function(args)
-                vim.fn["vsnip#anonymous"](args.body)
-            end,
-        },
-        window = {
-            -- completion = cmp.config.window.bordered(),
-            -- documentation = cmp.config.window.bordered(),
-        },
-        mapping = cmp.mapping.preset.insert({
-            ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-            ['<C-f>'] = cmp.mapping.scroll_docs(4),
-            ['<C-Space>'] = cmp.mapping.complete(),
-            ['<C-e>'] = cmp.mapping.abort(),
-            ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        }),
-        sources = cmp.config.sources({
-            { name = 'nvim_lsp' },
-            { name = 'vsnip' },
-        }, {
-            { name = 'buffer' },
-        })
-    }
-    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    local servers = {
-        'angularls',
-        'eslint',
-        'html',
-        'jsonls',
-        'pylsp',
-        'rust_analyzer',
-        'stylelint_lsp',
-        'taplo',
-        'tsserver',
-        'yamlls',
-    }
-    for _, lsp in ipairs(servers) do
-        require('lspconfig')[lsp].setup {
-            capabilities = capabilities
-        }
-    end
 EOF
