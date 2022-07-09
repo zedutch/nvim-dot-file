@@ -1,5 +1,6 @@
 """ Load Plugins
 call plug#begin()
+" Theme
 Plug 'EdenEast/nightfox.nvim'
 " File management
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
@@ -19,6 +20,14 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'ray-x/cmp-treesitter'
+" Status bar
+Plug 'feline-nvim/feline.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'lewis6991/gitsigns.nvim'
+" Functionality
+Plug 'scrooloose/nerdcommenter'
+Plug 'alvan/vim-closetag'
+Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
@@ -30,7 +39,7 @@ if exists("g:neovide")
     let g:neovide_remember_window_size = v:true
     let g:neovide_profiler = v:false
     let g:neovide_cursor_animation_length=0.1
-    let g:neovide_cursor_trail_length=0.4
+    let g:neovide_cursor_trail_length=0.2
     let g:neovide_cursor_antialiasing=v:false
 endif
 
@@ -38,7 +47,7 @@ endif
 filetype plugin indent on
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent smartindent
 set incsearch ignorecase smartcase hlsearch
-set wildmode=longest,list,full wildmenu
+" set wildmode=longest,list,full wildmenu
 set ruler laststatus=2 showcmd showmode
 set wrap breakindent
 set encoding=utf-8
@@ -48,18 +57,20 @@ set number
 set title
 set termguicolors
 set clipboard+=unnamedplus
-set completeopt=menu,menuone,noselect
+
 
 """ Key mappings
 nnoremap <SPACE> <Nop>
 let mapleader="\<Space>"
+" Functionality
 nnoremap <leader>rc :source $MYVIMRC<CR>
 nnoremap <leader><leader> :noh<CR>
+nnoremap <leader>il :IndentLinesToggle<CR>
 " Buffers
-nnoremap <leader>bb :buffers<CR>
+nnoremap <leader>bb :Telescope buffers<CR>
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bp :bprevious<CR>
-nnoremap <leader>bq :bd<CR>
+nnoremap <leader>q :bd<CR>
 nnoremap <leader><Tab> :bnext<CR>
 nnoremap <leader><S-Tab> :bprevious<CR>
 " Clipboard
@@ -67,25 +78,53 @@ nnoremap <leader><C-c> "+y
 nnoremap <leader><C-v> "+p
 inoremap <C-v> <C-r>+
 cnoremap <C-v> <C-r>+
+" Files
+nnoremap <leader>ff :Telescope find_files<CR>
+nnoremap <leader>fp :Telescope projects<CR>
+nnoremap <C-s> :w<CR>
+" Gitsigns
+nnoremap <leader>gb :Gitsigns blame_line<CR>
+" Comments
+nmap <leader>cc <Plug>NERDCommenterToggle
+if has('win32')
+    nmap <C-/> <Plug>NERDCommenterToggle
+    vmap <C-/> <Plug>NERDCommenterToggle<CR>gv
+else
+    nmap <C-_> <Plug>NERDCommenterToggle
+    vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
+endif
 " Rust
 nnoremap <leader>rr :RustRun<CR>
 nnoremap <leader>rf :RustFmt<CR>
-" Files
-nnoremap <leader>ff :Telescope find_files<CR>
-nnoremap <leader>fb :Telescope buffers<CR>
-nnoremap <leader>fp :Telescope projects<CR>
-nnoremap <C-s> :w<CR>
 
 """ Plugin configuration
 colorscheme nightfox
+set guifont=RobotoMono\ Nerd\ Font:h14
+
+" feline
+lua require('cfg.feline')
+
+" nvim-cmp
+set completeopt=menu,menuone,noselect
+
+" indentLine
+let g:indentLine_char = '|'
+let g:indentLine_defaultGroup = 'NonText'
+let g:vim_json_syntax_conceal = 0
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
+
+" NERDcommenter
+let g:NERDSpaceDelims = 1
+
 lua << EOF
-    require('project_nvim').setup {
-        -- configuration here
-    }
+    require('project_nvim').setup {}
     require('telescope').load_extension('projects')
     require('nvim-lsp-installer').setup {
         --log_level = vim.log.levels.DEBUG
     }
+    require('gitsigns').setup {}
+    require('feline').setup {}
     local cmp = require('cmp')
     cmp.setup {
         snippet = {
@@ -112,9 +151,21 @@ lua << EOF
         })
     }
     local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    require('lspconfig')[
-        'rust_analyzer'
-    ].setup {
-        capabilities = capabilities
+    local servers = {
+        'angularls',
+        'eslint',
+        'html',
+        'jsonls',
+        'pylsp',
+        'rust_analyzer',
+        'stylelint_lsp',
+        'taplo',
+        'tsserver',
+        'yamlls',
     }
+    for _, lsp in ipairs(servers) do
+        require('lspconfig')[lsp].setup {
+            capabilities = capabilities
+        }
+    end
 EOF
