@@ -33,6 +33,8 @@ Plug 'alvan/vim-closetag'
 Plug 'Yggdroot/indentLine'
 Plug 'folke/trouble.nvim'
 Plug 'mfussenegger/nvim-dap'
+Plug 'folke/which-key.nvim'
+Plug 'kyazdani42/nvim-tree.lua'
 
 call plug#end()
 
@@ -66,6 +68,8 @@ lua require('cfg.feline')
 lua require('cfg.lspconfig')
 lua require('cfg.null-ls')
 lua require('cfg.cmp')
+lua require('cfg.treesitter')
+lua require('cfg.nvim-tree')
 
 " disable perl
 let g:loaded_perl_provider = 0
@@ -92,4 +96,9 @@ lua << EOF
     require('telescope').load_extension('ui-select')
     require('trouble').setup {}
     require('gitsigns').setup {}
+    require('which-key').setup {
+        window = {
+            border = 'single'
+        }
+    }
 EOF
