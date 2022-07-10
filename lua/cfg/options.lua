@@ -1,0 +1,45 @@
+vim.opt.backup = false
+vim.opt.clipboard = "unnamedplus"
+vim.opt.cmdheight = 1
+vim.opt.ignorecase = true
+vim.opt.termguicolors = true
+vim.opt.swapfile = false
+vim.opt.undofile = true
+vim.opt.encoding = "utf-8"
+vim.opt.fileencoding = "utf-8"
+vim.opt.completeopt = { "menuone", "noselect" }
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smarttab = true
+vim.opt.smartcase = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.breakindent = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+vim.opt.timeoutlen = 500
+vim.opt.updatetime = 300
+vim.opt.writebackup = false
+vim.opt.cursorline = true
+vim.opt.ruler = true
+vim.opt.number = true
+vim.opt.numberwidth = 4
+vim.opt.textwidth = 0
+vim.opt.laststatus = 3
+vim.opt.showmatch = true
+vim.opt.showcmd = true
+vim.opt.showmode = true
+vim.opt.signcolumn = "yes"
+vim.opt.title = true
+vim.opt.hidden = true
+vim.opt.wrap = false
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
+vim.opt.fillchars.eob = " "
+vim.opt.shortmess:append "c"
+vim.opt.whichwrap:append "<,>,[,],h,l"
+vim.opt.iskeyword:append "-"

@@ -47,24 +47,8 @@ endif
 
 """ Main configuration
 filetype plugin indent on
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent smartindent
-set incsearch ignorecase smartcase hlsearch
-set wildmode=longest,list,full wildmenu
-set ruler laststatus=2 showcmd showmode
-set wrap breakindent
-set encoding=utf-8
-set textwidth=0
-set hidden
-set number
-set title
-set cursorline
-set signcolumn=auto:1-2
-set showmatch
-set clipboard+=unnamedplus
+lua require('cfg.options')
 
-if has("termguicolors")
-    set termguicolors
-end
 
 
 """ Key mappings
