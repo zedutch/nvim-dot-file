@@ -35,6 +35,7 @@ Plug 'folke/trouble.nvim'
 Plug 'mfussenegger/nvim-dap'
 Plug 'folke/which-key.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
+Plug 'RRethy/vim-illuminate'
 
 call plug#end()
 
@@ -83,6 +84,9 @@ let g:indentLine_defaultGroup = 'NonText'
 let g:vim_json_syntax_conceal = 0
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
+
+" illuminate
+let g:Illuminate_ftblacklist = [ 'NvimTree' ]
 
 " NERDcommenter
 let g:NERDSpaceDelims = 1

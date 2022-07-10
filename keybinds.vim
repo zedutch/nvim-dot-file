@@ -49,4 +49,6 @@ nnoremap <leader>dt :lua require('dap').terminate()<CR>
 " Rust
 nnoremap <leader>rr :RustRun<CR>
 nnoremap <leader>rf :RustFmt<CR>
-nnoremap <leader>]] <Plug>vim.lsp.util.open_floating_preview()
+" Illuminate
+nnoremap <leader>j :lua require('illuminate').next_reference{wrap=true}<CR>
+nnoremap <leader>k :lua require('illuminate').next_reference{reverse=true, wrap=true}<CR>
