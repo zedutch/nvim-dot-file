@@ -13,6 +13,7 @@ Plug 'ahmedkhalf/project.nvim'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'neovim/nvim-lspconfig'
 Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'simrat39/rust-tools.nvim'
 " Code completion
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -62,6 +63,7 @@ set guifont=RobotoMono\ Nerd\ Font:h14
 
 " Load config files
 lua require('cfg.feline')
+lua require('cfg.lspconfig')
 lua require('cfg.null-ls')
 lua require('cfg.cmp')
 
