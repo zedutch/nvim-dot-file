@@ -9,7 +9,6 @@ end
 
 local opts = {}
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local servers = {
     'angularls',
     'eslint',
@@ -25,7 +24,8 @@ local servers = {
 }
 for _, lsp in ipairs(servers) do
     opts = {
-        capabilities = capabilities
+        capabilities = require('cfg.lsphandlers').capabilities,
+        on_attach = require('cfg.lsphandlers').on_attach,
     }
 
     if lsp == "sumneko_lua" then
@@ -52,7 +52,8 @@ for _, lsp in ipairs(servers) do
     if lsp == "rust_analyzer" then
         require("rust-tools").setup {
             server = {
-                capabilities = capabilities
+                capabilities = require('cfg.lsphandlers').capabilities,
+                on_attach = require('cfg.lsphandlers').on_attach,
             }
         }
         goto continue
