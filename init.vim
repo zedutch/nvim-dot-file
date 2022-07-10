@@ -7,6 +7,7 @@ Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'nvim-telescope/telescope-ui-select.nvim'
 Plug 'ahmedkhalf/project.nvim'
 " Language server
 Plug 'williamboman/nvim-lsp-installer'
@@ -30,6 +31,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'alvan/vim-closetag'
 Plug 'Yggdroot/indentLine'
 Plug 'folke/trouble.nvim'
+Plug 'mfussenegger/nvim-dap'
 
 call plug#end()
 
@@ -85,6 +87,7 @@ lua << EOF
         show_hidden = false,
     }
     require('telescope').load_extension('projects')
+    require('telescope').load_extension('ui-select')
     require('trouble').setup {}
     require('gitsigns').setup {}
 EOF
