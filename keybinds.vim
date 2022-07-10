@@ -16,8 +16,6 @@ nnoremap <C-Right> :vertical resize +2<CR>
 nnoremap <leader>bb :Telescope buffers<CR>
 nnoremap <leader>bq  :bd<CR>
 nnoremap <leader>q   :bd<CR>
-nnoremap <leader>l   :bnext<CR>
-nnoremap <leader>h   :bprevious<CR>
 nmap <S-l> :bnext<CR>
 nmap <S-h> :bnext<CR>
 " Clipboard
