@@ -38,9 +38,6 @@ null_ls.setup {
 
         -- Git
         code_actions.gitsigns,
-
-        -- Rust
-        formatting.rustfmt,
     },
     on_attach = function()
         vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])

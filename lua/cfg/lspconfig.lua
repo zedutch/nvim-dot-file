@@ -7,6 +7,8 @@ if not lspconfig_status_ok then
     return
 end
 
+require('cfg.lsphandlers').setup()
+
 local opts = {}
 
 local servers = {
@@ -50,10 +52,39 @@ for _, lsp in ipairs(servers) do
     end
 
     if lsp == "rust_analyzer" then
+        local keymap = vim.keymap.set
+        local kopts = { silent = true }
+        keymap("n", "<leader>rh", ":RustToggleInlayHints<CR>", kopts)
+        keymap("n", "<leader>rr", ":RustRun<CR>", kopts)
+        keymap("n", "<leader>rf", ":RustFmt<CR>", kopts)
+        keymap("n", "<leader>rd", ":RustDebuggables<CR>", kopts)
+        keymap("n", "<leader>rem", ":RustExpandMacro<CR>", kopts)
+        keymap("n", "<leader>red", ":RustExternalDocs<CR>", kopts)
+        keymap("n", "<leader>rpm", ":RustParentModule<CR>", kopts)
+        keymap("n", "<leader>roc", ":RustOpenCargo<CR>", kopts)
+        keymap("n", "<leader>rw", ":RustReloadWorkspace<CR>", kopts)
+        keymap("n", "<leader>rg", ":RustViewCrateGraph<CR>", kopts)
+        keymap("n", "<leader>rs", ":RustSSR<CR>", kopts)
+        keymap("n", "<S-j>", ":RustJoinLines<CR>", kopts)
+        keymap("n", "<C-j>", ":RustMoveItemDown<CR>", kopts)
+        keymap("n", "<C-k>", ":RustMoveItemUp<CR>", kopts)
+
         require("rust-tools").setup {
             server = {
                 capabilities = require('cfg.lsphandlers').capabilities,
                 on_attach = require('cfg.lsphandlers').on_attach,
+                settings = {
+                    ["rust-analyzer"] = {
+                        completion = {
+                            postfix = {
+                                enable = false,
+                            },
+                        },
+                        checkOnSave = {
+                            command = "clippy",
+                        },
+                    },
+                },
             }
         }
         goto continue
