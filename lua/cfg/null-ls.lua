@@ -1,35 +1,46 @@
 local null_ls = require("null-ls")
+
+local formatting = null_ls.builtins.formatting
+local diagnostics = null_ls.builtins.diagnostics
+local code_actions = null_ls.builtins.code_actions
 null_ls.setup {
+    debug = false,
     sources = {
         -- All
-        null_ls.builtins.diagnostics.editorconfig_checker,
-        
+        diagnostics.editorconfig_checker,
+
         -- Python
-        null_ls.builtins.diagnostics.pylint.with({
+        diagnostics.pylint.with {
             extra_args = {
                 "--load-plugins=pylint_django,pylint_quotes",
             },
-        }),
-        null_ls.builtins.formatting.isort,
-        -- null_ls.builtins.formatting.autopep8,
+        },
+        formatting.isort,
+        -- formatting.autopep8,
+        formatting.black.with {
+            extra_args = {
+                "--fast",
+            },
+        },
 
         -- Javascript
-        null_ls.builtins.diagnostics.eslint,
-        null_ls.builtins.diagnostics.tsc,
+        diagnostics.eslint,
+        diagnostics.tsc,
 
         -- CSS
-        null_ls.builtins.diagnostics.stylelint,
+        diagnostics.stylelint,
 
         -- HTML
-        null_ls.builtins.formatting.prettier.with({
-            filetypes = { "html", "json", "yaml", "markdown" },
-        }),
+        formatting.prettier.with {
+            filetypes = { "html", "json", "yaml", "markdown", "toml" },
+            extra_args = { "--single-quote", "--jsx-single-quote" },
+        },
 
         -- Git
-        null_ls.builtins.code_actions.gitsigns,
+        code_actions.gitsigns,
 
         -- Rust
-        null_ls.builtins.formatting.rustfmt,
+        formatting.rustfmt,
     },
     on_attach = function()
         vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
