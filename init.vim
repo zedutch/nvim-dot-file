@@ -49,40 +49,7 @@ endif
 filetype plugin indent on
 lua require('cfg.options')
 
-
-
-""" Key mappings
-nnoremap <SPACE> <Nop>
-let mapleader="\<Space>"
-" Functionality
-nnoremap <leader>rc :source $MYVIMRC<CR>
-nnoremap <leader><leader> :noh<CR>
-nnoremap <leader>il :IndentLinesToggle<CR>
-" Buffers
-nnoremap <leader>bb :Telescope buffers<CR>
-nnoremap <leader>bn :bnext<CR>
-nnoremap <leader>bp :bprevious<CR>
-nnoremap <leader>q :bd<CR>
-nnoremap <leader><Tab> :bnext<CR>
-nnoremap <leader><S-Tab> :bprevious<CR>
-" Clipboard
-nnoremap <leader><C-c> "+y
-nnoremap <leader><C-v> "+p
-inoremap <C-v> <C-r>+
-cnoremap <C-v> <C-r>+
-" Files
-nnoremap <leader>ff :Telescope find_files<CR>
-nnoremap <leader>fp :Telescope projects<CR>
-nnoremap <C-s> :w<CR>
-" Gitsigns
-nnoremap <leader>gb :Gitsigns blame_line<CR>
-" Comments
-nmap <leader>cc <Plug>NERDCommenterToggle
-nmap <C-/> <Plug>NERDCommenterToggle
-vmap <C-/> <Plug>NERDCommenterToggle<CR>gv
-" Rust
-nnoremap <leader>rr :RustRun<CR>
-nnoremap <leader>rf :RustFmt<CR>
+runtime keybinds.vim
 
 """ Plugin configuration
 if exists("g:neovide")
