@@ -23,6 +23,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'ray-x/cmp-treesitter'
+Plug 'saecki/crates.nvim', { 'tag': 'v0.2.1' }
 " Status bar
 Plug 'feline-nvim/feline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
@@ -71,6 +72,7 @@ lua require('cfg.null-ls')
 lua require('cfg.cmp')
 lua require('cfg.treesitter')
 lua require('cfg.nvim-tree')
+lua require('cfg.crates')
 
 " disable perl
 let g:loaded_perl_provider = 0

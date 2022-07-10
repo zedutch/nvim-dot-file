@@ -45,6 +45,7 @@ cmp.setup {
         { name = 'vsnip' },
         { name = 'buffer' },
         { name = 'path' },
+        { name = 'crates' },
     }),
     confirm_opts = {
         behavior = cmp.ConfirmBehavior.Replace,
