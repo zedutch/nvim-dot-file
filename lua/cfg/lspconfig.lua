@@ -51,24 +51,35 @@ for _, lsp in ipairs(servers) do
         opts = vim.tbl_deep_extend("force", lua_opts, opts)
     end
 
-    if lsp == "rust_analyzer" then
-        local keymap = vim.keymap.set
-        local kopts = { silent = true }
-        keymap("n", "<leader>rh", ":RustToggleInlayHints<CR>", kopts)
-        keymap("n", "<leader>rr", ":RustRun<CR>", kopts)
-        keymap("n", "<leader>rf", ":RustFmt<CR>", kopts)
-        keymap("n", "<leader>rd", ":RustDebuggables<CR>", kopts)
-        keymap("n", "<leader>rem", ":RustExpandMacro<CR>", kopts)
-        keymap("n", "<leader>red", ":RustExternalDocs<CR>", kopts)
-        keymap("n", "<leader>rpm", ":RustParentModule<CR>", kopts)
-        keymap("n", "<leader>roc", ":RustOpenCargo<CR>", kopts)
-        keymap("n", "<leader>rw", ":RustReloadWorkspace<CR>", kopts)
-        keymap("n", "<leader>rg", ":RustViewCrateGraph<CR>", kopts)
-        keymap("n", "<leader>rs", ":RustSSR<CR>", kopts)
-        keymap("n", "<S-j>", ":RustJoinLines<CR>", kopts)
-        keymap("n", "<C-j>", ":RustMoveItemDown<CR>", kopts)
-        keymap("n", "<C-k>", ":RustMoveItemUp<CR>", kopts)
+    if lsp == "pylsp" then
+        local py_opts = {
+            settings = {
+                pylsp = {
+                    plugins = {
+                        pylint = {
+                            enabled = true,
+                            -- args = "--load-plugins=pylint_django,pylint_quotes",
+                            args = {
+                                "--load-plugins=pylint_django,pylint_quotes",
+                            },
+                        },
+                        autopep8 = {
+                            enabled = false,
+                        },
+                        flake8 = {
+                            enabled = false,
+                        },
+                        pycodestyle = {
+                            enabled = false,
+                        },
+                    },
+                },
+            },
+        }
+        opts = vim.tbl_deep_extend("force", py_opts, opts)
+    end
 
+    if lsp == "rust_analyzer" then
         require("rust-tools").setup {
             server = {
                 capabilities = require('cfg.lsphandlers').capabilities,

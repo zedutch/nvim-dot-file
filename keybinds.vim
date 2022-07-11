@@ -44,9 +44,6 @@ nnoremap <leader>dO :lua require('dap').step_out()<CR>
 nnoremap <leader>dr :lua require('dap').repl_toggle()<CR>
 nnoremap <leader>du :lua require('dapui').toggle()<CR>
 nnoremap <leader>dt :lua require('dap').terminate()<CR>
-" Rust
-nnoremap <leader>rr :RustRun<CR>
-nnoremap <leader>rf :RustFmt<CR>
 " Illuminate
 nnoremap <leader>j :lua require('illuminate').next_reference{wrap=true}<CR>
 nnoremap <leader>k :lua require('illuminate').next_reference{reverse=true, wrap=true}<CR>

@@ -23,6 +23,9 @@ require('nvim-tree').setup {
             "^.git",
             "^node_modules",
         },
+        exclude = {
+            "^.gitlab-ci.yml$",
+        },
     },
     renderer = {
         highlight_opened_files = "all",

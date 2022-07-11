@@ -51,12 +51,36 @@ local function lsp_keymaps(bufnr)
     keymap(bufnr, "n", "<leader>lI", ":LspInstallInfo<CR>", opts)
 end
 
+local function lsp_keymaps_rust(bufnr)
+    local opts = { silent = true }
+    local keymap = vim.api.nvim_buf_set_keymap
+    keymap(bufnr, "n", "<leader>rh", ":RustToggleInlayHints<CR>", opts)
+    keymap(bufnr, "n", "<leader>rr", ":RustRunnables<CR>", opts)
+    keymap(bufnr, "n", "<leader>rf", ":RustFmt<CR>", opts)
+    keymap(bufnr, "n", "<leader>rd", ":RustDebuggables<CR>", opts)
+    keymap(bufnr, "n", "<leader>rem", ":RustExpandMacro<CR>", opts)
+    keymap(bufnr, "n", "<leader>red", ":RustExternalDocs<CR>", opts)
+    keymap(bufnr, "n", "<leader>rpm", ":RustParentModule<CR>", opts)
+    keymap(bufnr, "n", "<leader>roc", ":RustOpenCargo<CR>", opts)
+    keymap(bufnr, "n", "<leader>rw", ":RustReloadWorkspace<CR>", opts)
+    keymap(bufnr, "n", "<leader>rg", ":RustViewCrateGraph<CR>", opts)
+    keymap(bufnr, "n", "<leader>rs", ":RustSSR<CR>", opts)
+    keymap(bufnr, "n", "<S-j>", ":RustJoinLines<CR>", opts)
+    keymap(bufnr, "n", "<C-j>", ":RustMoveItemDown<CR>", opts)
+    keymap(bufnr, "n", "<C-k>", ":RustMoveItemUp<CR>", opts)
+end
+
 M.on_attach = function(client, bufnr)
     if client.name == "tsserver" or client.name == "sumneko_lua" then
         client.resolved_capabilities.document_formatting = false
     end
 
     lsp_keymaps(bufnr)
+
+    if client.name == "rust_analyzer" then
+        lsp_keymaps_rust(bufnr)
+    end
+
     require('illuminate').on_attach(client)
 end
 

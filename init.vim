@@ -73,6 +73,7 @@ lua require('cfg.cmp')
 lua require('cfg.treesitter')
 lua require('cfg.nvim-tree')
 lua require('cfg.crates')
+lua require('cfg.telescope')
 
 " disable perl
 let g:loaded_perl_provider = 0
