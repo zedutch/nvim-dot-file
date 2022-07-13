@@ -18,7 +18,7 @@ nnoremap <leader>br <cmd>bufdo e<CR>
 nnoremap <leader>bq <cmd>bd<CR>
 nnoremap <leader>q  <cmd>bd<CR>
 nmap <S-l>          <cmd>bnext<CR>
-nmap <S-h>          <cmd>bnext<CR>
+nmap <S-h>          <cmd>bprev<CR>
 " WhichKey descriptions
 lua << EOF
 require("which-key").register({
