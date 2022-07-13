@@ -31,6 +31,7 @@ Plug 'lewis6991/gitsigns.nvim'
 " Functionality
 Plug 'scrooloose/nerdcommenter'
 Plug 'alvan/vim-closetag'
+Plug 'windwp/nvim-autopairs'
 Plug 'Yggdroot/indentLine'
 Plug 'folke/trouble.nvim'
 Plug 'mfussenegger/nvim-dap'
@@ -95,17 +96,22 @@ let g:Illuminate_ftblacklist = [ 'NvimTree' ]
 let g:NERDSpaceDelims = 1
 
 lua << EOF
-    require('project_nvim').setup {
+    require("project_nvim").setup {
         silent_chdir = true,
         show_hidden = false,
     }
-    require('telescope').load_extension('projects')
-    require('telescope').load_extension('ui-select')
-    require('trouble').setup {}
-    require('gitsigns').setup {}
-    require('which-key').setup {
+    require("telescope").load_extension("projects")
+    require("telescope").load_extension("ui-select")
+    require("trouble").setup {}
+    require("gitsigns").setup {}
+    require("which-key").setup {
         window = {
-            border = 'single'
+            border = "single"
         }
     }
+    require("nvim-autopairs").setup {}
+    -- Connect cmp to autopairs
+    local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+    local cmp = require('cmp')
+    cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 EOF
