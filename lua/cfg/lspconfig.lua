@@ -23,6 +23,7 @@ local servers = {
     'taplo',
     'tsserver',
     'yamlls',
+    'wgsl_analyzer',
 }
 for _, lsp in ipairs(servers) do
     opts = {
