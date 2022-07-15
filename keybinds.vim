@@ -37,7 +37,7 @@ cnoremap <C-v>         <C-r>+
 " Files
 nnoremap <leader>ff <cmd>Telescope find_files<CR>
 nnoremap <leader>fp <cmd>Telescope projects<CR>
-nnoremap <leader>ft <cmd>Telescope live_grep<CR>
+nnoremap <leader>fg <cmd>Telescope live_grep<CR>
 nnoremap <C-s>      <cmd>w<CR>
 nnoremap <leader>e  <cmd>NvimTreeToggle<CR>
 " Gitsigns
