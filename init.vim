@@ -38,6 +38,7 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'folke/which-key.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'RRethy/vim-illuminate'
+Plug 'folke/todo-comments.nvim'
 
 call plug#end()
 
@@ -109,6 +110,7 @@ lua << EOF
             border = "single"
         }
     }
+    require("todo-comments").setup {}
     require("nvim-autopairs").setup {}
     -- Connect cmp to autopairs
     local cmp_autopairs = require('nvim-autopairs.completion.cmp')

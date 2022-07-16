@@ -27,6 +27,10 @@ require("which-key").register({
         r = { "Reload all buffers" },
         q = { "Close current buffer" },
     },
+    t = {
+        name = "todos",
+        t = { "List al todos" },
+    },
 }, { prefix = "<leader>" })
 EOF
 " Clipboard
@@ -38,8 +42,11 @@ cnoremap <C-v>         <C-r>+
 nnoremap <leader>ff <cmd>Telescope find_files<CR>
 nnoremap <leader>fp <cmd>Telescope projects<CR>
 nnoremap <leader>fg <cmd>Telescope live_grep<CR>
+nnoremap <leader>ft <cmd>TodoTelescope<CR>
 nnoremap <C-s>      <cmd>w<CR>
 nnoremap <leader>e  <cmd>NvimTreeToggle<CR>
+" Todos
+nnoremap <leader>tt <cmd>TodoTrouble<CR>
 " Gitsigns
 nnoremap <leader>gb <cmd>Gitsigns blame_line<CR>
 " Comments
