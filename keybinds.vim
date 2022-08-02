@@ -31,6 +31,11 @@ require("which-key").register({
         name = "todos",
         t = { "List al todos" },
     },
+    f = {
+        name = "files",
+        c = { "Disable conceal level" },
+        u = { "Enable conceal level" },
+    }
 }, { prefix = "<leader>" })
 EOF
 " Clipboard
@@ -43,6 +48,8 @@ nnoremap <leader>ff <cmd>Telescope find_files<CR>
 nnoremap <leader>fp <cmd>Telescope projects<CR>
 nnoremap <leader>fg <cmd>Telescope live_grep<CR>
 nnoremap <leader>ft <cmd>TodoTelescope<CR>
+nnoremap <leader>fc <cmd>set conceallevel=0<CR>
+nnoremap <leader>fu <cmd>set conceallevel=2<CR>
 nnoremap <C-s>      <cmd>w<CR>
 nnoremap <leader>e  <cmd>NvimTreeToggle<CR>
 " Todos
