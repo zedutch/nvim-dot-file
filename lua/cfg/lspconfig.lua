@@ -23,6 +23,7 @@ local servers = {
     'taplo',
     'tsserver',
     'yamlls',
+    'wgsl_analyzer',
 }
 for _, lsp in ipairs(servers) do
     opts = {
@@ -86,13 +87,22 @@ for _, lsp in ipairs(servers) do
                 on_attach = require('cfg.lsphandlers').on_attach,
                 settings = {
                     ["rust-analyzer"] = {
-                        completion = {
-                            postfix = {
-                                enable = false,
-                            },
-                        },
                         checkOnSave = {
                             command = "clippy",
+                        },
+                        inlayHints = {
+                            closingBraceHints = {
+                                enable = true,
+                                minLines = 5,
+                            },
+                        },
+                        joinLines = {
+                            removeTrailingComma = false,
+                        },
+                        typing = {
+                            autoClosingAngleBrackets = {
+                                enable = true,
+                            },
                         },
                     },
                 },

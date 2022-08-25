@@ -37,6 +37,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.title = true
 vim.opt.hidden = true
 vim.opt.wrap = false
+vim.opt.autoread = true
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.fillchars.eob = " "
