@@ -50,6 +50,7 @@ if exists("g:neovide")
     let g:neovide_cursor_animation_length=0.1
     let g:neovide_cursor_trail_length=0.2
     let g:neovide_cursor_antialiasing=v:false
+    let g:neovide_input_use_logo = 1
 endif
 
 """ Main configuration

@@ -23,6 +23,10 @@ nnoremap <leader><C-c> "+y
 nnoremap <leader><C-v> "+p
 inoremap <C-v> <C-r>+
 cnoremap <C-v> <C-r>+
+nnoremap <leader><D-c> "+y
+nnoremap <leader><D-v> "+p
+inoremap <D-v> <C-r>+
+cnoremap <D-v> <C-r>+
 " Files
 nnoremap <leader>ff :Telescope find_files<CR>
 nnoremap <leader>fp :Telescope projects<CR>
