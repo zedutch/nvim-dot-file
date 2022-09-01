@@ -58,6 +58,7 @@ nnoremap <C-s>      <cmd>w<CR>
 nnoremap <leader>e  <cmd>NvimTreeToggle<CR>
 " Todos
 nnoremap <leader>tt <cmd>TodoTrouble<CR>
+nnoremap <leader>tq <cmd>TroubleClose<CR>
 " Gitsigns
 nnoremap <leader>gb <cmd>Gitsigns blame_line<CR>
 " Comments
