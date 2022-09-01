@@ -111,6 +111,19 @@ for _, lsp in ipairs(servers) do
         goto continue
     end
 
+    if lsp == "stylelint_lsp" then
+        local stylelint_opts = {
+            settings = {
+                stylelintplus = {
+                    autoFixOnSave = true,
+                    autoFixOnFormat = true,
+                    configFile = ".stylelintrc.json"
+                }
+            },
+        }
+        opts = vim.tbl_deep_extend("force", stylelint_opts, opts)
+    end
+
     require('lspconfig')[lsp].setup(opts)
     ::continue::
 end
