@@ -24,6 +24,7 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'ray-x/cmp-treesitter'
 Plug 'saecki/crates.nvim', { 'tag': 'v0.2.1' }
+Plug 'habamax/vim-godot'
 " Status bar
 Plug 'feline-nvim/feline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'

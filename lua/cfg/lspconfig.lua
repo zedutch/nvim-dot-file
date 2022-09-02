@@ -14,6 +14,7 @@ local opts = {}
 local servers = {
     'angularls',
     'eslint',
+    'gdscript',
     'html',
     'jsonls',
     'pylsp',
