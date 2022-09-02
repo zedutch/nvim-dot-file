@@ -7,6 +7,8 @@ nnoremap <leader><leader> <cmd>noh<CR>
 nnoremap <leader>il       <cmd>IndentLinesToggle<CR>
 vnoremap <                <gv
 vnoremap >                >gv
+nnoremap <C-S-k>          <cmd>call feedkeys( line('.') == 1 ? '' : 'ddkP' )<CR>
+nnoremap <C-S-j>          <cmd>call feedkeys( 'ddp' )<CR>
 " Resize windows
 nnoremap <C-Up>     <cmd>resize -2<CR>
 nnoremap <C-Down>   <cmd>resize +2<CR>
