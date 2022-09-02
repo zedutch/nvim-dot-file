@@ -13,6 +13,7 @@ local opts = {}
 
 local servers = {
     'angularls',
+    'cssls',
     'eslint',
     'gdscript',
     'html',
