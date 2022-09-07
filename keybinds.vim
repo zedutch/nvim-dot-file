@@ -9,6 +9,7 @@ vnoremap <                <gv
 vnoremap >                >gv
 nnoremap <C-S-k>          <cmd>call feedkeys( line('.') == 1 ? '' : 'ddkP' )<CR>
 nnoremap <C-S-j>          <cmd>call feedkeys( 'ddp' )<CR>
+nnoremap <leader>rn       <cmd>IncRename<CR>
 " Resize windows
 nnoremap <C-Up>     <cmd>resize -2<CR>
 nnoremap <C-Down>   <cmd>resize +2<CR>
@@ -17,8 +18,8 @@ nnoremap <C-Right>  <cmd>vertical resize +2<CR>
 " Buffers
 nnoremap <leader>bb <cmd>Telescope buffers<CR>
 nnoremap <leader>br <cmd>bufdo e<CR>
-nnoremap <leader>bq <cmd>bd<CR>
-nnoremap <leader>q  <cmd>bd<CR>
+nnoremap <leader>bq <cmd>SmartQ!<CR>
+nnoremap <leader>q  <cmd>SmartQ<CR>
 nmap <S-l>          <cmd>bnext<CR>
 nmap <S-h>          <cmd>bprev<CR>
 " WhichKey descriptions

@@ -40,6 +40,9 @@ Plug 'folke/which-key.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'RRethy/vim-illuminate'
 Plug 'folke/todo-comments.nvim'
+Plug 'kylechui/nvim-surround'
+" Plug 'smjonas/inc-rename.nvim' " -- Needs nvim 0.8
+Plug 'marklcrns/vim-smartq'
 
 call plug#end()
 
@@ -88,8 +91,10 @@ set completeopt=menu,menuone,noselect
 " indentLine
 let g:indentLine_char = '|'
 let g:indentLine_defaultGroup = 'NonText'
+let g:vim_json_conceal=0
 let g:vim_json_syntax_conceal = 0
 let g:vim_markdown_conceal = 0
+let g:vim_markdown_syntax_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
 
 " illuminate
@@ -97,6 +102,10 @@ let g:Illuminate_ftblacklist = [ 'NvimTree' ]
 
 " NERDcommenter
 let g:NERDSpaceDelims = 1
+
+" SmartQ
+let g:smartq_goyo_integration = 0
+let g:smartq_zenmode_integration = 0
 
 lua << EOF
     require("project_nvim").setup {
@@ -118,7 +127,7 @@ lua << EOF
     local cmp_autopairs = require('nvim-autopairs.completion.cmp')
     local cmp = require('cmp')
     cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+    -- require('inc_rename').setup {}
+    require('nvim-surround').setup {}
 EOF
 
-" Random other settings
-set conceallevel=0

@@ -18,6 +18,8 @@ local servers = {
     'gdscript',
     'html',
     'jsonls',
+    'marksman',
+    'prismals',
     'pylsp',
     'rust_analyzer',
     'stylelint_lsp',

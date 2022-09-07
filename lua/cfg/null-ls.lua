@@ -24,7 +24,7 @@ null_ls.setup {
         },
 
         -- Javascript
-        diagnostics.eslint,
+        diagnostics.eslint_d,
         diagnostics.tsc,
 
         -- CSS
