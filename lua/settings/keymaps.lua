@@ -51,27 +51,32 @@ keymap("v", "p", '"_dP', "Paste (keep register)")
 keymap("n", "+", "<C-a>", "Increment number")
 keymap("n", "-", "<C-x>", "Decrement number")
 keymap('n', '<C-a>', 'gg<S-v>G', 'Select all')
+keymap('n', 'cd.', 'lcd %:p:h', 'Change working directory to current file')
 
 
 ---- Text manipulation ----
-keymap("v", "<", "<gv", "Indent left (stay in visual mode)")
-keymap("v", ">", ">gv", "Indent right (stay in visual mode)")
-keymap("", "<A-k>", ":m  .-2<CR>==", "Move line up")
-keymap("", "<A-j>", ":m  .+1<CR>==", "Move line down")
+keymap('v', '<', '<gv', 'Indent left (stay in visual mode)')
+keymap('v', '>', '>gv', 'Indent right (stay in visual mode)')
+keymap('', '<A-k>', '<cmd>m .-2<CR>==', 'Move line up')
+keymap('', '<A-j>', '<cmd>m .+1<CR>==', 'Move line down')
+keymap('n', "<leader>c'", "<cmd>s/\"/'/g<CR><cmd>nohl<CR>", "Change all quotes on the current line to '")
+keymap('v', "<leader>c'", "<cmd>'<,'>s/\"/'/g<CR><cmd>nohl<CR>", "Change all quotes in the selection to '")
+keymap('n', "<leader>ch", "<cmd>s/</\\&lt;/g<CR><cmd>s/>/\\&gt;/g<CR><cmd>nohl<CR>", "Encode all HTML on the current line")
+keymap('v', "<leader>ch", "<cmd>'<,'>s/</\\&lt;/g<CR><cmd>'<,'>s/>/\\&gt;/g<CR><cmd>nohl<CR>", "Encode all HTML in the selection")
 
 
 ---- Packages ----
-keymap("n", "<leader>pc", "<cmd>PackerClean<CR>", "Clean packages")
-keymap("n", "<leader>pi", "<cmd>PackerInstall<CR>", "Install packages")
-keymap("n", "<leader>pl", "<cmd>PackerStatus<CR>", "List packages")
-keymap("n", "<leader>ps", "<cmd>PackerSync<CR>", "Sync packages")
-keymap("n", "<leader>pu", "<cmd>PackerUpdate<CR>", "Update packages")
+keymap('n', '<leader>pc', '<cmd>PackerClean<CR>', 'Clean packages')
+keymap('n', '<leader>pi', '<cmd>PackerInstall<CR>', 'Install packages')
+keymap('n', '<leader>pl', '<cmd>PackerStatus<CR>', 'List packages')
+keymap('n', '<leader>ps', '<cmd>PackerSync<CR>', 'Sync packages')
+keymap('n', '<leader>pu', '<cmd>PackerUpdate<CR>', 'Update packages')
 
 
 ---- LSP ----
-keymap("n", "<leader>li", "<cmd>LspInfo<CR>", "LSP Info")
-keymap("n", "<leader>ll", "<cmd>Mason<CR>", "Mason UI")
-keymap("n", "<leader>lr", "<cmd>LspRestart<CR>", "Restart LSP Servers")
+keymap('n', '<leader>li', '<cmd>LspInfo<CR>', 'LSP Info')
+keymap('n', '<leader>ll', '<cmd>Mason<CR>', 'Mason UI')
+keymap('n', '<leader>lr', '<cmd>LspRestart<CR>', 'Restart LSP Servers')
 
 
 --- Telescope ----

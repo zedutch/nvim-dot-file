@@ -13,6 +13,10 @@ telescope.setup {
             i = {
                 ['<C-k>'] = actions.move_selection_previous,
                 ['<C-j>'] = actions.move_selection_next,
+                ['<C-e>'] = actions.close,
+            },
+            n = {
+                ['q'] = actions.close,
             },
         },
         file_ignore_patterns = {
@@ -24,6 +28,7 @@ telescope.setup {
     pickers = {
         find_files = {
             hidden = true,
+            prompt_prefix = '🔍 ',
         },
         projects = {
             theme = "dropdown",
@@ -49,4 +54,4 @@ telescope.setup {
 
 telescope.load_extension('file_browser')
 telescope.load_extension('ui-select')
--- telescope.load_extension('projects')
+telescope.load_extension('projects')

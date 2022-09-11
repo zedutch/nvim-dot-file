@@ -108,8 +108,12 @@ return packer.startup(function(use)
         end,
     }
 
+
     -- Autopairs
     use { 'windwp/nvim-autopairs' }
+    ---- https://github.com/windwp/nvim-ts-autotag
+    use { 'windwp/nvim-ts-autotag' }
+
 
     -- Code snippets
     ---- https://github.com/L3MON4D3/LuaSnip
@@ -144,15 +148,25 @@ return packer.startup(function(use)
                 'nvim-telescope/telescope-fzf-native.nvim',
                 run = 'make',
             },
-            use { 'nvim-telescope/telescope-ui-select.nvim' },
             use { 'sharkdp/fd' },
         },
         config = function ()
             require('settings.plugins.telescope')
         end,
     }
+    use { 'nvim-telescope/telescope-ui-select.nvim' }
     ---- https://github.com/nvim-telescope/telescope-file-browser.nvim 
     use { "nvim-telescope/telescope-file-browser.nvim" }
+
+
+    -- Project
+    ---- https://github.com/ahmedkhalf/project.nvim
+    use { 'ahmedkhalf/project.nvim',
+        config = function ()
+            require('settings.plugins.project')
+        end,
+    }
+
 
     -- TreeSitter
     ---- https://github.com/nvim-treesitter/nvim-treesitter
@@ -163,6 +177,7 @@ return packer.startup(function(use)
         end,
     }
 
+
     -- Illuminate
     ---- https://github.com/RRethy/vim-illuminate
     use { 'RRethy/vim-illuminate',
@@ -171,11 +186,31 @@ return packer.startup(function(use)
         end,
     }
 
+
     -- Comments
     ---- https://github.com/numToStr/Comment.nvim
     use { 'numToStr/Comment.nvim',
         config = function ()
             require('settings.plugins.comments')
+        end,
+    }
+
+
+    -- Surround
+    ---- https://github.com/kylechui/nvim-surround
+    use { 'kylechui/nvim-surround',
+        config = function ()
+            require('settings.plugins.surround')
+        end,
+    }
+
+
+    -- Terminal
+    --
+    use { 'akinsho/toggleterm.nvim',
+        tag = '*',
+        config = function()
+            require('toggleterm').setup()
         end,
     }
 
@@ -194,8 +229,3 @@ end)
 
 -- https://github.com/rhysd/conflict-marker.vim
 -- Plug 'rhysd/conflict-marker.vim'
-
---
--- https://github.com/windwp/nvim-ts-autotag
--- Plug 'windwp/nvim-ts-autotag'
-
