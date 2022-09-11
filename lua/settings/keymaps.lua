@@ -31,6 +31,13 @@ keymap("n", "<S-l>", "<cmd>bnext<CR>", "Next buffer")
 keymap("n", "<S-h>", "<cmd>bprev<CR>", "Previous buffer")
 
 
+---- Tabs ----
+keymap('n', '<leader>tn', '<cmd>tabedit<CR>', 'New tab')
+keymap('n', '<leader>tq', '<cmd>tabclose<CR>', 'Close tab')
+keymap('n', '<leader>th', '<cmd>tabprev<CR>', 'Previous tab')
+keymap('n', '<leader>tl', '<cmd>tabnext<CR>', 'Next tab')
+
+
 ---- Source files ----
 keymap("n", "<leader>s.", "<cmd>source %<CR>", "Source current file", { silent = false })
 keymap("n", "<leader>ss", "<cmd>lua ReloadConfig()<CR>", "Reload configuration")
@@ -92,3 +99,11 @@ keymap("n", "<leader>bb", "<cmd>Telescope buffers<CR>", 'Buffers')
 keymap('n', '<leader>j', "<cmd>lua require('illuminate').next_reference{wrap=true}<CR>", 'Next reference')
 keymap('n', '<leader>k', "<cmd>lua require('illuminate').next_reference{reverse=true, wrap=true}<CR>", 'Previous reference')
 
+
+---- Terminal ----
+keymap('n', '<C-t>', "<cmd>ToggleTerm<CR>", 'Terminal')
+keymap('t', '<esc>', [[<C-\><C-n>]], 'Normal mode')
+keymap('t', '<C-h>', [[<Cmd>wincmd h<CR>]], 'Window left')
+keymap('t', '<C-l>', [[<Cmd>wincmd l<CR>]], 'Window right')
+keymap('t', '<C-j>', [[<Cmd>wincmd j<CR>]], 'Window down')
+keymap('t', '<C-k>', [[<Cmd>wincmd k<CR>]], 'Window up')

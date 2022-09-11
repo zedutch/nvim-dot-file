@@ -206,7 +206,7 @@ return packer.startup(function(use)
 
 
     -- Terminal
-    --
+    ---- https://github.com/akinsho/toggleterm.nvim
     use { 'akinsho/toggleterm.nvim',
         tag = '*',
         config = function()
