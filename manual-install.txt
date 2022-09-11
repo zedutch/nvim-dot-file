@@ -1,0 +1,2 @@
+The following programs need to be installed manually:
+- https://github.com/BurntSushi/ripgrep
