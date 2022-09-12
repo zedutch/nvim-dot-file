@@ -250,6 +250,9 @@ return packer.startup(function(use)
         end,
     }
 
+    ---- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
+    use { 'JoosepAlviste/nvim-ts-context-commentstring', commit = '4d3a68c41a53add8804f471fcc49bb398fe8de08' }
+
 
     -- Surround
     ---- https://github.com/kylechui/nvim-surround

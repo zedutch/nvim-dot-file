@@ -32,5 +32,8 @@ treesitter.setup {
         enable = true,
         disable = { "yaml" },
     },
+    context_commentstring = {
+        enable = true,
+    },
 }
 
