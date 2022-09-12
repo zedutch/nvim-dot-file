@@ -79,11 +79,9 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-    if client.server_capabilities.documentFormattingProvider then
-        vim.api.nvim_command [[augroup Format]]
-        vim.api.nvim_command [[autocmd! * <buffer>]]
-        vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
-        vim.api.nvim_command [[augroup END]]
+    -- Do not auto-format HTML
+    if client.name == 'html' then
+        client.server_capabilities.documentFormattingProvider = false
     end
 
     if client.name == 'tsserver' then
@@ -92,6 +90,13 @@ M.on_attach = function(client, bufnr)
 
     if client.name == 'sumneko_lua' then
         client.resolved_capabilities.document_formatting = false
+    end
+
+    if client.server_capabilities.documentFormattingProvider then
+        vim.api.nvim_command [[augroup Format]]
+        vim.api.nvim_command [[autocmd! * <buffer>]]
+        vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
+        vim.api.nvim_command [[augroup END]]
     end
 
     lsp_keymaps(bufnr)

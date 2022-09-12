@@ -139,6 +139,16 @@ return packer.startup(function(use)
         },
     }
 
+
+    -- Null-ls
+    ---- https://github.com/jose-elias-alvarez/null-ls.nvim
+    use { 'jose-elias-alvarez/null-ls.nvim',
+        config = function ()
+            require('settings.lsp.null-ls')
+        end,
+    }
+
+
     -- Telescope
     ---- https://github.com/nvim-telescope/telescope.nvim
     use { 'nvim-telescope/telescope.nvim',
