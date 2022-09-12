@@ -14,9 +14,14 @@ telescope.setup {
                 ['<C-k>'] = actions.move_selection_previous,
                 ['<C-j>'] = actions.move_selection_next,
                 ['<C-e>'] = actions.close,
+                ['<D-k>'] = actions.move_selection_previous,
+                ['<D-j>'] = actions.move_selection_next,
+                ['<D-e>'] = actions.close,
             },
             n = {
                 ['q'] = actions.close,
+                ['<C-e>'] = actions.close,
+                ['<D-e>'] = actions.close,
             },
         },
         file_ignore_patterns = {

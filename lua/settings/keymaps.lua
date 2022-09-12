@@ -101,7 +101,8 @@ keymap('n', '<leader>k', "<cmd>lua require('illuminate').next_reference{reverse=
 
 
 ---- Terminal ----
-keymap('n', '<C-t>', "<cmd>ToggleTerm<CR>", 'Terminal')
+keymap('', '<C-t>', "<cmd>ToggleTerm<CR>", 'Terminal')
+keymap('t', '<C-e>', "<cmd>ToggleTerm<CR>", 'Terminal')
 keymap('t', '<esc>', [[<C-\><C-n>]], 'Normal mode')
 keymap('t', '<C-h>', [[<Cmd>wincmd h<CR>]], 'Window left')
 keymap('t', '<C-l>', [[<Cmd>wincmd l<CR>]], 'Window right')
