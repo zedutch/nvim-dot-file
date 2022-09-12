@@ -4,31 +4,32 @@ if not ok then
     return
 end
 
-local ok, masonLspConfig = pcall(require, 'mason-lspconfig')
-if not ok then
+local mason_ok, masonLspConfig = pcall(require, 'mason-lspconfig')
+if not mason_ok then
     print('Skipping lsp configuration as mason-lspconfig is missing')
     return
 end
 
-local ok, _ = pcall(require, 'lspconfig')
-if not ok then
+local lsp_ok, _ = pcall(require, 'lspconfig')
+if not lsp_ok then
     print('Skipping lsp configuration as lspconfig is missing')
     return
 end
 
 local servers = {
---     'angularls',
---     'cssls',
---     'html',
+    'angularls',
+    'cssls',
+    'html',
     'jsonls',
     'sumneko_lua',
     'tsserver',
---     'marksman',
+    'eslint_d',
+    'marksman',
 --     'prismals',
---     'pyright',
+    'pyright',
 --     'rust_analyzer',
---     'stylelint_lsp',
---     'yamlls',
+    'stylelint_lsp',
+    'yamlls',
 }
 
 mason.setup {
