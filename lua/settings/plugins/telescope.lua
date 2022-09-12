@@ -38,6 +38,13 @@ telescope.setup {
         projects = {
             theme = "dropdown",
         },
+        buffers = {
+            mappings = {
+                i = {
+                    ['<C-d>'] = actions.delete_buffer,
+                }
+            }
+        },
     },
     extensions = {
         file_browser = {

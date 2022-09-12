@@ -4,8 +4,8 @@ if not ok then
     return
 end
 
-local ok, luasnip = pcall(require, 'luasnip')
-if not ok then
+local snip_ok, luasnip = pcall(require, 'luasnip')
+if not snip_ok then
     print 'Skipping luasnip as it is not installed.'
     return
 end
@@ -116,6 +116,7 @@ cmp.setup {
         { name = 'luasnip' },
         { name = 'buffer' },
         { name = 'path' },
+        { name = 'emoji' },
     },
     window = {
         completion = cmp.config.window.bordered(),
