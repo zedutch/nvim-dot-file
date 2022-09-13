@@ -84,10 +84,12 @@ M.on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
     end
 
-    if client.name == 'tsserver' then
-        client.resolved_capabilities.document_formatting = false
-    end
+    -- Do not show tsserver as a formatting source
+    -- if client.name == 'tsserver' then
+    --     client.resolved_capabilities.document_formatting = false
+    -- end
 
+    -- Do not show sumneko_lua as a formatting source
     if client.name == 'sumneko_lua' then
         client.resolved_capabilities.document_formatting = false
     end
