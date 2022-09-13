@@ -220,6 +220,16 @@ return packer.startup(function(use)
     }
 
 
+    -- Bufferline
+    ---- https://github.com/akinsho/bufferline.nvim
+    use { 'akinsho/bufferline.nvim',
+        tag = 'v2.*',
+        config = function ()
+            require('settings.plugins.bufferline')
+        end,
+    }
+
+
     -- TreeSitter
     ---- https://github.com/nvim-treesitter/nvim-treesitter
     use { 'nvim-treesitter/nvim-treesitter',
