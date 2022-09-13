@@ -17,7 +17,7 @@ project.setup {
 
     -- All the patterns used to detect root dir, when **"pattern"** is in
     -- detection_methods
-    patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
+    patterns = { "!ng-package.json", ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
 
     -- Table of lsp clients to ignore by name
     -- eg: { "efm", ... }
@@ -39,11 +39,3 @@ project.setup {
     datapath = vim.fn.stdpath("data"),
 }
 
-
--- local telescope_ok, telescope = pcall(require, 'telescope')
--- if not telescope_ok then
---     print 'Skipping telescope projects extension as telescope is not installed.'
---     return
--- end
---
--- telescope.load_extension('projects')
