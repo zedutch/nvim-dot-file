@@ -108,3 +108,11 @@ keymap('t', '<C-h>', [[<Cmd>wincmd h<CR>]], 'Window left')
 keymap('t', '<C-l>', [[<Cmd>wincmd l<CR>]], 'Window right')
 keymap('t', '<C-j>', [[<Cmd>wincmd j<CR>]], 'Window down')
 keymap('t', '<C-k>', [[<Cmd>wincmd k<CR>]], 'Window up')
+
+---- Comments ----
+keymap('', '<leader>cc', '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>', 'Comment linewise')
+keymap('', '<leader>cb', '<cmd>lua require("Comment.api").toggle_current_blockwise()<CR>', 'Comment blockwise')
+--keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
+
+---- OpenBrowser ----
+keymap('', 'gx', '<cmd>let url = expand("<cfile>")<CR><cmd>call OpenBrowser(url)<CR>')

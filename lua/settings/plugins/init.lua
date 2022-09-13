@@ -280,6 +280,9 @@ return packer.startup(function(use)
         commit = '22b6133116795ea8fb6705ddca981aa8faecedda',
     }
 
+    -- Fix gx without Netrw
+    ---- https://github.com/tyru/open-browser.vim
+    use { 'tyru/open-browser.vim' }
 
     -- Rust
     -- use { 'saecki/crates.nvim',
