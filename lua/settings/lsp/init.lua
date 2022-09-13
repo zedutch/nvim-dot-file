@@ -47,6 +47,7 @@ masonLspConfig.setup {
 }
 
 local handlers = require('settings.lsp.handlers')
+handlers.setup()
 
 masonLspConfig.setup_handlers {
     -- Default handler
