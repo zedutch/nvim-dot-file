@@ -50,7 +50,7 @@ telescope.setup {
         file_browser = {
             theme = 'ivy',
             hijack_netrw = true,
-            initial_mode = 'n',
+            initial_mode = 'normal',
         },
         ['ui-select'] = {
             require("telescope.themes").get_dropdown {},
