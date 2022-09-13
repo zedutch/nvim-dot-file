@@ -84,6 +84,7 @@ keymap('n', '<leader>pu', '<cmd>PackerUpdate<CR>', 'Update packages')
 keymap('n', '<leader>li', '<cmd>LspInfo<CR>', 'LSP Info')
 keymap('n', '<leader>ll', '<cmd>Mason<CR>', 'Mason UI')
 keymap('n', '<leader>lr', '<cmd>LspRestart<CR>', 'Restart LSP Servers')
+keymap('n', '<leader>ln', '<cmd>NullLsInfo<CR>', 'Null-ls Info')
 
 
 --- Telescope ----
@@ -103,15 +104,17 @@ keymap('n', '<leader>k', "<cmd>lua require('illuminate').next_reference{reverse=
 ---- Terminal ----
 keymap('', '<C-t>', "<cmd>ToggleTerm<CR>", 'Terminal')
 keymap('t', '<C-e>', "<cmd>ToggleTerm<CR>", 'Terminal')
-keymap('t', '<esc>', [[<C-\><C-n>]], 'Normal mode')
-keymap('t', '<C-h>', [[<Cmd>wincmd h<CR>]], 'Window left')
-keymap('t', '<C-l>', [[<Cmd>wincmd l<CR>]], 'Window right')
-keymap('t', '<C-j>', [[<Cmd>wincmd j<CR>]], 'Window down')
-keymap('t', '<C-k>', [[<Cmd>wincmd k<CR>]], 'Window up')
+keymap('t', '<esc>', "<C-\\><C-n>", 'Normal mode')
+keymap('t', '<C-h>', "<cmd>wincmd h<CR>", 'Window left')
+keymap('t', '<C-l>', "<cmd>wincmd l<CR>", 'Window right')
+keymap('t', '<C-j>', "<cmd>wincmd j<CR>", 'Window down')
+keymap('t', '<C-k>', "<cmd>wincmd k<CR>", 'Window up')
 
 ---- Comments ----
-keymap('', '<leader>cc', '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>', 'Comment linewise')
-keymap('', '<leader>cb', '<cmd>lua require("Comment.api").toggle_current_blockwise()<CR>', 'Comment blockwise')
+keymap('n', '<leader>cc', 'gcc', 'Comment linewise')
+keymap('n', '<leader>cb', 'gcb', 'Comment blockwise')
+keymap('v', '<leader>cc', 'gc', 'Comment linewise')
+keymap('v', '<leader>cb', 'gb', 'Comment blockwise')
 --keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
 
 ---- OpenBrowser ----
