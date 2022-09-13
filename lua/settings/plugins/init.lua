@@ -280,7 +280,7 @@ return packer.startup(function(use)
         commit = '5e393e558f7c41d132542c8e9626aa824a1caa59',
         tag = '*',
         config = function()
-            require('toggleterm').setup()
+            require('settings.plugins.toggleterm')
         end,
     }
 

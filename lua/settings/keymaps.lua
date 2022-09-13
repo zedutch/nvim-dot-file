@@ -109,6 +109,7 @@ keymap('t', '<C-h>', "<cmd>wincmd h<CR>", 'Window left')
 keymap('t', '<C-l>', "<cmd>wincmd l<CR>", 'Window right')
 keymap('t', '<C-j>', "<cmd>wincmd j<CR>", 'Window down')
 keymap('t', '<C-k>', "<cmd>wincmd k<CR>", 'Window up')
+keymap('', '<leader>tp', '<cmd>lua _PYTHON_TOGGLE()<CR>', 'Open Python console')
 
 ---- Comments ----
 keymap('n', '<leader>cc', 'gcc', 'Comment linewise')
