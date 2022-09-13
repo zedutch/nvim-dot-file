@@ -80,31 +80,40 @@ end
 
 M.on_attach = function(client, bufnr)
     -- Do not auto-format HTML
-    if client.name == 'html' then
-        client.server_capabilities.documentFormattingProvider = false
-    end
+    -- if client.name == 'html' then
+    --     client.server_capabilities.documentFormattingProvider = false
+    -- end
 
     -- Do not show tsserver as a formatting source
     -- if client.name == 'tsserver' then
     --     client.resolved_capabilities.document_formatting = false
     -- end
 
+    local disableFormatting = {
+        typescript='stylelint_lsp',
+    }
+    for file, clnt in pairs(disableFormatting) do
+        if vim.bo.filetype == file and client.name == clnt then
+            client.server_capabilities.document_formatting = false
+        end
+    end
+
     -- Do not show sumneko_lua as a formatting source
     if client.name == 'sumneko_lua' then
         client.resolved_capabilities.document_formatting = false
     end
 
-    if client.server_capabilities.documentFormattingProvider then
-        vim.api.nvim_command [[augroup Format]]
-        vim.api.nvim_command [[autocmd! * <buffer>]]
-        vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
-        vim.api.nvim_command [[augroup END]]
-    end
+    -- if client.server_capabilities.documentFormattingProvider then
+    --     vim.api.nvim_command [[augroup Format]]
+    --     vim.api.nvim_command [[autocmd! * <buffer>]]
+    --     vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
+    --     vim.api.nvim_command [[augroup END]]
+    -- end
 
     lsp_keymaps(bufnr)
 
-    local ok, illuminate = pcall(require, 'illuminate')
-    if not ok then
+    local ill_ok, illuminate = pcall(require, 'illuminate')
+    if not ill_ok then
         print('Skipping illuminate as it is not installed.')
         return
     end
