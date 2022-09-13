@@ -18,12 +18,13 @@ end
 
 local servers = {
     'angularls',
+    'black',
     'cssls',
     'html',
     'jsonls',
     'sumneko_lua',
     'tsserver',
-    'eslint_d',
+    'eslint_lsp',
     'marksman',
 --     'prismals',
     'pyright',
