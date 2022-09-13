@@ -47,5 +47,6 @@ null_ls.setup {
     },
     on_attach = function()
         vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
+        vim.cmd([[ command! Diagnostics execute 'lua vim.diagnostic.enable()' ]])
     end,
 }
