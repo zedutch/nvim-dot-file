@@ -1,3 +1,4 @@
+-- https://github.com/ahmedkhalf/project.nvim#%EF%B8%8F-configuration 
 local ok, project = pcall(require, 'project_nvim')
 if not ok then
     print 'Skipping project as it is not installed.'
@@ -13,7 +14,7 @@ project.setup {
     -- lsp, while **"pattern"** uses vim-rooter like glob pattern matching. Here
     -- order matters: if one is not detected, the other is used as fallback. You
     -- can also delete or rearangne the detection methods.
-    detection_methods = { "lsp", "pattern" },
+    detection_methods = { "!>projects", "pattern", "lsp" },
 
     -- All the patterns used to detect root dir, when **"pattern"** is in
     -- detection_methods
