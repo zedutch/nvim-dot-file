@@ -69,7 +69,9 @@ keymap('', '<A-j>', '<cmd>m .+1<CR>==', 'Move line down')
 keymap('n', "<leader>c'", "<cmd>s/\"/'/g<CR><cmd>nohl<CR>", "Change all quotes on the current line to '")
 keymap('v', "<leader>c'", "<cmd>'<,'>s/\"/'/g<CR><cmd>nohl<CR>", "Change all quotes in the selection to '")
 keymap('n', "<leader>ch", "<cmd>s/</\\&lt;/g<CR><cmd>s/>/\\&gt;/g<CR><cmd>nohl<CR>", "Encode all HTML on the current line")
+keymap('n', "<leader>c{", "<cmd>s/{/\\&#10100;/g<CR><cmd>s/}/\\&#10101;/g<CR><cmd>nohl<CR>", "Encode all curly brackets on the current line")
 keymap('v', "<leader>ch", "<cmd>'<,'>s/</\\&lt;/g<CR><cmd>'<,'>s/>/\\&gt;/g<CR><cmd>nohl<CR>", "Encode all HTML in the selection")
+keymap('v', "<leader>c{", "<cmd>'<,'>s/{/\\&#10100;/g<CR><cmd>'<,'>s/}/\\&#10101;/g<CR><cmd>nohl<CR>", "Encode all curly brackets in the selection")
 
 
 ---- Packages ----
