@@ -121,4 +121,5 @@ keymap('v', '<leader>cb', 'gb', 'Comment blockwise')
 --keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
 
 ---- OpenBrowser ----
-keymap('', 'gx', '<cmd>let url = expand("<cfile>")<CR><cmd>call OpenBrowser(url)<CR>')
+keymap('', 'gx', '<cmd>let url = expand("<cfile>")<CR><cmd>call OpenBrowser(url)<CR>', 'Open in browser')
+
