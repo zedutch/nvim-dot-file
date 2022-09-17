@@ -90,12 +90,13 @@ keymap('n', '<leader>ln', '<cmd>NullLsInfo<CR>', 'Null-ls Info')
 
 
 --- Telescope ----
-keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", 'Find files')
-keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", 'Live grep')
-keymap("n", "<leader>fp", "<cmd>Telescope projects<CR>", 'Projects')
-keymap("n", "<leader>fo", "<cmd>Telescope treesitter<CR>", 'Outline')
-keymap("n", "<leader>fb", "<cmd>Telescope file_browser<CR>", 'File browser')
-keymap("n", "<leader>bb", "<cmd>Telescope buffers<CR>", 'Buffers')
+keymap('n', '<leader>ff', '<cmd>Telescope find_files<CR>', 'Find files')
+keymap('n', '<leader>fg', '<cmd>Telescope live_grep<CR>', 'Live grep')
+keymap('n', '<leader>fp', '<cmd>Telescope projects<CR>', 'Projects')
+keymap('n', '<leader>fo', '<cmd>Telescope treesitter<CR>', 'Outline')
+keymap('n', '<leader>fb', '<cmd>Telescope file_browser<CR>', 'File browser')
+keymap('n', '<leader>fs', '<cmd>Telescope lsp_document_symbols<CR>', 'File symbols')
+keymap('n', '<leader>bb', '<cmd>Telescope buffers<CR>', 'Buffers')
 
 
 ---- Illuminate ----
