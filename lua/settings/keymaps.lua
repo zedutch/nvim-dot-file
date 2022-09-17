@@ -96,6 +96,7 @@ keymap('n', '<leader>fp', '<cmd>Telescope projects<CR>', 'Projects')
 keymap('n', '<leader>fo', '<cmd>Telescope treesitter<CR>', 'Outline')
 keymap('n', '<leader>fb', '<cmd>Telescope file_browser<CR>', 'File browser')
 keymap('n', '<leader>fs', '<cmd>Telescope lsp_document_symbols<CR>', 'File symbols')
+keymap('n', '<leader>fh', '<cmd>Telescope git_files<CR>', 'Git files')
 keymap('n', '<leader>bb', '<cmd>Telescope buffers<CR>', 'Buffers')
 
 
