@@ -115,12 +115,14 @@ keymap('t', '<C-j>', "<cmd>wincmd j<CR>", 'Window down')
 keymap('t', '<C-k>', "<cmd>wincmd k<CR>", 'Window up')
 keymap('', '<leader>tp', '<cmd>lua _PYTHON_TOGGLE()<CR>', 'Open Python console')
 
+
 ---- Comments ----
 keymap('n', '<leader>cc', 'gcc', 'Comment linewise')
 keymap('n', '<leader>cb', 'gcb', 'Comment blockwise')
 keymap('v', '<leader>cc', 'gc', 'Comment linewise')
 keymap('v', '<leader>cb', 'gb', 'Comment blockwise')
 --keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
+
 
 ---- OpenBrowser ----
 keymap('', 'gx', '<cmd>let url = expand("<cfile>")<CR><cmd>call OpenBrowser(url)<CR>', 'Open in browser')

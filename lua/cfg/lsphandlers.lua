@@ -5,6 +5,7 @@ local cmp_nvim_lsp = require('cmp_nvim_lsp')
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupprt = true
 M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+M.capabilities.offsetEncoding = 'utf-8'
 
 M.setup = function()
     local config = {
@@ -70,6 +71,12 @@ local function lsp_keymaps_rust(bufnr)
     keymap(bufnr, "n", "<C-k>", ":RustMoveItemUp<CR>", opts)
 end
 
+local function lsp_keymaps_cpp(bufnr)
+    local opts = { silent = true }
+    local keymap = vim.api.nvim_buf_set_keymap
+    keymap(bufnr, "n", "<leader>rh", ":ClangdSwitchSourceHeader<CR>", opts)
+end
+
 M.on_attach = function(client, bufnr)
     if client.name == "tsserver" or client.name == "sumneko_lua" then
         client.resolved_capabilities.document_formatting = false
@@ -79,6 +86,10 @@ M.on_attach = function(client, bufnr)
 
     if client.name == "rust_analyzer" then
         lsp_keymaps_rust(bufnr)
+    end
+
+    if client.name == "clangd" then
+        lsp_keymaps_cpp(bufnr)
     end
 
     require('illuminate').on_attach(client)

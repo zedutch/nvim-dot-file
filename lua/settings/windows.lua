@@ -14,3 +14,7 @@ opt.clipboard:prepend { 'unnamed', 'unnamedplus' }
 keymap("i", "<C-v>", "<C-r>+", "Paste from system clipboard")
 keymap("c", "<C-v>", "<C-r>+", "Paste from system clipboard")
 keymap("v", "<C-c>", '"+y', "Copy to system clipboard")
+
+keymap("n", "<leader>rr", '<cmd>!build.bat<CR>', "Compile debug")
+keymap("n", "<leader>rw", '<cmd>!build_web.bat<CR>', "Compile web")
+keymap("n", "<leader>rg", '<cmd>!run.bat<CR>', "Run application")
