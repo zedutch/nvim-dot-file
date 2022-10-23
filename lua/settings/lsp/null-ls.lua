@@ -1,4 +1,8 @@
-local null_ls = require("null-ls")
+local ok, null_ls = pcall(require, 'null-ls')
+if not ok then
+    print 'Skipping null-ls as it is not installed.'
+    return
+end
 
 ---- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 local formatting = null_ls.builtins.formatting
@@ -6,25 +10,23 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 ---- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/code_actions
 local code_actions = null_ls.builtins.code_actions
+
 null_ls.setup {
-    debug = false,
     sources = {
-        -- All
         diagnostics.editorconfig_checker,
 
         -- Python
-        diagnostics.pylint.with {
-            extra_args = {
-                "--load-plugins=pylint_django,pylint_quotes",
-            },
-        },
-        formatting.isort,
-        -- formatting.autopep8,
-        formatting.black.with {
-            extra_args = {
-                "--fast",
-            },
-        },
+        -- diagnostics.pylint.with {
+        --     extra_args = {
+        --         "--load-plugins=pylint_django,pylint_quotes",
+        --     },
+        -- },
+        -- formatting.isort,
+        -- formatting.black.with {
+        --     extra_args = {
+        --         "--fast",
+        --     },
+        -- },
 
         -- Javascript
         -- diagnostics.eslint_d,
@@ -32,18 +34,19 @@ null_ls.setup {
         diagnostics.tsc,
 
         -- CSS
-        diagnostics.stylelint,
+        -- diagnostics.stylelint,
 
         -- HTML
-        formatting.prettier.with {
-            filetypes = { "html", "json", "yaml", "markdown", "toml" },
-            extra_args = { "--single-quote", "--jsx-single-quote" },
-        },
+        -- formatting.prettier.with {
+        --     filetypes = { "html", "json", "yaml", "markdown", "toml" },
+        --     extra_args = { "--single-quote", "--jsx-single-quote" },
+        -- },
 
         -- Git
         code_actions.gitsigns,
     },
     on_attach = function()
         vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
+        vim.cmd([[ command! Diagnostics execute 'lua vim.diagnostic.enable()' ]])
     end,
 }

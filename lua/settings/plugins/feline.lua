@@ -440,7 +440,13 @@ local inactive = {
   { c.in_position }, -- right
 }
 
-require("feline").setup({
+local ok, feline = pcall(require, 'feline')
+if not ok then
+    print 'Skipping feline as it is not installed'
+    return
+end
+
+feline.setup({
   components = { active = active, inactive = inactive },
   highlight_reset_triggers = {},
   force_inactive = {

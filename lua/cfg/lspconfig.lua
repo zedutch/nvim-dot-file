@@ -13,6 +13,8 @@ local opts = {}
 
 local servers = {
     'angularls',
+    'clang-format',
+    'clangd',
     'cssls',
     'eslint',
     'gdscript',
