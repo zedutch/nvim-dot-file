@@ -28,6 +28,7 @@ telescope.setup {
             'node_modules',
             '.git/',
             '.git\\',
+            'vendor',
         }
     },
     pickers = {
