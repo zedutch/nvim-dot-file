@@ -22,3 +22,7 @@ keymap('t', '<D-h>', [[<Cmd>wincmd h<CR>]], 'Window left')
 keymap('t', '<D-l>', [[<Cmd>wincmd l<CR>]], 'Window right')
 keymap('t', '<D-j>', [[<Cmd>wincmd j<CR>]], 'Window down')
 keymap('t', '<D-k>', [[<Cmd>wincmd k<CR>]], 'Window up')
+
+keymap("n", "<leader>rr", '<cmd>!./build.sh<CR>', "Compile debug")
+keymap("n", "<leader>rw", '<cmd>!./build_web.sh<CR>', "Compile web")
+keymap("n", "<leader>rg", '<cmd>!./run.sh<CR>', "Run application")
