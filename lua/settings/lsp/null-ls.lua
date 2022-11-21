@@ -27,6 +27,7 @@ null_ls.setup {
         --         "--fast",
         --     },
         -- },
+        formatting.prettierd,
 
         -- Javascript
         -- diagnostics.eslint_d,

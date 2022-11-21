@@ -98,7 +98,7 @@ M.on_attach = function(client, bufnr)
         end
     end
 
-  if vim.bo.filetype == 'typescriptreact' then
+  if vim.bo.filetype == 'typescriptreact' or vim.bo.filetype == 'prisma' then
       vim.api.nvim_buf_set_option(bufnr, 'shiftwidth', 2)
       vim.api.nvim_buf_set_option(bufnr, 'tabstop', 2)
       vim.api.nvim_buf_set_option(bufnr, 'softtabstop', 2)
