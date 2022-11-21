@@ -9,7 +9,6 @@ opt.guifont = 'RobotoMono Nerd Font:h14'
 -- Indentation
 opt.autoindent = true
 opt.expandtab = true
-opt.shiftwidth = 4
 opt.smartcase = true
 opt.smartindent = true
 opt.smarttab = true

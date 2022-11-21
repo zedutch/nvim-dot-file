@@ -61,7 +61,6 @@ local function keymap(bufnr, mode, lhs, rhs, description, opts)
 end
 
 local function lsp_keymaps(bufnr)
-    local opts = { noremap = true, silent = true }
     keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration")
     keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition")
     keymap(bufnr, "n", "gI", ":lua vim.lsp.buf.implementation()<CR>", "Go to implementation")
@@ -91,6 +90,7 @@ M.on_attach = function(client, bufnr)
 
     local disableFormatting = {
         typescript='stylelint_lsp',
+        lua='sumneko_lua',
     }
     for file, clnt in pairs(disableFormatting) do
         if vim.bo.filetype == file and client.name == clnt then
@@ -98,10 +98,11 @@ M.on_attach = function(client, bufnr)
         end
     end
 
-    -- Do not show sumneko_lua as a formatting source
-    if client.name == 'sumneko_lua' then
-        client.resolved_capabilities.document_formatting = false
-    end
+  if vim.bo.filetype == 'typescriptreact' then
+      vim.api.nvim_buf_set_option(bufnr, 'shiftwidth', 2)
+      vim.api.nvim_buf_set_option(bufnr, 'tabstop', 2)
+      vim.api.nvim_buf_set_option(bufnr, 'softtabstop', 2)
+  end
 
     -- if client.server_capabilities.documentFormattingProvider then
     --     vim.api.nvim_command [[augroup Format]]
