@@ -1,3 +1,3 @@
 return {
-    filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
+    filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx' },
 }
