@@ -4,6 +4,8 @@ Install:
 ```npm i -g editconfig-checker```
 - [ripgrep (rg)](https://github.com/BurntSushi/ripgrep)
 - [sharkdp/fd](https://github.com/sharkdp/fd)
+- prettier_d_slim  
+```npm i -g prettier_d_slim```
 - Run `checkhealth` and install missing executables
 
 Language servers:
