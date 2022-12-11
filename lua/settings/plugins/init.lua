@@ -2,7 +2,7 @@ local fn = vim.fn
 
 -- Automatically install Packer
 local packer_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-print("Path:", packer_path)
+-- print("Path:", packer_path)
 if fn.empty(fn.glob(packer_path)) > 0 then
     PACKER_INSTALL = fn.system {
         'git',
@@ -49,22 +49,22 @@ return packer.startup(function(use)
 
     -- Widely used dependencies
     ---- https://github.com/nvim-lua/plenary.nvim
-    use { 'nvim-lua/plenary.nvim', commit = '4b66054e75356ac0b909bbfee9c682e703f535c2' }
+    use { 'nvim-lua/plenary.nvim', commit = '4b7e52044bbb84242158d977a50c4cbcd85070c7' }
     ---- https://github.com/kyazdani42/nvim-web-devicons/
-    use { 'kyazdani42/nvim-web-devicons', commit = '2d02a56189e2bde11edd4712fea16f08a6656944' }
+    use { 'kyazdani42/nvim-web-devicons', commit = '05e1072f63f6c194ac6e867b567e6b437d3d4622' }
 
 
     -- Theming
     ---- https://github.com/EdenEast/nightfox.nvim
     use { 'EdenEast/nightfox.nvim',
-        commit = '83f6ee9e646c803aa14c7293ad7775900f24ea1a',
+        commit = '0903c4886535d97e6e62f710ab97119d2e09aa0b',
         config = function()
             require('settings.plugins.nightfox')
         end,
     }
     ---- https://github.com/feline-nvim/feline.nvim
     use { 'feline-nvim/feline.nvim',
-        commit = '331a79449d86668618a4e00fced153bce3ce2780',
+        commit = '573e6d1e213de976256c84e1cb2f55665549b828',
         config = function()
             require('settings.plugins.feline')
         end,
@@ -267,7 +267,7 @@ return packer.startup(function(use)
     -- Surround
     ---- https://github.com/kylechui/nvim-surround
     use { 'kylechui/nvim-surround',
-        commit = 'd91787d5a716623be7cec3be23c06c0856dc21b8',
+        commit = '6b45fbffdabb2d8cd80d310006c92e59cec8fd74',
         config = function ()
             require('settings.plugins.surround')
         end,
@@ -277,7 +277,7 @@ return packer.startup(function(use)
     -- Terminal
     ---- https://github.com/akinsho/toggleterm.nvim
     use { 'akinsho/toggleterm.nvim',
-        commit = '5e393e558f7c41d132542c8e9626aa824a1caa59',
+        commit = 'b02a1674bd0010d7982b056fd3df4f717ff8a57a',
         tag = '*',
         config = function()
             require('settings.plugins.toggleterm')
