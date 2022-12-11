@@ -155,15 +155,15 @@ return packer.startup(function(use)
     -- LSP
     ---- https://github.com/williamboman/mason.nvim#requirements
     use { 'williamboman/mason.nvim',
-        commit = 'b56ea0bd8b6b1c265752226666f1069d0a479438',
+        commit = 'e8bf53119572622f9c45c82f4ef9443a4d37df4b',
         requires = {
             ---- https://github.com/williamboman/mason-lspconfig.nvim
             use { 'williamboman/mason-lspconfig.nvim',
-                commit = '1534b610c5e8afaa2cc4231f0715354dc2d9688b',
+                commit = 'e8bd50153b94cc5bbfe3f59fc10ec7c4902dd526',
                 requires = {
                     ---- https://github.com/neovim/nvim-lspconfig 
                     use { 'neovim/nvim-lspconfig',
-                        commit = 'f8b3c240edad68bf549cae6b133cf2cac85554e8',
+                        commit = '6eb24ef9175d1fa3c7a23e115854b1a2d923d386',
                     },
                 },
             },
@@ -174,7 +174,7 @@ return packer.startup(function(use)
     -- Null-ls
     ---- https://github.com/jose-elias-alvarez/null-ls.nvim
     use { 'jose-elias-alvarez/null-ls.nvim',
-        commit = 'bf027826eeb83606ef7153f312ef66750ef14961',
+        commit = 'adaa799264c92eea42d500c8b98e19caf32c14dc',
         config = function ()
             require('settings.lsp.null-ls')
         end,

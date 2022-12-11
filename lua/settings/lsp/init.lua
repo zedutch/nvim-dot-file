@@ -18,22 +18,18 @@ end
 
 local servers = {
     'angularls',
-    'black',
     'cssls',
-    'eslint_lsp',
+    'eslint',
     'html',
     'jsonls',
-    'sumneko_lua',
-    'tsserver',
-    'eslint_lsp',
     'marksman',
     'prismals',
-    'prettierd',
     'pyright',
     -- 'rust_analyzer',
-    -- 'stylelint_lsp',
-    'tailwindcss-language-server',
-    'typescript-language-server',
+    'stylelint_lsp',
+    'sumneko_lua',
+    'tailwindcss',
+    'tsserver',
     'yamlls',
 }
 

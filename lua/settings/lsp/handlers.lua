@@ -75,35 +75,28 @@ local function lsp_keymaps(bufnr)
     keymap(bufnr, "n", "<leader>ls", ":lua vim.lsp.buf.signature_help()<CR>")
     keymap(bufnr, "n", "<leader>lj", ":lua vim.diagnostic.goto_next({buffer=0})<CR>", "Next diagnostic problem")
     keymap(bufnr, "n", "<leader>lk", ":lua vim.diagnostic.goto_prev({buffer=0})<CR>", "Previous diagnostic problem")
+    keymap(bufnr, "n", "<leader>ldd", ":lua vim.diagnostic.enable()<CR>", "Enable diagnostics")
+    keymap(bufnr, "n", "<leader>ldl", ":lua vim.diagnostic.disable()<CR>", "Disable diagnostics")
 end
 
 M.on_attach = function(client, bufnr)
-    -- Do not auto-format HTML
-    -- if client.name == 'html' then
-    --     client.server_capabilities.documentFormattingProvider = false
-    -- end
-
-    -- Do not show tsserver as a formatting source
-    -- if client.name == 'tsserver' then
-    --     client.resolved_capabilities.document_formatting = false
-    -- end
-
     local disableFormatting = {
         typescript='stylelint_lsp',
         lua='sumneko_lua',
     }
     for file, clnt in pairs(disableFormatting) do
         if vim.bo.filetype == file and client.name == clnt then
-            client.server_capabilities.document_formatting = false
+            client.server_capabilities.documentFormattingProvider = false
         end
     end
 
-  if vim.bo.filetype == 'typescriptreact' or vim.bo.filetype == 'prisma' then
-      vim.api.nvim_buf_set_option(bufnr, 'shiftwidth', 2)
-      vim.api.nvim_buf_set_option(bufnr, 'tabstop', 2)
-      vim.api.nvim_buf_set_option(bufnr, 'softtabstop', 2)
-  end
+    -- Disable all lsp formatting for tsx files -> use prettier with null-ls instead
+    if vim.bo.filetype == "typescriptreact" then
+        client.server_capabilities.documentFormattingProvider = false
+    end
 
+
+    -- Autoformat on save
     -- if client.server_capabilities.documentFormattingProvider then
     --     vim.api.nvim_command [[augroup Format]]
     --     vim.api.nvim_command [[autocmd! * <buffer>]]
@@ -117,8 +110,9 @@ M.on_attach = function(client, bufnr)
     if not ill_ok then
         print('Skipping illuminate as it is not installed.')
         return
+    else
+        illuminate.on_attach(client)
     end
-    illuminate.on_attach(client)
 end
 
 return M

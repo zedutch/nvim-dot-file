@@ -13,27 +13,23 @@ local code_actions = null_ls.builtins.code_actions
 
 null_ls.setup {
     sources = {
-        diagnostics.editorconfig_checker,
+        -- All
+        -- diagnostics.editorconfig_checker,
 
         -- Python
-        -- diagnostics.pylint.with {
-        --     extra_args = {
-        --         "--load-plugins=pylint_django,pylint_quotes",
-        --     },
-        -- },
-        -- formatting.isort,
-        -- formatting.black.with {
-        --     extra_args = {
-        --         "--fast",
-        --     },
-        -- },
+        diagnostics.pylint.with {
+            extra_args = {
+                "--load-plugins=pylint_django,pylint_quotes",
+            },
+        },
+        formatting.isort,
         formatting.black.with {
             extra_args = {
                 "--fast",
             },
         },
 
-        formatting.prettier_d_slim,
+        -- formatting.prettier_d_slim,
 
         -- Javascript
         -- diagnostics.eslint_d,
@@ -44,19 +40,16 @@ null_ls.setup {
         -- diagnostics.stylelint,
 
         -- HTML
-        -- formatting.prettier.with {
-        --     filetypes = { "html", "json", "yaml", "markdown", "toml" },
-        --     extra_args = { "--single-quote", "--jsx-single-quote" },
-        -- },
-        -- formatting.prettier.with {
-        --     filetypes = { "html", "json", "yaml", "markdown", "toml", "typescript", "typescriptreact", "typescript.tsx" },
-        -- },
+        formatting.prettier_d_slim.with {
+            filetypes = { "html", "json", "yaml", "markdown", "toml", "typescript", "typescriptreact", "typescript.tsx" },
+            -- extra_args = { "--single-quote", "--jsx-single-quote" },
+        },
 
         -- Git
         code_actions.gitsigns,
     },
     on_attach = function()
-        vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
+        -- vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({async=true})' ]])
         vim.cmd([[ command! Diagnostics execute 'lua vim.diagnostic.enable()' ]])
     end,
 }
