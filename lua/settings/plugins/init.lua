@@ -301,6 +301,9 @@ return packer.startup(function(use)
     --     end,
     -- }
 
+    -- Editorconfig
+    ---- https://github.com/gpanders/editorconfig.nvim
+    use { 'gpanders/editorconfig.nvim' }
 
     if PACKER_INSTALL then
         require('packer').sync()
