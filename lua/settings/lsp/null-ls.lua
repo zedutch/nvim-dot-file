@@ -48,6 +48,9 @@ null_ls.setup {
         --     filetypes = { "html", "json", "yaml", "markdown", "toml" },
         --     extra_args = { "--single-quote", "--jsx-single-quote" },
         -- },
+        -- formatting.prettier.with {
+        --     filetypes = { "html", "json", "yaml", "markdown", "toml", "typescript", "typescriptreact", "typescript.tsx" },
+        -- },
 
         -- Git
         code_actions.gitsigns,
