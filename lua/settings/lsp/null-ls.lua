@@ -40,9 +40,9 @@ null_ls.setup {
         -- diagnostics.stylelint,
 
         -- HTML
-        formatting.prettier_d_slim.with {
-            filetypes = { "html", "json", "yaml", "markdown", "toml", "typescript", "typescriptreact", "typescript.tsx" },
-            -- extra_args = { "--single-quote", "--jsx-single-quote" },
+        formatting.prettier.with {
+            filetypes = { "html", "json", "yaml", "markdown", "toml", "javascript", "typescript", "typescriptreact", "typescript.tsx" },
+            extra_args = { "--editorconfig" },
         },
 
         -- Git

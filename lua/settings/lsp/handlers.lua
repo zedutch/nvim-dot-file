@@ -95,6 +95,10 @@ M.on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
     end
 
+    -- Atm, also disable all lsp servers for typescript
+    if vim.bo.filetype == "typescript" then
+        client.server_capabilities.documentFormattingProvider = false
+    end
 
     -- Autoformat on save
     -- if client.server_capabilities.documentFormattingProvider then
