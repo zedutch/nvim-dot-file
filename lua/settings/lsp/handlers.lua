@@ -69,7 +69,7 @@ local function lsp_keymaps(bufnr)
 
     keymap(bufnr, "n", "K",  "<cmd>lua vim.lsp.buf.hover()<CR>")
 
-    keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>")
+    keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format({async=true})<CR>")
     keymap(bufnr, "n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>")
     keymap(bufnr, "n", "<leader>lr", ":lua vim.lsp.buf.rename()<CR>", "Rename")
     keymap(bufnr, "n", "<leader>ls", ":lua vim.lsp.buf.signature_help()<CR>")
