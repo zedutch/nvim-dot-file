@@ -31,12 +31,6 @@ keymap("n", "<S-l>", "<cmd>bnext<CR>", "Next buffer")
 keymap("n", "<S-h>", "<cmd>bprev<CR>", "Previous buffer")
 
 
----- Tabs ----
-keymap('n', '<leader>tn', '<cmd>tabedit<CR>', 'New tab')
-keymap('n', '<leader>tq', '<cmd>tabclose<CR>', 'Close tab')
-keymap('n', '<leader>th', '<cmd>tabprev<CR>', 'Previous tab')
-keymap('n', '<leader>tl', '<cmd>tabnext<CR>', 'Next tab')
-
 
 ---- Source files ----
 keymap("n", "<leader>s.", "<cmd>source %<CR>", "Source current file", { silent = false })
@@ -72,6 +66,11 @@ keymap('n', "<leader>ch", "<cmd>s/</\\&lt;/g<CR><cmd>s/>/\\&gt;/g<CR><cmd>nohl<C
 keymap('n', "<leader>c{", "<cmd>s/{/\\&#10100;/g<CR><cmd>s/}/\\&#10101;/g<CR><cmd>nohl<CR>", "Encode all curly brackets on the current line")
 keymap('v', "<leader>ch", "<cmd>'<,'>s/</\\&lt;/g<CR><cmd>'<,'>s/>/\\&gt;/g<CR><cmd>nohl<CR>", "Encode all HTML in the selection")
 keymap('v', "<leader>c{", "<cmd>'<,'>s/{/\\&#10100;/g<CR><cmd>'<,'>s/}/\\&#10101;/g<CR><cmd>nohl<CR>", "Encode all curly brackets in the selection")
+
+
+---- Editor Toggles ----
+keymap('n', '<leader>tr', '<cmd>set relativenumber!<CR>', 'Toggle relative numbers')
+keymap('n', '<leader>tw', '<cmd>set wrap!<CR>', 'Toggle wrap')
 
 
 ---- Packages ----
@@ -113,7 +112,7 @@ keymap('t', '<C-h>', "<cmd>wincmd h<CR>", 'Window left')
 keymap('t', '<C-l>', "<cmd>wincmd l<CR>", 'Window right')
 keymap('t', '<C-j>', "<cmd>wincmd j<CR>", 'Window down')
 keymap('t', '<C-k>', "<cmd>wincmd k<CR>", 'Window up')
-keymap('', '<leader>tp', '<cmd>lua _PYTHON_TOGGLE()<CR>', 'Open Python console')
+keymap('n', '<leader>tp', '<cmd>lua _PYTHON_TOGGLE()<CR>', 'Open Python console')
 
 
 ---- Comments ----

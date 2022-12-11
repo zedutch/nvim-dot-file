@@ -20,7 +20,7 @@ opt.showtabline = 2
 
 -- Editor
 opt.number = true
-opt.relativenumber = false
+opt.relativenumber = true
 opt.numberwidth = 4
 opt.ruler = true
 opt.signcolumn = 'yes'

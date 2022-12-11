@@ -27,7 +27,13 @@ null_ls.setup {
         --         "--fast",
         --     },
         -- },
-        formatting.prettierd,
+        formatting.black.with {
+            extra_args = {
+                "--fast",
+            },
+        },
+
+        formatting.prettier_d_slim,
 
         -- Javascript
         -- diagnostics.eslint_d,
