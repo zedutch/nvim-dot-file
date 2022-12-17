@@ -33,6 +33,7 @@ opt.iskeyword:append '-'
 opt.fillchars.eob = ' '
 opt.textwidth = 0
 opt.laststatus = 3
+opt.mouse = ''
 
 -- Files
 opt.backup = false
