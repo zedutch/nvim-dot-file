@@ -66,6 +66,7 @@ keymap('n', "<leader>ch", "<cmd>s/</\\&lt;/g<CR><cmd>s/>/\\&gt;/g<CR><cmd>nohl<C
 keymap('n', "<leader>c{", "<cmd>s/{/\\&#10100;/g<CR><cmd>s/}/\\&#10101;/g<CR><cmd>nohl<CR>", "Encode all curly brackets on the current line")
 keymap('v', "<leader>ch", "<cmd>'<,'>s/</\\&lt;/g<CR><cmd>'<,'>s/>/\\&gt;/g<CR><cmd>nohl<CR>", "Encode all HTML in the selection")
 keymap('v', "<leader>c{", "<cmd>'<,'>s/{/\\&#10100;/g<CR><cmd>'<,'>s/}/\\&#10101;/g<CR><cmd>nohl<CR>", "Encode all curly brackets in the selection")
+keymap('n', "<leader>ie", "a…<Esc>", "Insert ellipsis")
 
 
 ---- Editor Toggles ----
