@@ -9,6 +9,7 @@ treesitter.setup {
         'c',
         'css',
         'scss',
+        'lua',
         'typescript',
         'javascript',
         'json',

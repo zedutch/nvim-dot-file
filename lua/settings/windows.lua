@@ -11,6 +11,10 @@ end
 
 opt.clipboard:prepend { 'unnamed', 'unnamedplus' }
 
+-- Python venv
+vim.g.python3_host_prog = ".venv\\Scripts\\python.exe"
+
+
 keymap("i", "<C-v>", "<C-r>+", "Paste from system clipboard")
 keymap("c", "<C-v>", "<C-r>+", "Paste from system clipboard")
 keymap("v", "<C-c>", '"+y', "Copy to system clipboard")
