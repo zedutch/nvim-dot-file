@@ -8,6 +8,7 @@ treesitter.setup {
     ensure_installed = {
         'c',
         'css',
+        'gdscript',
         'javascript',
         'json',
         'json5',

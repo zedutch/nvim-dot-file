@@ -95,7 +95,7 @@ masonLspConfig.setup_handlers {
 }
 
 -- GDScript has to be set up manually:
-function configGdscript()
+local function configGdscript()
     local opts = {
         on_attach = handlers.on_attach,
         capabilities = handlers.capabilities,
