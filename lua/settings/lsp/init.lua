@@ -25,7 +25,7 @@ local servers = {
     'marksman',
     'prismals',
     'pyright',
-    -- 'rust_analyzer',
+    'rust_analyzer',
     -- 'stylelint_lsp',
     'lua_ls',
     'tailwindcss',
@@ -51,7 +51,7 @@ handlers.setup()
 
 masonLspConfig.setup_handlers {
     -- Default handler
-    function (server_name)
+    function(server_name)
         local opts = {
             on_attach = handlers.on_attach,
             capabilities = handlers.capabilities,
@@ -63,7 +63,47 @@ masonLspConfig.setup_handlers {
         require('lspconfig')[server_name].setup(opts)
     end,
     -- Server-specific ones
-    -- ['rust_analyzer'] = function ()
-    --     require('rust-tools').setup {}
-    -- end,
+    ['rust_analyzer'] = function()
+        require('rust-tools').setup {
+            server = {
+                capabilities = handlers.capabilities,
+                on_attach = handlers.on_attach,
+                settings = {
+                    ["rust-analyzer"] = {
+                        checkOnSave = {
+                            command = "clippy",
+                        },
+                        inlayHints = {
+                            closingBraceHints = {
+                                enable = true,
+                                minLines = 5,
+                            },
+                        },
+                        joinLines = {
+                            removeTrailingComma = false,
+                        },
+                        typing = {
+                            autoClosingAngleBrackets = {
+                                enable = true,
+                            },
+                        },
+                    },
+                },
+            }
+        }
+    end,
 }
+
+-- GDScript has to be set up manually:
+function configGdscript()
+    local opts = {
+        on_attach = handlers.on_attach,
+        capabilities = handlers.capabilities,
+    }
+    local has_opts, server_opts = pcall(require, 'settings.lsp.gdscript')
+    if has_opts then
+        opts = vim.tbl_deep_extend('force', opts, server_opts)
+    end
+    require('lspconfig').gdscript.setup(opts)
+end
+configGdscript()

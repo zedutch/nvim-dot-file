@@ -262,11 +262,13 @@ return packer.startup(function(use)
     use { 'tyru/open-browser.vim' }
 
     -- Rust
-    -- use { 'saecki/crates.nvim',
-    --     config = function()
-    --         require('crates').setup()
-    --     end,
-    -- }
+    use { 'rust-lang/rust.vim' }
+    use { 'saecki/crates.nvim',
+        config = function()
+            require('crates').setup()
+        end,
+    }
+    use { 'simrat39/rust-tools.nvim' }
 
     -- Editorconfig
     ---- https://github.com/gpanders/editorconfig.nvim

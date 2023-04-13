@@ -46,8 +46,8 @@ opt.encoding = 'utf-8'
 opt.fileencoding = 'utf-8'
 
 -- Layout
-opt.cmdheight = 1
-opt.pumheight = 10
+opt.cmdheight = 0
+opt.pumheight = 8
 opt.showmode = false
 opt.showcmd = true
 opt.showmatch = true

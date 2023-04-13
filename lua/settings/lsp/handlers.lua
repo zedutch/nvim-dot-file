@@ -79,6 +79,24 @@ local function lsp_keymaps(bufnr)
     keymap(bufnr, "n", "<leader>ldl", ":lua vim.diagnostic.disable()<CR>", "Disable diagnostics")
 end
 
+local function lsp_keymaps_rust(bufnr)
+    keymap(bufnr, "n", "<leader>lh", ":RustToggleInlayHints<CR>", "Toggle inlay hints")
+    keymap(bufnr, "n", "<leader>lf", ":RustFmt<CR>", "Rust format")
+    keymap(bufnr, "n", "<leader>rr", ":Cargo run<CR>", "Cargo run")
+    keymap(bufnr, "n", "<leader>rar", ":RustRunnables<CR>", "Rust runnables")
+    keymap(bufnr, "n", "<leader>rd", ":RustDebuggables<CR>", "Rust debug")
+    keymap(bufnr, "n", "<leader>rem", ":RustExpandMacro<CR>", "Rust expand macro")
+    keymap(bufnr, "n", "<leader>red", ":RustExternalDocs<CR>", "Rust external docs")
+    keymap(bufnr, "n", "<leader>rpm", ":RustParentModule<CR>", "Rust parent module")
+    keymap(bufnr, "n", "<leader>roc", ":RustOpenCargo<CR>", "Rust open cargo")
+    keymap(bufnr, "n", "<leader>rw", ":RustReloadWorkspace<CR>", "Rust reload workspace")
+    keymap(bufnr, "n", "<leader>rg", ":RustViewCrateGraph<CR>", "Rust view crate graph")
+    keymap(bufnr, "n", "<leader>rs", ":RustSSR<CR>", "Rust structural search replace")
+    keymap(bufnr, "n", "<S-j>", ":RustJoinLines<CR>", "Rust join lines")
+    keymap(bufnr, "n", "<C-j>", ":RustMoveItemDown<CR>", "Rust move item down")
+    keymap(bufnr, "n", "<C-k>", ":RustMoveItemUp<CR>", "Rust move item up")
+end
+
 M.on_attach = function(client, bufnr)
     local disableFormatting = {
         typescript='stylelint_lsp',
@@ -109,6 +127,10 @@ M.on_attach = function(client, bufnr)
     -- end
 
     lsp_keymaps(bufnr)
+
+    if client.name == "rust_analyzer" then
+        lsp_keymaps_rust(bufnr)
+    end
 
     local ill_ok, illuminate = pcall(require, 'illuminate')
     if not ill_ok then
