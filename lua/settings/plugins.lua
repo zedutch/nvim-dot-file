@@ -39,7 +39,7 @@ require("lazy").setup({
     },
     {
         "akinsho/bufferline.nvim",
-        version = "v3.*",
+        tag = "v3.*",
         dependencies = "nvim-tree/nvim-web-devicons",
         priority = 110, -- After catppuccin per the documentation
     },
@@ -111,5 +111,23 @@ require("lazy").setup({
     },
     {
         "nvim-lualine/lualine.nvim",
+    },
+    {
+        "folke/todo-comments.nvim",
+    },
+    {
+        "windwp/nvim-autopairs",
+    },
+    {
+        "tpope/vim-surround",
+    },
+
+    {
+        "folke/which-key.nvim",
+        config = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+            require("which-key").setup()
+        end,
     },
 })
