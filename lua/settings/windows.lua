@@ -1,24 +1,11 @@
-local opt = vim.opt
-
-local function keymap(mode, lhs, rhs, description, opts)
-    local options = { silent = true, noremap = true, desc = description }
-    if opts then
-        options = vim.tbl_extend('force', options, opts)
-    end
-    vim.keymap.set(mode, lhs, rhs, options)
-end
+-- local opt = vim.opt
+-- opt.clipboard:prepend { 'unnamed', 'unnamedplus' }
 
 
-opt.clipboard:prepend { 'unnamed', 'unnamedplus' }
+-- vim.keymap.set("i", "<C-v>", "<C-r>+")
+-- vim.keymap.set("c", "<C-v>", "<C-r>+")
+-- vim.keymap.set("v", "<C-c>", '"+y')
 
--- Python venv
-vim.g.python3_host_prog = ".venv\\Scripts\\python.exe"
-
-
-keymap("i", "<C-v>", "<C-r>+", "Paste from system clipboard")
-keymap("c", "<C-v>", "<C-r>+", "Paste from system clipboard")
-keymap("v", "<C-c>", '"+y', "Copy to system clipboard")
-
-keymap("n", "<leader>rr", '<cmd>!build.bat<CR>', "Compile debug")
-keymap("n", "<leader>rw", '<cmd>!build_web.bat<CR>', "Compile web")
-keymap("n", "<leader>rg", '<cmd>!run.bat<CR>', "Run application")
+vim.keymap.set("n", "<leader>rr", '<cmd>!build.bat<CR>')
+vim.keymap.set("n", "<leader>rw", '<cmd>!build_web.bat<CR>')
+vim.keymap.set("n", "<leader>rg", '<cmd>!run.bat<CR>')

@@ -1,7 +1,6 @@
 ------ Settings ------ 
 require "settings/options"
 require "settings/keymaps"
-require "settings/autocmd"
 
 
 ------ Platforms ------
@@ -16,15 +15,7 @@ end
 require "settings/plugins"
 
 
------- LspConfig ------
-require "settings/lsp"
-
-
 ------- Neovide -------
 if vim.g.neovide ~= nil then
     require "settings/neovide"
 end
-
-
--- nvim sometimes likes to highlight random strings after reloading
-vim.cmd("nohl")

@@ -63,10 +63,9 @@ opt.wildignore:append { '*/node_modules/*' }
 
 -- Commands
 opt.timeoutlen = 1000 -- ms
-opt.updatetime = 50  -- ms
+opt.updatetime = 300  -- ms
 opt.shortmess:append 'c'
 
 -- Disable unused providers
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
-
