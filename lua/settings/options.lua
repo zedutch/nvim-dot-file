@@ -1,6 +1,7 @@
 -- :help options
 
 local opt = vim.opt
+local fn = vim.fn
 
 -- Font
 opt.termguicolors = true
@@ -39,6 +40,7 @@ opt.mouse = ''
 opt.backup = false
 opt.swapfile = false
 opt.undofile = true                              -- Persistent undo
+opt.undodir = fn.stdpath('data') .. "/undo"
 opt.writebackup = false
 opt.completeopt = { 'menu', 'menuone', 'noselect' }
 opt.conceallevel = 0
