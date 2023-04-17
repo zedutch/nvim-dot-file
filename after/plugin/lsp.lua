@@ -8,6 +8,7 @@ lsp.ensure_installed {
     'jsonls',
     'lua_ls',
     'marksman',
+    'prettierd',
     'prismals',
     'pylsp',
     'rust_analyzer',

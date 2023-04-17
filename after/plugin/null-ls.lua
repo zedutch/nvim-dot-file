@@ -15,7 +15,7 @@ null_ls.setup {
             },
         },
 
-        formatting.prettier.with {
+        formatting.prettierd.with {
             filetypes = { "html", "json", "yaml", "markdown", "toml", "javascript", "typescript", "typescriptreact", "typescript.tsx" },
             extra_args = { "--editorconfig" },
         },
