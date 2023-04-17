@@ -38,6 +38,14 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 ---- Windows ----
 -- Rotate through windows
 vim.keymap.set("n", "<Tab>", "<C-w>w")
+-- Change height
+vim.keymap.set("n", "K", "<cmd>resize +2<CR>")
+vim.keymap.set("n", "J", "<cmd>resize -2<CR>")
+-- Change width
+vim.keymap.set("n", "H", "<cmd>vertical resize -2<CR>")
+vim.keymap.set("n", "L", "<cmd>vertical resize +2<CR>")
+-- Make all windows equally sized
+vim.keymap.set("n", "<leader>=", "<C-w>=")
 
 
 ---- Text manipulation ----
