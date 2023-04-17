@@ -170,5 +170,3 @@ vim.diagnostic.config {
     virtual_text = true,
 }
 
--- General keymaps
-vim.keymap.set('n', '<leader>li', '<cmd>LspInfo<CR>')

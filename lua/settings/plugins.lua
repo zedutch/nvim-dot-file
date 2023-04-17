@@ -43,7 +43,9 @@ require("lazy").setup({
         dependencies = "nvim-tree/nvim-web-devicons",
         priority = 110, -- After catppuccin per the documentation
     },
-    { "tyru/open-browser.vim" },
+    {
+        "tyru/open-browser.vim",
+    },
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
@@ -53,12 +55,19 @@ require("lazy").setup({
     },
     {
         "mbbill/undotree",
+        keys = {
+            { "<leader>u", ":UndotreeToggle<CR>" },
+        },
     },
     {
         "tpope/vim-fugitive",
+        keys = {
+            { "<leader>gs", vim.cmd.Git },
+        },
     },
     {
         "lewis6991/gitsigns.nvim",
+        config = true,
     },
     {
         "VonHeikemen/lsp-zero.nvim",
@@ -85,17 +94,30 @@ require("lazy").setup({
             { "David-Kunz/cmp-npm" },
             { "rafamadriz/friendly-snippets" },
         },
+        keys = {
+            { '<leader>li', '<cmd>LspInfo<CR>' },
+        },
     },
     {
         "jose-elias-alvarez/null-ls.nvim",
+        keys = {
+            { '<leader>ln', '<cmd>NullLsInfo<CR>' },
+        },
+    },
+    {
+        "simrat39/rust-tools.nvim",
+        priority = 40, -- after lsp-zero
     },
     {
         "saecki/crates.nvim",
         tag = "v0.3.0",
         dependencies = { "nvim-lua/plenary.nvim" },
-    },
-    {
-        "simrat39/rust-tools.nvim",
+        opts = {
+            null_ls = {
+                enabled = true,
+                name = "Crates",
+            },
+        },
     },
     {
         "marklcrns/vim-smartq",
@@ -105,23 +127,40 @@ require("lazy").setup({
     },
     {
         "numToStr/Comment.nvim",
+        config = true,
     },
     {
         "folke/trouble.nvim",
+        config = true,
+        keys = {
+            { "<leader>tr", "<cmd>TroubleToggle quickfix<CR>", { silent = true, noremap = true }},
+        },
     },
     {
         "nvim-lualine/lualine.nvim",
+        config = true,
+        opts = {
+            options = {
+                theme = 'catppuccin',
+            },
+        },
     },
     {
         "folke/todo-comments.nvim",
+        config = true,
+        keys = {
+            { "<leader>tj", function() require('todo-comments').jump_next() end },
+            { "<leader>tk", function() require('todo-comments').jump_prev() end },
+            { "<leader>tq", "<cmd>TodoQuickFix<CR>" },
+        },
     },
     {
         "windwp/nvim-autopairs",
+        config = true,
     },
     {
         "tpope/vim-surround",
     },
-
     {
         "folke/which-key.nvim",
         config = function()

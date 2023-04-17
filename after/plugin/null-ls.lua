@@ -27,5 +27,3 @@ null_ls.setup {
     end,
 }
 
--- General keymaps
-vim.keymap.set('n', '<leader>ln', '<cmd>NullLsInfo<CR>')
