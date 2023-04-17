@@ -15,6 +15,7 @@ require("lazy").setup({
     {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.1",
+        lazy = true,
         dependencies = {
             { "nvim-lua/plenary.nvim" },
             {
@@ -28,9 +29,11 @@ require("lazy").setup({
     },
     {
         "nvim-telescope/telescope-ui-select.nvim",
+        lazy = true,
     },
     {
         "nvim-telescope/telescope-file-browser.nvim",
+        lazy = true,
     },
     {
         "catppuccin/nvim",
@@ -42,13 +45,16 @@ require("lazy").setup({
         tag = "v3.*",
         dependencies = "nvim-tree/nvim-web-devicons",
         priority = 110, -- After catppuccin per the documentation
+        lazy = true,
     },
     {
         "tyru/open-browser.vim",
+        lazy = true,
     },
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
+        event = "InsertEnter",
     },
     {
         "theprimeagen/harpoon",
@@ -68,23 +74,47 @@ require("lazy").setup({
     {
         "lewis6991/gitsigns.nvim",
         config = true,
+        lazy = true,
     },
+
+    -- LSP Support
     {
-        "VonHeikemen/lsp-zero.nvim",
-        branch = "v2.x",
+        "neovim/nvim-lspconfig",
         dependencies = {
-            -- LSP Support
-            { "neovim/nvim-lspconfig" },
+            {
+                "williamboman/mason-lspconfig.nvim",
+                lazy = true,
+            },
             {
                 "williamboman/mason.nvim",
                 build = function()
                     vim.cmd.MasonUpdate()
                 end,
+                cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
+                keys = {
+                    { '<leader>li', '<cmd>LspInfo<CR>' },
+                },
             },
-            { "williamboman/mason-lspconfig.nvim" },
+            { "simrat39/rust-tools.nvim", },
+            { "nvim-cmp" },
+        },
+        config = function ()
+            require('settings.lsp')
+        end,
+    },
+    {
+        "jose-elias-alvarez/null-ls.nvim",
+        keys = {
+            { '<leader>ln', '<cmd>NullLsInfo<CR>' },
+        },
+    },
 
-            -- Autocompletion
-            { "hrsh7th/nvim-cmp" },
+    -- Autocompletion
+    {
+        "hrsh7th/nvim-cmp",
+        event = { "InsertEnter", "CmdlineEnter" },
+        dependencies = {
+            { "nvim-autopairs" },
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-nvim-lua" },
             { "L3MON4D3/LuaSnip" },
@@ -94,20 +124,8 @@ require("lazy").setup({
             { "David-Kunz/cmp-npm" },
             { "rafamadriz/friendly-snippets" },
         },
-        keys = {
-            { '<leader>li', '<cmd>LspInfo<CR>' },
-        },
     },
-    {
-        "jose-elias-alvarez/null-ls.nvim",
-        keys = {
-            { '<leader>ln', '<cmd>NullLsInfo<CR>' },
-        },
-    },
-    {
-        "simrat39/rust-tools.nvim",
-        priority = 40, -- after lsp-zero
-    },
+
     {
         "saecki/crates.nvim",
         tag = "v0.3.0",
@@ -124,16 +142,22 @@ require("lazy").setup({
     },
     {
         "RRethy/vim-illuminate",
+        lazy = true,
     },
     {
         "numToStr/Comment.nvim",
         config = true,
+        lazy = true,
+    },
+    {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        lazy = true,
     },
     {
         "folke/trouble.nvim",
         config = true,
         keys = {
-            { "<leader>tr", "<cmd>TroubleToggle quickfix<CR>", { silent = true, noremap = true }},
+            { "<leader>tr", "<cmd>TroubleToggle quickfix<CR>", { silent = true, noremap = true } },
         },
     },
     {
@@ -148,6 +172,7 @@ require("lazy").setup({
     {
         "folke/todo-comments.nvim",
         config = true,
+        event = "InsertEnter",
         keys = {
             { "<leader>tj", function() require('todo-comments').jump_next() end },
             { "<leader>tk", function() require('todo-comments').jump_prev() end },
@@ -157,9 +182,11 @@ require("lazy").setup({
     {
         "windwp/nvim-autopairs",
         config = true,
+        event = "InsertEnter",
     },
     {
         "tpope/vim-surround",
+        event = "InsertEnter",
     },
     {
         "folke/which-key.nvim",
@@ -168,5 +195,14 @@ require("lazy").setup({
             vim.o.timeoutlen = 300
             require("which-key").setup()
         end,
+        event = "VeryLazy",
+    },
+    {
+        "mfussenegger/nvim-dap",
+        lazy = true,
+    },
+    {
+        "rcarriga/nvim-dap-ui",
+        lazy = true,
     },
 })
