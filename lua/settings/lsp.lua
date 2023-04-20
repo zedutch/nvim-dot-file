@@ -39,12 +39,12 @@ local function keymaps(_, bufnr)
 
     keymap(bufnr, "n", "K", function() vim.lsp.buf.hover() end)
 
-    keymap(bufnr, "n", "<leader>ll", function() vim.diagnostic.open_float() end, "Show diagnostics")
     keymap(bufnr, "n", "<leader>lf", function() vim.lsp.buf.format({ async = true }) end)
     keymap(bufnr, "n", "<leader>la", function() vim.lsp.buf.code_action() end)
     keymap(bufnr, "n", "<leader>lr", function() vim.lsp.buf.rename() end, "Rename")
     keymap(bufnr, "n", "<leader>lj", function() vim.diagnostic.goto_next() end, "Next diagnostic problem")
     keymap(bufnr, "n", "<leader>lk", function() vim.diagnostic.goto_prev() end,
+    keymap(bufnr, "n", "gl", function() vim.diagnostic.open_float() end, "Show diagnostics")
         "Previous diagnostic problem")
     keymap(bufnr, "n", "<leader>ldd", function() vim.diagnostic.enable() end, "Enable diagnostics")
     keymap(bufnr, "n", "<leader>ldl", function() vim.diagnostic.disable() end, "Disable diagnostics")
