@@ -1,3 +1,5 @@
+local util = require 'lspconfig/util'
+
 local M = {}
 
 -- Formatting will be disabled completely for these filetypes
@@ -33,6 +35,9 @@ M.server_settings = {
             }
         }
     },
+    tailwindcss = {
+        root_dir = util.root_pattern('tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js', 'postcss.config.ts', 'package.json', 'node_modules', '.git'),
+    }
 }
 
 -- Add custom keymaps to certain LSP servers
@@ -41,7 +46,7 @@ M.custom_keymaps = {
         local rt = require('rust-tools')
         vim.keymap.set("n", "K", rt.hover_actions.hover_actions, { buffer = bufnr })
         vim.keymap.set("n", "<leader>rr", [[<cmd>!cargo run<CR>]])
-        vim.keymap.set("n", "<leader>lf", rt.format, { buffer = bufnr })
+        vim.keymap.set("n", "<leader>lf", rt.format, { buffer = bufnr, desc = "Rust format" })
         vim.keymap.set("n", "<leader>ihe", rt.inlay_hints.enable())
         vim.keymap.set("n", "<leader>ihd", rt.inlay_hints.disable())
         vim.keymap.set("n", "<leader>co", rt.open_cargo_toml.open_cargo_toml())
@@ -67,9 +72,7 @@ M.custom_keymaps = {
 -- Add custom setup steps for certain LSP servers
 M.custom_setup = {
     rust_analyzer = function(server)
-        local rt = require('rust-tools')
-
-        rt.setup {
+        require('rust-tools').setup {
             server = server,
             dap = {
                 adapter = {

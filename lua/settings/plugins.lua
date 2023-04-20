@@ -16,6 +16,7 @@ require("lazy").setup({
         "nvim-telescope/telescope.nvim",
         tag = "0.1.1",
         lazy = true,
+        event = "VeryLazy",
         dependencies = {
             { "nvim-lua/plenary.nvim" },
             {
@@ -46,6 +47,7 @@ require("lazy").setup({
         dependencies = "nvim-tree/nvim-web-devicons",
         priority = 110, -- After catppuccin per the documentation
         lazy = true,
+        event = "VeryLazy",
     },
     {
         "tyru/open-browser.vim",
@@ -58,6 +60,10 @@ require("lazy").setup({
     },
     {
         "theprimeagen/harpoon",
+        event = "InsertEnter",
+        config = function()
+            require('settings.plugins.harpoon')
+        end,
     },
     {
         "mbbill/undotree",
@@ -80,6 +86,7 @@ require("lazy").setup({
     -- LSP Support
     {
         "neovim/nvim-lspconfig",
+        event = "VeryLazy",
         dependencies = {
             {
                 "williamboman/mason-lspconfig.nvim",
@@ -104,6 +111,7 @@ require("lazy").setup({
     },
     {
         "jose-elias-alvarez/null-ls.nvim",
+        event = "InsertEnter",
         keys = {
             { '<leader>ln', '<cmd>NullLsInfo<CR>' },
         },
@@ -130,6 +138,7 @@ require("lazy").setup({
         "saecki/crates.nvim",
         tag = "v0.3.0",
         dependencies = { "nvim-lua/plenary.nvim" },
+        event = "InsertEnter",
         opts = {
             null_ls = {
                 enabled = true,
@@ -139,10 +148,14 @@ require("lazy").setup({
     },
     {
         "marklcrns/vim-smartq",
+        event = "VeryLazy",
     },
     {
         "RRethy/vim-illuminate",
-        lazy = true,
+        event = "InsertEnter",
+        config = function()
+            require('settings.plugins.illuminate')
+        end,
     },
     {
         "numToStr/Comment.nvim",
@@ -151,7 +164,7 @@ require("lazy").setup({
     },
     {
         "JoosepAlviste/nvim-ts-context-commentstring",
-        lazy = true,
+        event = "InsertEnter",
     },
     {
         "folke/trouble.nvim",
@@ -172,7 +185,6 @@ require("lazy").setup({
     {
         "folke/todo-comments.nvim",
         config = true,
-        event = "InsertEnter",
         keys = {
             { "<leader>tj", function() require('todo-comments').jump_next() end },
             { "<leader>tk", function() require('todo-comments').jump_prev() end },

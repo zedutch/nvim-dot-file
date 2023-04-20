@@ -23,7 +23,7 @@ local servers = {
 
 -- Wrapper around vim keymap to add description and extend options
 local function keymap(bufnr, mode, lhs, rhs, description)
-    local options = { silent = true, noremap = true, desc = description, buffer = bufnr }
+    local options = { silent = true, noremap = false, desc = description, buffer = bufnr }
     vim.keymap.set(mode, lhs, rhs, options)
 end
 
@@ -37,25 +37,23 @@ local function keymaps(_, bufnr)
     keymap(bufnr, "n", "gs", function() vim.lsp.buf.signature_help() end, "Signature help")
     keymap(bufnr, "i", "<C-h>", function() vim.lsp.buf.signature_help() end, "Signature help")
 
-    keymap(bufnr, "n", "K", function() vim.lsp.buf.hover() end)
+    keymap(bufnr, "n", "K", function() vim.lsp.buf.hover() end, "Hover action")
 
-    keymap(bufnr, "n", "<leader>lf", function() vim.lsp.buf.format({ async = true }) end)
-    keymap(bufnr, "n", "<leader>la", function() vim.lsp.buf.code_action() end)
+    keymap(bufnr, "n", "<leader>lf", function() vim.lsp.buf.format({ async = true }) end, "Format")
+    keymap(bufnr, "n", "<leader>la", function() vim.lsp.buf.code_action() end, "Code actions")
     keymap(bufnr, "n", "<leader>lr", function() vim.lsp.buf.rename() end, "Rename")
     keymap(bufnr, "n", "<leader>lj", function() vim.diagnostic.goto_next() end, "Next diagnostic problem")
-    keymap(bufnr, "n", "<leader>lk", function() vim.diagnostic.goto_prev() end,
+    keymap(bufnr, "n", "<leader>lk", function() vim.diagnostic.goto_prev() end, "Previous diagnostic problem")
     keymap(bufnr, "n", "gl", function() vim.diagnostic.open_float() end, "Show diagnostics")
-        "Previous diagnostic problem")
     keymap(bufnr, "n", "<leader>ldd", function() vim.diagnostic.enable() end, "Enable diagnostics")
     keymap(bufnr, "n", "<leader>ldl", function() vim.diagnostic.disable() end, "Disable diagnostics")
 end
 
 
 -- CAPABILITIES
-local cmp_nvim_lsp = require('cmp_nvim_lsp')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 local function on_attach(client, bufnr)
     -- local disableFormatting = {
@@ -91,15 +89,15 @@ local lsp = require('mason-lspconfig')
 
 lsp.setup {
     ensure_installed = servers,
-    automatic_installation = true,
+    automatic_installation = false,
 }
 
 -- VIM LSP CONFIG
 local signs = {
     { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
+    { name = "DiagnosticSignWarn",  text = "" },
+    { name = "DiagnosticSignHint",  text = "" },
+    { name = "DiagnosticSignInfo",  text = "" },
 }
 
 for _, sign in ipairs(signs) do
