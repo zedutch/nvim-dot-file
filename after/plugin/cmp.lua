@@ -113,36 +113,3 @@ cmp.event:on(
   cmp_autopairs.on_confirm_done()
 )
 
--- local rt = require('rust-tools')
--- 
--- rt.setup {
---     server = {
---         on_attach = function(_, bufnr)
---             vim.keymap.set("n", "<leader>la", rt.hover_actions.hover_actions, { buffer = bufnr })
---             vim.keymap.set("n", "<leader>rr", [[<cmd>!cargo run<CR>]])
---             vim.keymap.set("n", "<leader>lf", rt.format, { buffer = bufnr })
---             vim.keymap.set("n", "<leader>ihe", rt.inlay_hints.enable())
---             vim.keymap.set("n", "<leader>ihd", rt.inlay_hints.disable())
---             vim.keymap.set("n", "<leader>co", rt.open_cargo_toml.open_cargo_toml())
---             vim.keymap.set("n", "<leader>cr", rt.workspace_refresh.reload_workspace())
---         end,
---         -- standalone = false,
---         settings = {
---             ["rust-analyzer"] = {
---                 checkOnSave = {
---                     command = "clippy",
---                 },
---             },
---         },
---     },
---     dap = {
---         adapter = {
---             type = "executable",
---             command = "lldb-vscode",
---             name = "rt_lldb",
---         },
---     },
---     tools = {
---         reload_workspace_from_cargo_toml = true,
---     },
--- }
