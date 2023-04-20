@@ -205,4 +205,15 @@ require("lazy").setup({
         "rcarriga/nvim-dap-ui",
         lazy = true,
     },
+    {
+        "uga-rosa/ugaterm.nvim",
+        lazy = true,
+        config = true,
+        keys = {
+            { "<leader>tt", "<cmd>UgatermToggle<CR>" },
+            { "<C-t>", "<cmd>UgatermToggle<CR>", mode="n" },
+            { "<C-t>", "<cmd>UgatermToggle<CR>", mode="t" },
+            { "<Esc>", "<cmd>UgatermHide<CR>", mode="t" },
+        },
+    },
 })
