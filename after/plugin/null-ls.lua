@@ -8,11 +8,17 @@ local diagnostics = null_ls.builtins.diagnostics
 local code_actions = null_ls.builtins.code_actions
 
 null_ls.setup {
+    debug = true,
     sources = {
         formatting.black.with {
             extra_args = {
                 "--fast",
             },
+        },
+        diagnostics.pylint.with {
+            -- extra_args = {
+            --     "--load-plugins=pylint_django,pylint_quotes",
+            -- },
         },
 
         formatting.prettierd.with {
