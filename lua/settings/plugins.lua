@@ -51,7 +51,7 @@ require("lazy").setup({
     },
     {
         "tyru/open-browser.vim",
-        lazy = true,
+        event = "VeryLazy",
     },
     {
         "nvim-treesitter/nvim-treesitter",
@@ -80,13 +80,12 @@ require("lazy").setup({
     {
         "lewis6991/gitsigns.nvim",
         config = true,
-        lazy = true,
+        event = "VeryLazy",
     },
 
     -- LSP Support
     {
         "neovim/nvim-lspconfig",
-        event = "VeryLazy",
         dependencies = {
             {
                 "williamboman/mason-lspconfig.nvim",
@@ -103,7 +102,6 @@ require("lazy").setup({
                 },
             },
             { "simrat39/rust-tools.nvim", },
-            { "nvim-cmp" },
         },
         config = function ()
             require('settings.lsp')
@@ -120,7 +118,6 @@ require("lazy").setup({
     -- Autocompletion
     {
         "hrsh7th/nvim-cmp",
-        event = { "InsertEnter", "CmdlineEnter" },
         dependencies = {
             { "nvim-autopairs" },
             { "hrsh7th/cmp-nvim-lsp" },
@@ -160,7 +157,7 @@ require("lazy").setup({
     {
         "numToStr/Comment.nvim",
         config = true,
-        lazy = true,
+        event = "VeryLazy",
     },
     {
         "JoosepAlviste/nvim-ts-context-commentstring",
