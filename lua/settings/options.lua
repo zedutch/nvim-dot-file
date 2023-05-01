@@ -5,7 +5,7 @@ local fn = vim.fn
 
 -- Font
 opt.termguicolors = true
-opt.guifont = 'RobotoMono Nerd Font:h14'
+opt.guifont = 'Hack Nerd Font Mono:h14'
 
 -- Indentation
 opt.autoindent = true
