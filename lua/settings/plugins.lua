@@ -57,6 +57,9 @@ require("lazy").setup({
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         event = "InsertEnter",
+        dependencies = {
+            "nvim-ts-context-commentstring"
+        }
     },
     {
         "theprimeagen/harpoon",
