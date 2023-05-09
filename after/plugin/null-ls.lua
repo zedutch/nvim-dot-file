@@ -25,10 +25,16 @@ null_ls.setup {
             filetypes = { "html", "json", "yaml", "markdown", "toml", "javascript", "typescript", "typescriptreact", "typescript.tsx" },
         },
 
+
+        formatting.clang_format,
+
         code_actions.gitsigns,
     },
     on_attach = function()
         vim.cmd([[ command! Diagnostics execute 'lua vim.diagnostic.enable()' ]])
+    end,
+    on_init = function(client, _)
+        client.offset_encoding = 'utf-8'
     end,
 }
 
