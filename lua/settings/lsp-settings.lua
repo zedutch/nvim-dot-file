@@ -5,8 +5,8 @@ local M = {}
 -- Formatting will be disabled completely for these filetypes (for LSP-config servers at least)
 M.disable_formatting_files = {
     typescriptreact = true, -- Use nullls prettier
-    typescript = true, -- Use nullls prettier
-    python = true, -- Use nullls black
+    typescript = true,      -- Use nullls prettier
+    python = true,          -- Use nullls black
 }
 
 -- Add settings per LSP server
@@ -37,7 +37,8 @@ M.server_settings = {
         }
     },
     tailwindcss = {
-        root_dir = util.root_pattern('tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js', 'postcss.config.ts', 'package.json', 'node_modules', '.git'),
+        root_dir = util.root_pattern('tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js', 'postcss.config.ts',
+            'package.json', 'node_modules', '.git'),
     },
     pylsp = {
         settings = {
@@ -100,7 +101,8 @@ M.custom_keymaps = {
     end,
 
     clangd = function(_, bufnr)
-        vim.keymap.set("n", "<leader>rh", ":ClangdSwitchSourceHeader<CR>", { buffer = bufnr, desc = "Switch source <> header" })
+        vim.keymap.set("n", "<leader>rh", ":ClangdSwitchSourceHeader<CR>",
+            { buffer = bufnr, desc = "Switch source <> header" })
     end,
 }
 
@@ -123,9 +125,12 @@ M.custom_setup = {
     end,
     clangd = function(server)
         require('clangd_extensions').setup {
-            server= server,
+            server = server,
             extensions = {
                 autoSetHints = true,
+                inlay_hints = {
+                    only_current_line = true,
+                },
                 memory_usage = {
                     border = "rounded"
                 },
