@@ -43,7 +43,7 @@ require("lazy").setup({
     },
     {
         "akinsho/bufferline.nvim",
-        tag = "v3.*",
+        version = "v3.*",
         dependencies = "nvim-tree/nvim-web-devicons",
         priority = 110, -- After catppuccin per the documentation
         lazy = true,
@@ -242,5 +242,9 @@ require("lazy").setup({
             { "<leader>gh", "<Plug>(git-conflict-prev-conflict)", desc = "Git conflict previous" },
             { "<leader>gl", "<Plug>(git-conflict-next-conflict)", desc = "Git conflict next" },
         }
+    },
+    {
+        'p00f/clangd_extensions.nvim',
+        lazy = true
     }
 })

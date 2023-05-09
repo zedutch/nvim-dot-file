@@ -121,6 +121,21 @@ M.custom_setup = {
             },
         }
     end,
+    clangd = function(server)
+        require('clangd_extensions').setup {
+            server= server,
+            extensions = {
+                autoSetHints = true,
+                memory_usage = {
+                    border = "rounded"
+                },
+                symbol_info = {
+                    border = "rounded"
+                }
+            }
+
+        }
+    end,
 }
 
 return M
