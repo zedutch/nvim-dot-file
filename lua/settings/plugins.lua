@@ -106,7 +106,7 @@ require("lazy").setup({
             },
             { "simrat39/rust-tools.nvim", },
         },
-        config = function ()
+        config = function()
             require('settings.lsp')
         end,
     },
@@ -223,9 +223,24 @@ require("lazy").setup({
         config = true,
         keys = {
             { "<leader>tt", "<cmd>UgatermToggle<CR>" },
-            { "<C-t>", "<cmd>UgatermToggle<CR>", mode="n" },
-            { "<C-t>", "<cmd>UgatermToggle<CR>", mode="t" },
-            { "<Esc>", "<cmd>UgatermHide<CR>", mode="t" },
+            { "<C-t>",      "<cmd>UgatermToggle<CR>", mode = "n" },
+            { "<C-t>",      "<cmd>UgatermToggle<CR>", mode = "t" },
+            { "<Esc>",      "<cmd>UgatermHide<CR>",   mode = "t" },
         },
     },
+    {
+        'akinsho/git-conflict.nvim',
+        version = "*",
+        config = function()
+            require('git-conflict').setup { default_mappings = false }
+        end,
+        keys = {
+            { "<leader>go", "<Plug>(git-conflict-ours)", desc = "Git conflict resolve ours" },
+            { "<leader>gt", "<Plug>(git-conflict-theirs)", desc = "Git conflict resolve theirs" },
+            { "<leader>gb", "<Plug>(git-conflict-both)", desc = "Git conflict resolve both" },
+            { "<leader>g0", "<Plug>(git-conflict-none)", desc = "Git conflict resolve none" },
+            { "<leader>gh", "<Plug>(git-conflict-prev-conflict)", desc = "Git conflict previous" },
+            { "<leader>gl", "<Plug>(git-conflict-next-conflict)", desc = "Git conflict next" },
+        }
+    }
 })
