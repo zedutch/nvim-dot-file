@@ -34,7 +34,7 @@ null_ls.setup {
         vim.cmd([[ command! Diagnostics execute 'lua vim.diagnostic.enable()' ]])
     end,
     on_init = function(client, _)
-        client.offset_encoding = 'utf-8'
+        client.offset_encoding = "utf-16"
     end,
 }
 

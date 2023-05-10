@@ -124,6 +124,7 @@ M.custom_setup = {
         }
     end,
     clangd = function(server)
+        server.capabilities.offsetEncoding = { "utf-16", "utf-8" }
         require('clangd_extensions').setup {
             server = server,
             extensions = {
