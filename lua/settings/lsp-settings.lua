@@ -70,6 +70,13 @@ M.server_settings = {
             },
         },
     },
+    yamlls = {
+        settings = {
+            yaml = {
+                keyOrdering = false,
+            },
+        },
+    },
 }
 
 -- Add custom keymaps to certain LSP servers
