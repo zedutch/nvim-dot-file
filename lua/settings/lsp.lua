@@ -2,7 +2,6 @@ local settings = require("settings/lsp-settings")
 
 -- SERVERS
 local servers = {
-    'angularls',
     'clangd',
     'cssls',
     'eslint',

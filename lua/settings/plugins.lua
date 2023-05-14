@@ -121,6 +121,7 @@ require("lazy").setup({
     -- Autocompletion
     {
         "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
         dependencies = {
             { "nvim-autopairs" },
             { "hrsh7th/cmp-nvim-lsp" },
@@ -132,6 +133,9 @@ require("lazy").setup({
             { "David-Kunz/cmp-npm" },
             { "rafamadriz/friendly-snippets" },
         },
+        config = function()
+            require('settings.plugins.cmp')
+        end,
     },
 
     {
@@ -205,21 +209,39 @@ require("lazy").setup({
         config = function()
             vim.o.timeout = true
             vim.o.timeoutlen = 300
-            require("which-key").setup({
+            require("which-key").setup {
                 window = {
                     border = "single",
                 }
-            })
+            }
         end,
         event = "VeryLazy",
     },
     {
-        "mfussenegger/nvim-dap",
-        lazy = true,
-    },
-    {
         "rcarriga/nvim-dap-ui",
-        lazy = true,
+        dependencies = { "mfussenegger/nvim-dap" },
+        event = "VeryLazy",
+        keys = {
+            { "<leader>dt", "<cmd>DapToggleBreakpoint<CR>", mode = "n" },
+            { "<leader>dx", "<cmd>DapTerminate<CR>",        mode = "n" },
+            { "<leader>dc", "<cmd>DapContinue<CR>",         mode = "n" },
+            { "F6",         "<cmd>DapStepInto<CR>",         mode = "n" },
+            { "F7",         "<cmd>DapStepOver<CR>",         mode = "n" },
+            { "F8",         "<cmd>DapStepOut<CR>",          mode = "n" },
+        },
+        config = function()
+            local dap, dapui = require("dap"), require("dapui")
+            dapui.setup {}
+            dap.listeners.after.event_initialized["dapui_config"] = function()
+                dapui.open()
+            end
+            dap.listeners.before.event_terminated["dapui_config"] = function()
+                dapui.close()
+            end
+            dap.listeners.before.event_exited["dapui_config"] = function()
+                dapui.close()
+            end
+        end,
     },
     {
         "uga-rosa/ugaterm.nvim",
@@ -239,10 +261,10 @@ require("lazy").setup({
             require('git-conflict').setup { default_mappings = false }
         end,
         keys = {
-            { "<leader>go", "<Plug>(git-conflict-ours)", desc = "Git conflict resolve ours" },
-            { "<leader>gt", "<Plug>(git-conflict-theirs)", desc = "Git conflict resolve theirs" },
-            { "<leader>gb", "<Plug>(git-conflict-both)", desc = "Git conflict resolve both" },
-            { "<leader>g0", "<Plug>(git-conflict-none)", desc = "Git conflict resolve none" },
+            { "<leader>go", "<Plug>(git-conflict-ours)",          desc = "Git conflict resolve ours" },
+            { "<leader>gt", "<Plug>(git-conflict-theirs)",        desc = "Git conflict resolve theirs" },
+            { "<leader>gb", "<Plug>(git-conflict-both)",          desc = "Git conflict resolve both" },
+            { "<leader>g0", "<Plug>(git-conflict-none)",          desc = "Git conflict resolve none" },
             { "<leader>gh", "<Plug>(git-conflict-prev-conflict)", desc = "Git conflict previous" },
             { "<leader>gl", "<Plug>(git-conflict-next-conflict)", desc = "Git conflict next" },
         }

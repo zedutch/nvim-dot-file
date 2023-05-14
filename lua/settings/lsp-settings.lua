@@ -84,12 +84,14 @@ M.custom_keymaps = {
     rust_analyzer = function(_, bufnr)
         local rt = require('rust-tools')
         vim.keymap.set("n", "K", rt.hover_actions.hover_actions, { buffer = bufnr })
+        -- vim.keymap.set("n", "<leader>la", rt.code_action_group.code_action_group, { buffer = bufnr })
         vim.keymap.set("n", "<leader>rr", [[<cmd>!cargo run<CR>]])
         vim.keymap.set("n", "<leader>lf", rt.format, { buffer = bufnr, desc = "Rust format" })
         vim.keymap.set("n", "<leader>ihe", rt.inlay_hints.enable(), { buffer = bufnr })
         vim.keymap.set("n", "<leader>ihd", rt.inlay_hints.disable(), { buffer = bufnr })
         vim.keymap.set("n", "<leader>co", rt.open_cargo_toml.open_cargo_toml(), { buffer = bufnr })
         vim.keymap.set("n", "<leader>cr", rt.workspace_refresh.reload_workspace(), { buffer = bufnr })
+        vim.keymap.set("n", "<leader>dd", rt.debuggables.debuggables(), { buffer = bufnr })
         --  keymap(bufnr, "n", "<leader>lh", ":RustToggleInlayHints<CR>", "Toggle inlay hints", { buffer = bufnr })
         --  keymap(bufnr, "n", "<leader>lf", ":RustFmt<CR>", "Rust format", { buffer = bufnr })
         --  keymap(bufnr, "n", "<leader>rr", ":Cargo run<CR>", "Cargo run", { buffer = bufnr })
@@ -116,14 +118,22 @@ M.custom_keymaps = {
 -- Add custom setup steps for certain LSP servers
 M.custom_setup = {
     rust_analyzer = function(server)
+        local mason_registry = require("mason-registry")
+        local codelldb = mason_registry.get_package("codelldb")
+        local ext_path = codelldb:get_install_path() .. "/extension/"
+        local os = vim.loop.os_uname().sysname;
+        local codelldb_path = ext_path .. "adapter/codelldb"
+        local liblldb_path = ext_path .. "lldb/lib/liblldb"
+        if os:find "Windows" then
+            codelldb_path = ext_path .. "adapter/codelldb.exe"
+            liblldb_path = ext_path .. "lldb/lib/liblldb.dll"
+        else
+            liblldb_path = ext_path .. "lldb/lib/liblldb" .. (os == "Linux" and ".so" or ".dylib")
+        end
         require('rust-tools').setup {
             server = server,
             dap = {
-                adapter = {
-                    type = "executable",
-                    command = "lldb-vscode",
-                    name = "rt_lldb",
-                },
+                adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
             },
             tools = {
                 reload_workspace_from_cargo_toml = true,
