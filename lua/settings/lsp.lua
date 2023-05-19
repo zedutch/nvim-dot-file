@@ -12,6 +12,7 @@ local servers = {
     'prismals',
     'pylsp',
     'rust_analyzer',
+    'svelte',
     'tailwindcss',
     'tsserver',
     'vimls',

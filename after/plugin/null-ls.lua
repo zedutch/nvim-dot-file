@@ -22,7 +22,7 @@ null_ls.setup {
         },
 
         formatting.prettier.with {
-            filetypes = { "html", "json", "yaml", "markdown", "toml", "javascript", "typescript", "typescriptreact", "typescript.tsx" },
+            filetypes = { "html", "json", "yaml", "markdown", "toml", "javascript", "typescript", "typescriptreact", "typescript.tsx", "svelte" },
         },
 
 
