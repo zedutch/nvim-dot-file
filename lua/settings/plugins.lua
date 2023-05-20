@@ -57,9 +57,6 @@ require("lazy").setup({
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         event = "InsertEnter",
-        dependencies = {
-            "nvim-ts-context-commentstring"
-        }
     },
     {
         "theprimeagen/harpoon",
@@ -261,5 +258,11 @@ require("lazy").setup({
     {
         'p00f/clangd_extensions.nvim',
         lazy = true
+    },
+
+    {
+        'windwp/nvim-ts-autotag',
+        event = "InsertEnter",
+        setup = true,
     }
 })
