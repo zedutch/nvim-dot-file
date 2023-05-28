@@ -18,6 +18,7 @@ local servers = {
     'vimls',
     'yamlls',
     'wgsl_analyzer',
+    'zls',
 }
 
 -- KEYMAPS
