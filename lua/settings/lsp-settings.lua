@@ -7,6 +7,7 @@ M.disable_formatting_files = {
     typescriptreact = true, -- Use nullls prettier
     typescript = true,      -- Use nullls prettier
     python = true,          -- Use nullls black
+    svelte = true,          -- Use nullls prettier
 }
 
 -- Add settings per LSP server
