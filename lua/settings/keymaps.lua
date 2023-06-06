@@ -8,9 +8,10 @@ vim.keymap.set("n", "H", "<cmd>bprev<CR>")
 ---- Better default commands ----
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<c-u>", "<c-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("v", "y", "ygc<esc>")
 
 
 ---- Utilities ----
@@ -33,7 +34,8 @@ vim.keymap.set("n", "cd.", "<cmd>lcd %:p:h<CR>")
 vim.keymap.set("", "gx", "<cmd>let url = expand(\"<cfile>\")<CR><cmd>call OpenBrowser(url)<CR>")
 -- Search and replace word under cursor
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-
+-- Delete words
+vim.keymap.set("i", "<C-BS>", "<Esc>cvb")
 
 ---- Windows ----
 -- Rotate through windows

@@ -1,6 +1,6 @@
 local cmp = require('cmp')
 local luasnip = require('luasnip')
-require('luasnip/loaders/from_vscode').lazy_load()
+require('luasnip.loaders.from_vscode').lazy_load()
 
 local kind_icons = {
     Text = "",
@@ -36,30 +36,22 @@ cmp.setup {
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<Tab>'] = cmp.mapping(
             function(fallback)
-                if cmp.visible() then
-                    cmp.select_next_item()
-                elseif luasnip.expandable() then
+                if luasnip.expandable() then
                     luasnip.expand {}
-                elseif luasnip.expand_or_jumpable() then
+                elseif luasnip.expand_or_locally_jumpable() then
                     luasnip.expand_or_jump()
                 else
                     fallback()
                 end
-            end
+            end,
+            { "i", "s" }
         ),
-        ['<S-Tab>'] = cmp.mapping(
-            function(fallback)
-                if cmp.visible() then
-                    cmp.select_prev_item()
-                elseif luasnip.jumpable(-1) then
-                    luasnip.jump(-1)
-                else
-                    fallback()
-                end
-            end
-        ),
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
         ['<C-j>'] = cmp.mapping.select_next_item(),
         ['<C-k>'] = cmp.mapping.select_prev_item(),
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
     },
     snippet = {
         expand = function(args)
@@ -86,12 +78,13 @@ cmp.setup {
             item.kind = string.format('%s %s', kind_icons[item.kind], item.kind)
             item.menu = ({
                 npm = '[NPM]',
-                crates = '[CRATES]',
+                crates = '[Crates]',
                 nvim_lsp = '[LSP]',
                 nvim_lua = '[NVIM]',
-                luasnip = '[Snippet]',
-                buffer = '[Buffer]',
+                luasnip = '[Snip]',
+                buffer = '[Buff]',
                 path = '[Path]',
+                emoji = '[Emoji]',
             })[entry.source.name]
             return item
         end,
@@ -102,14 +95,12 @@ cmp.setup {
     },
     experimental = {
         ghost_text = true,
-        native_menu = false,
     },
 }
 
 -- https://github.com/windwp/nvim-autopairs#you-need-to-add-mapping-cr-on-nvim-cmp-setupcheck-readmemd-on-nvim-cmp-repo
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on(
-  'confirm_done',
-  cmp_autopairs.on_confirm_done()
+    'confirm_done',
+    cmp_autopairs.on_confirm_done()
 )
-

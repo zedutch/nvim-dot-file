@@ -136,6 +136,15 @@ require("lazy").setup({
     },
 
     {
+        "L3MON4D3/LuaSnip",
+        version = "1.*",
+        build = "make install_jsregexp",
+        dependencies = {
+            { "rafamadriz/friendly-snippets" },
+        }
+    },
+
+    {
         "saecki/crates.nvim",
         tag = "v0.3.0",
         dependencies = { "nvim-lua/plenary.nvim" },
