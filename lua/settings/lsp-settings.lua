@@ -148,7 +148,7 @@ M.custom_setup = {
             extensions = {
                 autoSetHints = true,
                 inlay_hints = {
-                    only_current_line = true,
+                    only_current_line = false,
                 },
                 memory_usage = {
                     border = "rounded"
