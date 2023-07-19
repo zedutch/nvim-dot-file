@@ -20,15 +20,16 @@ opt.breakindent = true
 opt.showtabline = 2
 
 -- Editor
-opt.number = true
-opt.relativenumber = true
+-- Line numbers disabled as a test:
+-- opt.number = true
+-- opt.relativenumber = true
 opt.numberwidth = 4
 opt.ruler = true
 opt.signcolumn = 'yes'
 opt.cursorline = true
 opt.wrap = false
-opt.scrolloff = 8                                -- Number of vertical margin lines
-opt.sidescrolloff = 8                            -- Number of horizontal margin characters
+opt.scrolloff = 8     -- Number of vertical margin lines
+opt.sidescrolloff = 8 -- Number of horizontal margin characters
 opt.whichwrap:append '<,>,[,],h,l'
 opt.iskeyword:append '-'
 opt.fillchars.eob = ' '
@@ -39,7 +40,7 @@ opt.mouse = ''
 -- Files
 opt.backup = false
 opt.swapfile = false
-opt.undofile = true                              -- Persistent undo
+opt.undofile = true -- Persistent undo
 opt.undodir = fn.stdpath('data') .. "/undo"
 opt.writebackup = false
 opt.completeopt = { 'menu', 'menuone', 'noselect' }
@@ -60,15 +61,14 @@ opt.splitright = true
 opt.hlsearch = true
 opt.incsearch = true
 opt.ignorecase = true
-opt.path:append { '**' }                        -- Search down into folders
+opt.path:append { '**' } -- Search down into folders
 opt.wildignore:append { '*/node_modules/*' }
 
 -- Commands
 opt.timeoutlen = 1000 -- ms
-opt.updatetime = 50  -- ms
+opt.updatetime = 50   -- ms
 opt.shortmess:append 'c'
 
 -- Disable unused providers
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
-
