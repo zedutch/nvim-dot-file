@@ -6,8 +6,11 @@ local M = {}
 M.disable_formatting_files = {
     typescriptreact = true, -- Use nullls prettier
     typescript = true,      -- Use nullls prettier
+    html = true,            -- Use nullls prettier
+    json = true,            -- Use nullls prettier
     python = true,          -- Use nullls black
     svelte = true,          -- Use nullls prettier
+    --kotlin_language_server = true, -- Use nullls ktlint
 }
 
 -- Add settings per LSP server
@@ -38,8 +41,17 @@ M.server_settings = {
         }
     },
     tailwindcss = {
-        root_dir = util.root_pattern('tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js', 'postcss.config.ts',
+        root_dir = util.root_pattern('tailwind.config.js', 'tailwind.config.cjs', 'tailwind.config.ts',
+            'postcss.config.js', 'postcss.config.ts',
             'package.json', 'node_modules', '.git'),
+        filetypes = { "aspnetcorerazor", "astro", "astro-markdown", "blade", "django-html", "edge", "eelixir", "ejs",
+            "erb", "eruby", "gohtml", "haml", "handlebars", "hbs", "html", "html-eex", "jade", "leaf", "liquid",
+            "markdown", "mdx", "mustache", "njk", "nunjucks", "php", "razor", "slim", "twig", "css", "less", "postcss",
+            "sass", "scss", "stylus", "sugarss", "javascript", "javascriptreact", "reason", "rescript", "typescript",
+            "typescriptreact", "vue", "svelte",
+            -- Added by me:
+            "rust"
+        }
     },
     pylsp = {
         settings = {
@@ -71,10 +83,46 @@ M.server_settings = {
             },
         },
     },
+    eslint = {
+        filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact",
+            "typescript.tsx", "vue", "svelte", "astro",
+            -- Added by me:
+            "html" }
+    },
+    html = {
+        root_dir = util.root_pattern('~angular.json', 'package.json', '.git'),
+        filetypes = { "html",
+            -- Added by me:
+            "htmldjango" }
+    },
     yamlls = {
         settings = {
             yaml = {
                 keyOrdering = false,
+            },
+        },
+    },
+    kotlin_language_server = {
+        settings = {
+            kotlin = {
+                compiler = {
+                    jvm = {
+                        target = "17",
+                    },
+                },
+            },
+        },
+    },
+    gopls = {
+        settings = {
+            gopls = {
+                completeUnimported = true,
+                usePlaceholders = true,
+                analyses = {
+                    nilness = true,
+                    -- unusedparams = true,
+                    unusedvariable = true,
+                },
             },
         },
     },
@@ -111,9 +159,17 @@ M.custom_keymaps = {
     end,
 
     clangd = function(_, bufnr)
-        vim.keymap.set("n", "<leader>rh", ":ClangdSwitchSourceHeader<CR>",
+        vim.keymap.set("n", "<leader>o", "<cmd>ClangdSwitchSourceHeader<CR>",
             { buffer = bufnr, desc = "Switch source <> header" })
     end,
+
+    gopls = function(_, bufnr)
+        -- local go = require('gopher.nvim')
+        vim.keymap.set("n", "<leader>ke", [[<cmd>GoIfErr<CR>]], { buffer = bufnr, desc = "if err != nil" })
+        vim.keymap.set("n", "<leader>kta", [[<cmd>GoTagAdd ]], { buffer = bufnr, desc = "Add struct tag" })
+        vim.keymap.set("n", "<leader>ktr", [[<cmd>GoTagRemove ]], { buffer = bufnr, desc = "Remove struct tag" })
+    end,
+
 }
 
 -- Add custom setup steps for certain LSP servers

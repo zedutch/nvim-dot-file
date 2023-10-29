@@ -1,17 +1,21 @@
 local settings = require("settings/lsp-settings")
 
 -- SERVERS
-local servers = {
+local install_servers = {
     'clangd',
     'cssls',
     'eslint',
+    'gopls',
     'html',
     'jsonls',
+    'kotlin_language_server',
     'lua_ls',
     'marksman',
+    'ocamllsp',
     'prismals',
     'pylsp',
     'rust_analyzer',
+    'sqlls',
     'svelte',
     'tailwindcss',
     'tsserver',
@@ -19,6 +23,10 @@ local servers = {
     'yamlls',
     'wgsl_analyzer',
     'zls',
+}
+
+local config_servers = {
+    'sourcekit',
 }
 
 -- KEYMAPS
@@ -90,16 +98,16 @@ require('mason').setup {
 local lsp = require('mason-lspconfig')
 
 lsp.setup {
-    ensure_installed = servers,
+    ensure_installed = install_servers,
     automatic_installation = false,
 }
 
 -- VIM LSP CONFIG
 local signs = {
     { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn",  text = "" },
-    { name = "DiagnosticSignHint",  text = "" },
-    { name = "DiagnosticSignInfo",  text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "" },
+    { name = "DiagnosticSignInfo", text = "" },
 }
 
 for _, sign in ipairs(signs) do
@@ -135,7 +143,17 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 -- HANDLERS
 
 local lspconfig = require('lspconfig')
-for _, server_name in ipairs(lsp.get_installed_servers()) do
+
+-- Combine all servers into a single list (installed and config-only)
+local all_servers = {}
+for _, server in ipairs(lsp.get_installed_servers()) do
+    all_servers[server] = true
+end
+for _, server in ipairs(config_servers) do
+    all_servers[server] = true
+end
+
+for server_name, _ in pairs(all_servers) do
     local opts = {
         on_attach = on_attach,
         capabilities = capabilities,

@@ -14,7 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     {
         "nvim-telescope/telescope.nvim",
-        tag = "0.1.1",
         lazy = true,
         event = "VeryLazy",
         dependencies = {
@@ -183,7 +182,7 @@ require("lazy").setup({
         "folke/trouble.nvim",
         config = true,
         keys = {
-            { "<leader>tr", "<cmd>TroubleToggle quickfix<CR>", { silent = true, noremap = true } },
+            { "<leader>tt", "<cmd>TroubleToggle quickfix<CR>", { silent = true, noremap = true } },
         },
     },
     {
@@ -197,7 +196,26 @@ require("lazy").setup({
     },
     {
         "folke/todo-comments.nvim",
-        config = true,
+        config = function()
+            require("todo-comments").setup {
+                keywords = {
+                    HACK = {
+                        alt = {
+                            "TEMP",
+                        },
+                    },
+                },
+                highlight = {
+                    keyword = 'wide_bg',
+                    after = '',
+                    pattern = [[.*<(KEYWORDS)\s*(\([^\)]*\))?:]],
+                },
+                search = {
+                    pattern = [[\b(KEYWORDS)\s*(\([^\)]*\))?:]],
+                    -- pattern = "\\b(KEYWORDS)\\s*(\\(.*\\))?:",
+                }
+            }
+        end,
         keys = {
             { "<leader>tj", function() require('todo-comments').jump_next() end },
             { "<leader>tk", function() require('todo-comments').jump_prev() end },
@@ -234,12 +252,12 @@ require("lazy").setup({
             { "<leader>dt", "<cmd>DapToggleBreakpoint<CR>", mode = "n" },
             { "<leader>dx", "<cmd>DapTerminate<CR>",        mode = "n" },
             { "<leader>dc", "<cmd>DapContinue<CR>",         mode = "n" },
-            { "F6",         "<cmd>DapStepInto<CR>",         mode = "n" },
-            { "F7",         "<cmd>DapStepOver<CR>",         mode = "n" },
-            { "F8",         "<cmd>DapStepOut<CR>",          mode = "n" },
+            { "<leader>dj", "<cmd>DapStepInto<CR>",         mode = "n" },
+            { "<leader>dl", "<cmd>DapStepOver<CR>",         mode = "n" },
+            { "<leader>dk", "<cmd>DapStepOut<CR>",          mode = "n" },
         },
         config = function()
-            require('clangd_extensions')
+            require('settings.dap')
         end,
     },
     {
@@ -259,7 +277,19 @@ require("lazy").setup({
     },
     {
         'p00f/clangd_extensions.nvim',
-        lazy = true,
+        ft = 'C'
+    },
+    {
+        'olexsmir/gopher.nvim',
+        ft = 'go',
+        config = true,
+    },
+    {
+        'github/copilot.vim',
+        keys = {
+            { "<leader>ce", "<cmd>Copilot enable<CR>" },
+            { "<leader>cd", "<cmd>Copilot disable<CR>" },
+        },
     }
 
 })

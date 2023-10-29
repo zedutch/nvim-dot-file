@@ -39,7 +39,7 @@ vim.keymap.set("i", "<C-BS>", "<Esc>cvb")
 
 ---- Windows ----
 -- Rotate through windows
-vim.keymap.set("n", "<Tab>", "<C-w>w")
+vim.keymap.set("n", "<leader><Tab>", "<C-w>w")
 -- Change height
 vim.keymap.set("n", "<C-S-k>", "<cmd>resize +2<CR>")
 vim.keymap.set("n", "<C-S-j>", "<cmd>resize -2<CR>")
@@ -59,4 +59,15 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv")
 -- Insert ellipsis
 vim.keymap.set('n', "<leader>ie", "a…<Esc>")
+-- Insert comments (todo: use comment plugin to define comment shape)
+vim.keymap.set('n', "<leader>in", "0a// NOTE(robin): ")
+vim.keymap.set('n', "<leader>it", "0a// TODO(robin): ")
+
+---- Quickfix list ----
+vim.keymap.set("n", "<leader>qo", "<cmd>copen<CR>")
+vim.keymap.set("n", "<leader>qc", "<cmd>cclose<CR>")
+vim.keymap.set("n", "<leader>qj", "<cmd>cnext<CR>")
+vim.keymap.set("n", "<leader>qk", "<cmd>cprev<CR>")
+vim.keymap.set("n", "<leader>qh", "<cmd>cfirst<CR>")
+vim.keymap.set("n", "<leader>ql", "<cmd>clast<CR>")
 

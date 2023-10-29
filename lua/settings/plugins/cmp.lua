@@ -34,7 +34,7 @@ cmp.setup {
     mapping = {
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<Tab>'] = cmp.mapping(
+        ['<S-Tab>'] = cmp.mapping(
             function(fallback)
                 if luasnip.expandable() then
                     luasnip.expand {}

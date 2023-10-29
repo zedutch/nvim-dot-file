@@ -22,9 +22,24 @@ null_ls.setup {
         },
 
         formatting.prettier.with {
-            filetypes = { "html", "json", "yaml", "markdown", "toml", "javascript", "typescript", "typescriptreact", "typescript.tsx", "svelte" },
+            filetypes = { "html", "json", "yaml", "markdown", "toml", "javascript", "typescript", "typescriptreact", "typescript.tsx", "svelte", "htmldjango" },
         },
 
+        -- Swift
+        formatting.swift_format,
+        diagnostics.swiftlint,
+
+        -- Go
+        formatting.gofumpt,
+        formatting.goimports_reviser,
+        formatting.golines,
+
+        -- OCaml
+        formatting.ocamlformat,
+
+        -- Kotlin
+        -- diagnostics.ktlint,
+        -- formatting.ktlint,
 
         formatting.clang_format,
 
