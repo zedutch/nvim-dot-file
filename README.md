@@ -4,6 +4,7 @@
 - [ripgrep (rg)](https://github.com/BurntSushi/ripgrep)
 - [sharkdp/fd](https://github.com/sharkdp/fd)
 - clang (or any other c compiler)
+- npm
 - Run `checkhealth` and install missing executables
 
 ## Next rewrite
