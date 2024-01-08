@@ -26,16 +26,16 @@ null_ls.setup {
         },
 
         -- Swift
-        formatting.swift_format,
-        diagnostics.swiftlint,
+        -- formatting.swift_format,
+        -- diagnostics.swiftlint,
 
         -- Go
-        formatting.gofumpt,
-        formatting.goimports_reviser,
-        formatting.golines,
+        -- formatting.gofumpt,
+        -- formatting.goimports_reviser,
+        -- formatting.golines,
 
         -- OCaml
-        formatting.ocamlformat,
+        -- formatting.ocamlformat,
 
         -- Kotlin
         -- diagnostics.ktlint,
