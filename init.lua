@@ -23,3 +23,6 @@ require "settings/plugins"
 if vim.g.neovide ~= nil then
     require "settings/neovide"
 end
+
+----- Autocommands -----
+require "settings/autocmds"

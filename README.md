@@ -12,6 +12,7 @@ Libraries to consider for the next config rewrite:
 
 - [nvim-lint](https://github.com/mfussenegger/nvim-lint) - null-ls like but only for linting
 - [formatter.nvim](https://github.com/mhartington/formatter.nvim) - null-ls like but only for formatting
+- nvim-treesitter/nvim-treesitter-textobjects - textobject (w, p) for treesitter objects (assignments, conditionals, parameters, function call, loop, etc)
 
 - nvimtools/none-ls: community port of null-ls
 
@@ -22,3 +23,4 @@ I also want to keep the following things in mind in a rewrite:
 - Better support for snippets. I want to make it relatively easy to define custom snippets that
   can be associated with a filetype
 - I really like my current lsp-settings flow, don't change too much with that
+

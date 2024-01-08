@@ -50,7 +50,7 @@ M.server_settings = {
             "sass", "scss", "stylus", "sugarss", "javascript", "javascriptreact", "reason", "rescript", "typescript",
             "typescriptreact", "vue", "svelte",
             -- Added by me:
-            "rust"
+            "rust", "htmldjango"
         }
     },
     pylsp = {
@@ -187,7 +187,8 @@ M.custom_setup = {
         else
             liblldb_path = ext_path .. "lldb/lib/liblldb" .. (os == "Linux" and ".so" or ".dylib")
         end
-        require('rust-tools').setup {
+        local rt = require('rust-tools')
+        rt.setup {
             server = server,
             dap = {
                 adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
@@ -196,6 +197,7 @@ M.custom_setup = {
                 reload_workspace_from_cargo_toml = true,
             },
         }
+        rt.inlay_hints.disable()
     end,
     clangd = function(server)
         server.capabilities.offsetEncoding = { "utf-16", "utf-8" }
