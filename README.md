@@ -3,25 +3,24 @@
 - [Hack Nerd Font Mono](https://github.com/ryanoasis/nerd-fonts/releases/latest)
 - [ripgrep (rg)](https://github.com/BurntSushi/ripgrep)
 - [sharkdp/fd](https://github.com/sharkdp/fd)
+- [dotenv-linter](http://dotenv-linter.github.io/#/installation)
 - clang (or any other c compiler)
-- npm
+- pnpm
 - Run `checkhealth` and install missing executables
+
+## Current issues
+
+- eslint-lsp has to be restarted constantly to update it
+  - This might be fixed, I should try it out by actually coding something (lol)
+- I don't know how to add snippets myself, I should use nvim-scissors (or sth) for this
 
 ## Next rewrite
 
 Libraries to consider for the next config rewrite:
 
-- [nvim-lint](https://github.com/mfussenegger/nvim-lint) - null-ls like but only for linting
-- [formatter.nvim](https://github.com/mhartington/formatter.nvim) - null-ls like but only for formatting
+- [cloak.nvim](https://github.com/laytan/cloak.nvim) - prevent accidental secret sharing
 - nvim-treesitter/nvim-treesitter-textobjects - textobject (w, p) for treesitter objects (assignments, conditionals, parameters, function call, loop, etc)
 
-- nvimtools/none-ls: community port of null-ls
-
-Still need a null-ls like for code actions (do I actually use those? Other than git I guess?)
-
-I also want to keep the following things in mind in a rewrite:
-
-- Better support for snippets. I want to make it relatively easy to define custom snippets that
-  can be associated with a filetype
-- I really like my current lsp-settings flow, don't change too much with that
-
+Consider:
+- Did I ever miss vim-illuminate?
+- Did I ever miss undo-tree?

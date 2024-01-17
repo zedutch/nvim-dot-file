@@ -1,28 +1,28 @@
------- Settings ------ 
-require "settings/options"
-require "settings/keymaps"
-
+------ Settings ------
+require "zedutch.options"
+require "zedutch.remaps"
 
 ------ Platforms ------
-if vim.fn.has('macunix') == 1 then
-    require 'settings/macos'
-elseif vim.fn.has('win32') == 1 then
-    require 'settings/windows'
-elseif vim.fn.has('wsl') == 1 then
-    require 'settings/wsl'
-elseif vim.fn.has('unix') == 1 then
-    require 'settings/linux'
+if vim.fn.has("macunix") == 1 then
+    require "zedutch.macos"
+elseif vim.fn.has("win32") == 1 then
+    require "zedutch.windows"
+elseif vim.fn.has("wsl") == 1 then
+    require "zedutch.wsl"
+elseif vim.fn.has("unix") == 1 then
+    require "zedutch.linux"
 end
-
 
 ------- Plugins -------
-require "settings/plugins"
+require "zedutch.lazyloader"
 
+-- This can possibly be removed later, but this speeds up startup time for now
+-- See: https://github.com/JoosepAlviste/nvim-ts-context-commentstring
+vim.g.skip_ts_context_commentstring_module = true
 
-------- Neovide -------
-if vim.g.neovide ~= nil then
-    require "settings/neovide"
-end
+----- Colorscheme -----
+vim.cmd[[colorscheme tokyonight]]
 
 ----- Autocommands -----
-require "settings/autocmds"
+require "zedutch.autocmds"
+

@@ -5,7 +5,6 @@ local fn = vim.fn
 
 -- Font
 opt.termguicolors = true
-opt.guifont = 'Hack Nerd Font Mono:h14'
 
 -- Indentation
 opt.autoindent = true
@@ -20,10 +19,7 @@ opt.breakindent = true
 opt.showtabline = 2
 
 -- Editor
--- Line numbers disabled as a test:
--- opt.number = true
--- opt.relativenumber = true
-opt.numberwidth = 4
+opt.numberwidth = 1
 opt.ruler = true
 opt.signcolumn = 'yes'
 opt.cursorline = true
@@ -51,7 +47,7 @@ opt.fileencoding = 'utf-8'
 -- Layout
 opt.cmdheight = 0
 opt.pumheight = 8
-opt.showmode = false
+opt.showmode = true
 opt.showcmd = true
 opt.showmatch = true
 opt.splitbelow = true
@@ -68,6 +64,11 @@ opt.wildignore:append { '*/node_modules/*' }
 opt.timeoutlen = 1000 -- ms
 opt.updatetime = 50   -- ms
 opt.shortmess:append 'c'
+
+-- Netrw
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_liststyle = 3
 
 -- Disable unused providers
 vim.g.loaded_perl_provider = 0
