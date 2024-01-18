@@ -75,9 +75,23 @@ return {
         "vuki656/package-info.nvim",
         dependencies = { "MunifTanjim/nui.nvim" },
         event = { "BufRead package.json" },
-        opts = {
-            package_manager = "pnpm",
-        },
+        config = function()
+            require("package-info").setup({
+                package_manager = "pnpm",
+            })
+            vim.api.nvim_set_keymap(
+                "n",
+                "<leader>pd",
+                "<cmd>lua require('package-info').delete()<cr>",
+                { silent = true, noremap = true }
+            )
+            vim.api.nvim_set_keymap(
+                "n",
+                "<leader>pu",
+                "<cmd>lua require('package-info').update()<cr>",
+                { silent = true, noremap = true }
+            )
+        end,
     },
 
     {

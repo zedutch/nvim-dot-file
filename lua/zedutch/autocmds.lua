@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
         local options = {
             silent = true,
-            noremap = false,
+            noremap = true,
             buffer = ev.buf,
         }
         vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, options)

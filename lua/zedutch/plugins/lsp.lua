@@ -113,6 +113,13 @@ return {
         capabilities.textDocument.completion.completionItem.snippetSupport = true
         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
+        local on_attach = function(client, _)
+            if formatting_disabled[vim.bo.filetype] then
+                client.server_capabilities.documentFormattingProvider = false
+                vim.notify("LSP Formatting disabled for " .. vim.bo.filetype, vim.log.levels.INFO)
+            end
+        end
+
         -- Rust LSP settings
         vim.g.rustaceanvim = {
             -- Plugin configuration
@@ -120,11 +127,24 @@ return {
             },
             -- LSP configuration
             server = {
+                capabilities = capabilities,
                 on_attach = function(client, bufnr)
-                    vim.keymap.set("n", "<leader>co", "<cmd>RustLsp openCargo<cr>", { buffer = bufnr })
-                    vim.keymap.set("n", "<leader>cr", "<cmd>RustLsp reloadWorkspace<cr>", { buffer = bufnr })
-                    vim.keymap.set("n", "<leader>cp", "<cmd>RustLsp parentModule<cr>", { buffer = bufnr })
-                    vim.keymap.set("n", "<leader>ce", "<cmd>RustLsp explainError<cr>", { buffer = bufnr })
+                    on_attach(client, bufnr)
+                    local opts = { silent = true, buffer = bufnr, noremap = false }
+                    vim.keymap.set("n", "<leader>co", function() vim.cmd.RustLsp("openCargo") end, opts)
+                    vim.keymap.set("n", "<leader>cr", function() vim.cmd.RustLsp("reloadWorkspace") end, opts)
+                    vim.keymap.set("n", "<leader>rp", function() vim.cmd.RustLsp("parentModule") end, opts)
+                    vim.keymap.set("n", "<leader>re", function() vim.cmd.RustLsp("explainError") end, opts)
+                    vim.keymap.set("n", "<leader>rr", function() vim.cmd.RustLsp("runnables") end, opts)
+                    vim.keymap.set("n", "<leader>rd", function() vim.cmd.RustLsp("debuggables") end, opts)
+                    vim.keymap.set("n", "<leader>rj", function() vim.cmd.RustLsp({"moveItem", "down"}) end, opts)
+                    vim.keymap.set("n", "<leader>rk", function() vim.cmd.RustLsp({"moveItem", "up"}) end, opts)
+                    vim.keymap.set("n", "<leader>le", function() vim.cmd.RustLsp("renderDiagnostic") end, opts)
+
+                    vim.keymap.set("n", "<leader>la", function() vim.cmd.RustLsp("codeAction") end, opts)
+                    vim.keymap.set("n", "<leader>ll", function() vim.cmd.RustLsp("flyCheck") end, opts)
+                    vim.keymap.set("n", "J", function() vim.cmd.RustLsp("joinLines") end, opts)
+                    vim.keymap.set("n", "K", function() vim.cmd.RustLsp("hover") end, opts)
                 end,
                 settings = {
                     -- rust-analyzer language server configuration
@@ -142,12 +162,6 @@ return {
         }
 
         local util = require 'lspconfig/util'
-        local on_attach = function(client, _)
-            if formatting_disabled[vim.bo.filetype] then
-                client.server_capabilities.documentFormattingProvider = false
-                vim.notify("LSP Formatting disabled for " .. vim.bo.filetype, vim.log.levels.INFO)
-            end
-        end
         require("mason-lspconfig").setup({
             automatic_installation = true,
             ensure_installed = {

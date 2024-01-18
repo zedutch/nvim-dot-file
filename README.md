@@ -12,7 +12,8 @@
 
 - eslint-lsp has to be restarted constantly to update it
   - This might be fixed, I should try it out by actually coding something (lol)
-- I don't know how to add snippets myself, I should use nvim-scissors (or sth) for this
+- I don't know how to add snippets myself, I should use [nvim-scissors](https://github.com/chrisgrieser/nvim-scissors)
+- I should configure [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring) as it still doesn't work
 
 ## Next rewrite
 
