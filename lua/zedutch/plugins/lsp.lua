@@ -76,6 +76,7 @@ return {
         {
             -- https://github.com/williamboman/mason.nvim
             "williamboman/mason.nvim",
+            priority = 200,
             build = function()
                 vim.cmd.MasonUpdate()
             end,
@@ -83,6 +84,7 @@ return {
         {
             -- https://github.com/williamboman/mason-lspconfig.nvim
             "williamboman/mason-lspconfig.nvim",
+            priority = 100,
         },
         {
             -- https://github.com/hrsh7th/nvim-cmp
@@ -137,8 +139,8 @@ return {
                     vim.keymap.set("n", "<leader>re", function() vim.cmd.RustLsp("explainError") end, opts)
                     vim.keymap.set("n", "<leader>rr", function() vim.cmd.RustLsp("runnables") end, opts)
                     vim.keymap.set("n", "<leader>rd", function() vim.cmd.RustLsp("debuggables") end, opts)
-                    vim.keymap.set("n", "<leader>rj", function() vim.cmd.RustLsp({"moveItem", "down"}) end, opts)
-                    vim.keymap.set("n", "<leader>rk", function() vim.cmd.RustLsp({"moveItem", "up"}) end, opts)
+                    vim.keymap.set("n", "<leader>rj", function() vim.cmd.RustLsp({ "moveItem", "down" }) end, opts)
+                    vim.keymap.set("n", "<leader>rk", function() vim.cmd.RustLsp({ "moveItem", "up" }) end, opts)
                     vim.keymap.set("n", "<leader>le", function() vim.cmd.RustLsp("renderDiagnostic") end, opts)
 
                     vim.keymap.set("n", "<leader>la", function() vim.cmd.RustLsp("codeAction") end, opts)
@@ -271,7 +273,7 @@ return {
 
                 ["tailwindcss"] = function()
                     lspconfig.tailwindcss.setup({
-                        filetypes = "*",
+                        filetypes = { "*" },
                         capabilities = capabilities,
                         on_attach = on_attach,
                     })

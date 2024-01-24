@@ -1,6 +1,7 @@
 return {
     -- https://github.com/rshkarin/mason-nvim-lint
     "rshkarin/mason-nvim-lint",
+    priority = 40, -- after all lsp plugins
     dependencies = {
         -- https://github.com/mfussenegger/nvim-lint
         "mfussenegger/nvim-lint",
