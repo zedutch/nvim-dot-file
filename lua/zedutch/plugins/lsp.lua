@@ -321,7 +321,15 @@ return {
                         }
                     })
                 end,
+
             },
+        })
+
+        -- GDScript is currently not supported by mason-lspconfig
+        lspconfig.gdscript.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            cmd = { 'ncat', '127.0.0.1', '6008' }
         })
 
         local cmp = require("cmp")

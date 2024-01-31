@@ -15,6 +15,7 @@ return {
                 ["jinja"] = "htmldjango",
                 ["tera"] = "htmldjango",
                 ["html"] = "html",
+                ["gd"] = "gdscript",
             },
         },
     },

@@ -19,6 +19,7 @@ return {
             typescriptreact = { "eslint_d" },
             javascript = { "eslint_d" },
             html = { "eslint_d" },
+            gd = { "gdlint" },
         }
 
         require("mason-nvim-lint").setup({
