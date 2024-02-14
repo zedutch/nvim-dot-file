@@ -6,16 +6,18 @@ return {
         -- https://github.com/numToStr/Comment.nvim
         "numToStr/Comment.nvim",
         event = "BufRead",
-        opts = {
-            pre_hook = function()
-                require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook()
-            end,
-        },
+        dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
+        config = function()
+            require("Comment").setup({
+                pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+            })
+        end,
     },
 
     {
         -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
         "JoosepAlviste/nvim-ts-context-commentstring",
+        lazy = true,
         opts = {
             enable_autocmd = false,
         },
