@@ -23,6 +23,7 @@ opt.numberwidth = 1
 opt.ruler = true
 opt.signcolumn = 'yes'
 opt.cursorline = true
+opt.colorcolumn = '100'
 opt.wrap = false
 opt.scrolloff = 8     -- Number of vertical margin lines
 opt.sidescrolloff = 8 -- Number of horizontal margin characters
@@ -30,7 +31,7 @@ opt.whichwrap:append '<,>,[,],h,l'
 opt.iskeyword:append '-'
 opt.fillchars.eob = ' '
 opt.textwidth = 0
-opt.laststatus = 3
+opt.laststatus = 2
 opt.mouse = ''
 
 -- Files

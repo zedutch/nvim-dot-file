@@ -20,6 +20,7 @@ return {
             javascript = { "eslint_d" },
             html = { "eslint_d" },
             gd = { "gdlint" },
+            go = { "golangcilint" },
         }
 
         require("mason-nvim-lint").setup({

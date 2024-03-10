@@ -11,6 +11,8 @@ return {
         local formatting = nonels.builtins.formatting
         ---- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/code_actions
         local code_actions = nonels.builtins.code_actions
+        ---- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
+        -- local diagnostics = nonels.builtins.diagnostics
 
         nonels.setup({
             sources = {
@@ -32,13 +34,12 @@ return {
                         "htmldjango",
                     },
                 }),
-                code_actions.eslint_d,
 
                 -- Go
-                formatting.gofumpt,
                 formatting.goimports_reviser,
                 formatting.golines,
                 code_actions.gomodifytags,
+                code_actions.impl,
 
                 -- OCaml
                 -- formatting.ocamlformat,
@@ -47,7 +48,14 @@ return {
                 -- formatting.ktlint,
 
                 -- C / C++
-                formatting.clang_format,
+                formatting.clang_format.with({
+                    filetypes = {
+                        "c",
+                        "cpp",
+                        "objc",
+                        "objcpp",
+                    },
+                }),
 
                 -- General
                 code_actions.gitsigns,

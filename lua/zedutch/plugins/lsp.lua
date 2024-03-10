@@ -6,12 +6,13 @@ local signs = {
 }
 
 local formatting_disabled = {
-    typescriptreact = true, -- Use prettier
-    typescript = true,      -- Use prettier
-    html = true,            -- Use prettier
-    json = true,            -- Use prettier
-    python = true,          -- Use black
-    svelte = true,          -- Use prettier
+    -- typescriptreact = true, -- Use prettier
+    -- typescript = true,      -- Use prettier
+    html = true,   -- Use prettier
+    --json = true,            -- Use prettier
+    python = true, -- Use black
+    svelte = true, -- Use prettier
+    cpp = true,    -- Use clang-format
 }
 
 for _, sign in ipairs(signs) do
@@ -134,6 +135,8 @@ return {
                     on_attach(client, bufnr)
                     local opts = { silent = true, buffer = bufnr, noremap = false }
                     vim.keymap.set("n", "<leader>co", function() vim.cmd.RustLsp("openCargo") end, opts)
+                    vim.keymap.set("n", "<leader>cb", function() vim.cmd("!cargo build") end, opts)
+                    vim.keymap.set("n", "<leader>cc", function() vim.cmd("!cargo run") end, opts)
                     vim.keymap.set("n", "<leader>cr", function() vim.cmd.RustLsp("reloadWorkspace") end, opts)
                     vim.keymap.set("n", "<leader>rp", function() vim.cmd.RustLsp("parentModule") end, opts)
                     vim.keymap.set("n", "<leader>re", function() vim.cmd.RustLsp("explainError") end, opts)
@@ -148,7 +151,7 @@ return {
                     vim.keymap.set("n", "J", function() vim.cmd.RustLsp("joinLines") end, opts)
                     vim.keymap.set("n", "K", function() vim.cmd.RustLsp("hover") end, opts)
                 end,
-                settings = {
+                default_settings = {
                     -- rust-analyzer language server configuration
                     ['rust-analyzer'] = {
                         capabilities = capabilities,
@@ -160,6 +163,7 @@ return {
             },
             -- DAP configuration
             dap = {
+                --autoload_configurations = true,
             },
         }
 
@@ -222,6 +226,7 @@ return {
                                 usePlaceholders = true,
                                 completeUnimported = true,
                                 staticcheck = true,
+                                gofumpt = true,
                             },
                         },
                         capabilities = capabilities,
@@ -229,6 +234,12 @@ return {
                             on_attach(client, bufnr)
                             vim.keymap.set("n", "<leader>gie", "<cmd>GoIfErr<cr>",
                                 { buffer = bufnr, desc = "if err != nil" })
+                            vim.keymap.set("n", "<leader>rr", "<cmd>make run<cr>",
+                                { desc = "Run application" })
+                            vim.keymap.set("n", "<leader>cc", "<cmd>make build<cr>",
+                                { desc = "Compile application" })
+                            vim.keymap.set("n", "<leader>rt", "<cmd>make test<cr>",
+                                { desc = "Run tests" })
                         end,
                     })
                 end,
@@ -302,6 +313,16 @@ return {
 
                 ["clangd"] = function()
                     capabilities.offsetEncoding = { "utf-16", "utf-8" }
+                    lspconfig.clangd.setup({
+                        capabilities = capabilities,
+                        on_attach = function(client, bufnr)
+                            on_attach(client, bufnr)
+                            vim.keymap.set("n", "<leader>cc", "<cmd>!./build.sh<cr>")
+                            vim.keymap.set("n", "<leader>rr", "<cmd>!./run.sh<cr>")
+                            vim.keymap.set("n", "<leader><leader>", "<cmd>ClangdSwitchSourceHeader<cr>")
+                        end,
+                    })
+
                     require('clangd_extensions').setup({
                         server = {
                             capabilities = capabilities,

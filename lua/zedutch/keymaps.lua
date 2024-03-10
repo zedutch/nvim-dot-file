@@ -28,13 +28,15 @@ vim.keymap.set("i", "<C-BS>", "<Esc>cvb")
 
 ---- Windows ----
 -- Change height
-vim.keymap.set("n", "<C-S-k>", "<cmd>resize +2<CR>")
-vim.keymap.set("n", "<C-S-j>", "<cmd>resize -2<CR>")
+vim.keymap.set("n", "<leader><C-k>", "<cmd>resize +2<CR>")
+vim.keymap.set("n", "<leader><C-j>", "<cmd>resize -2<CR>")
 -- Change width
-vim.keymap.set("n", "<C-S-h>", "<cmd>vertical resize -2<CR>")
-vim.keymap.set("n", "<C-S-l>", "<cmd>vertical resize +2<CR>")
+vim.keymap.set("n", "<leader><C-h>", "<cmd>vertical resize -2<CR>")
+vim.keymap.set("n", "<leader><C-l>", "<cmd>vertical resize +2<CR>")
 -- Make all windows equally sized
 vim.keymap.set("n", "<leader>=", "<C-w>=")
+-- Delete buffer without closing splits
+vim.keymap.set("n", "<leader>bd", "<cmd>bp|bd #<CR>")
 
 ---- Text manipulation ----
 -- Remain in visual mode
@@ -68,3 +70,13 @@ vim.keymap.set("n", "<leader>lk", function() vim.diagnostic.goto_prev() end)
 vim.keymap.set("n", "gl", function() vim.diagnostic.open_float() end)
 vim.keymap.set("n", "<leader>ldd", function() vim.diagnostic.enable() end)
 vim.keymap.set("n", "<leader>ldl", function() vim.diagnostic.disable() end)
+
+---- Make ----
+vim.keymap.set("n", "<leader>mr", "<cmd>make run<cr>",
+    { desc = "Make run" })
+vim.keymap.set("n", "<leader>mb", "<cmd>make build<cr>",
+    { desc = "Make build" })
+vim.keymap.set("n", "<leader>mt", "<cmd>make test<cr>",
+    { desc = "Make tests" })
+vim.keymap.set("n", "<leader>m<space>", "<cmd>make<cr>",
+    { desc = "Make" })

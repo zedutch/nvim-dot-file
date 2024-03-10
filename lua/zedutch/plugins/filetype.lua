@@ -10,12 +10,18 @@ return {
             },
             literal = {
                 [".env"] = "dotenv",
+                ["tmux.conf"] = "tmux",
             },
             extensions = {
                 ["jinja"] = "htmldjango",
                 ["tera"] = "htmldjango",
                 ["html"] = "html",
                 ["gd"] = "gdscript",
+                ["sh"] = "sh",
+                ["h"] = "cpp",
+                ["sql"] = "sql",
+                ["vert"] = "glsl",
+                ["frag"] = "glsl",
             },
         },
     },

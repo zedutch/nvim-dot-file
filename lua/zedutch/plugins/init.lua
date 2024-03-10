@@ -40,7 +40,7 @@ return {
 
     {
         "p00f/clangd_extensions.nvim",
-        ft = "C"
+        ft = { "c", "cpp" },
     },
 
     {
@@ -115,7 +115,7 @@ return {
     {
         -- https://github.com/mrcjkb/rustaceanvim
         "mrcjkb/rustaceanvim",
-        version = '^3', -- Recommended
+        version = '^4', -- Recommended
         ft = { 'rust' },
     },
 
@@ -130,6 +130,20 @@ return {
             notification = {
                 override_vim_notify = true,
             },
+        },
+    },
+
+    {
+        -- https://github.com/iamcco/markdown-preview.nvim
+        "iamcco/markdown-preview.nvim",
+        ft = "markdown",
+        build = function()
+            vim.fn["mkdp#util#install"]()
+        end,
+        cmd = {
+            "MarkdownPreview",
+            "MarkdownPreviewStop",
+            "MarkdownPreviewToggle",
         },
     },
 }
