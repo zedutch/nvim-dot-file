@@ -1,6 +1,6 @@
 -- @TODO: plugins
 --  • https://github.com/epwalsh/obsidian.nvim ??
---  • dap + https://github.com/rcarriga/cmp-dap
+--  • https://github.com/rcarriga/cmp-dap
 return {
     {
         -- https://github.com/numToStr/Comment.nvim
