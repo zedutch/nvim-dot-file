@@ -145,11 +145,7 @@ return {
                     vim.keymap.set("n", "<leader>rj", function() vim.cmd.RustLsp({ "moveItem", "down" }) end, opts)
                     vim.keymap.set("n", "<leader>rk", function() vim.cmd.RustLsp({ "moveItem", "up" }) end, opts)
                     vim.keymap.set("n", "<leader>le", function() vim.cmd.RustLsp("renderDiagnostic") end, opts)
-
-                    vim.keymap.set("n", "<leader>la", function() vim.cmd.RustLsp("codeAction") end, opts)
                     vim.keymap.set("n", "<leader>ll", function() vim.cmd.RustLsp("flyCheck") end, opts)
-                    vim.keymap.set("n", "J", function() vim.cmd.RustLsp("joinLines") end, opts)
-                    vim.keymap.set("n", "K", function() vim.cmd.RustLsp("hover") end, opts)
                 end,
                 default_settings = {
                     -- rust-analyzer language server configuration
@@ -157,6 +153,9 @@ return {
                         capabilities = capabilities,
                         checkOnSave = {
                             command = "clippy",
+                        },
+                        rustfmt = {
+                            overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" },
                         },
                     },
                 },
