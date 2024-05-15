@@ -147,6 +147,26 @@ return {
             "MarkdownPreviewToggle",
         },
     },
+
+    {
+        -- https://github.com/michaelrommel/nvim-silicon
+        "michaelrommel/nvim-silicon",
+        lazy = true,
+        cmd = "Silicon",
+        config = function()
+            require("silicon").setup({
+                -- Configuration here, or leave empty to use defaults
+                disable_defaults = true,
+                language = function()
+                    return vim.bo.filetype
+                end,
+                output = function()
+                    return "~/Downloads/" .. os.date("!%Y-%m-%dT%H-%M-%S") .. "_code.png"
+                end,
+            })
+        end
+    },
+
     {
         -- https://github.com/NoahTheDuke/vim-just
         "NoahTheDuke/vim-just",
