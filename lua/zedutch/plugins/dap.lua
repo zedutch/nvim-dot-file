@@ -23,6 +23,10 @@ return {
                     { "<leader>du", function() require("dapui").toggle({}) end, desc = "DAP UI" },
                     { "<leader>de", function() require("dapui").eval() end,     desc = "DAP Eval", mode = { "n", "v" } },
                 },
+                dependencies = {
+                    -- https://github.com/nvim-neotest/nvim-nio
+                    "nvim-neotest/nvim-nio"
+                },
                 config = function()
                     local dap = require("dap")
                     local dui = require("dapui")
