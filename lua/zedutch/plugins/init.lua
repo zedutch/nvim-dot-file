@@ -96,10 +96,11 @@ return {
         end,
     },
 
-    {
-        "github/copilot.vim",
-        event = "InsertEnter",
-    },
+    -- Disabled for now as I no longer have free access to copilot and I want to test writing without it again for a couple of weeks
+    -- {
+    --     "github/copilot.vim",
+    --     event = "InsertEnter",
+    -- },
 
     {
         -- https://github.com/nvim-lualine/lualine.nvim
