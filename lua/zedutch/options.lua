@@ -23,7 +23,7 @@ opt.numberwidth = 1
 opt.ruler = true
 opt.signcolumn = 'yes'
 opt.cursorline = true
-opt.colorcolumn = '100'
+opt.colorcolumn = '120'
 opt.wrap = false
 opt.scrolloff = 8     -- Number of vertical margin lines
 opt.sidescrolloff = 8 -- Number of horizontal margin characters
@@ -68,8 +68,8 @@ opt.shortmess:append 'c'
 
 -- Netrw
 vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
-vim.g.netrw_liststyle = 3
+vim.g.netrw_banner = 1
+vim.g.netrw_liststyle = 1
 
 -- Disable unused providers
 vim.g.loaded_perl_provider = 0
