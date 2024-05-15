@@ -32,6 +32,7 @@ return {
                         "typescript",
                         "typescriptreact",
                         "htmldjango",
+                        "templ",
                     },
                 }),
 
