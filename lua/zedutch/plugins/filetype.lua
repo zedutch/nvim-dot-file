@@ -11,6 +11,7 @@ return {
             literal = {
                 [".env"] = "dotenv",
                 ["tmux.conf"] = "tmux",
+                ["justfile"] = "just",
             },
             extensions = {
                 ["jinja"] = "htmldjango",

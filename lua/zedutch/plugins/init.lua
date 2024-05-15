@@ -146,4 +146,9 @@ return {
             "MarkdownPreviewToggle",
         },
     },
+    {
+        -- https://github.com/NoahTheDuke/vim-just
+        "NoahTheDuke/vim-just",
+        ft = { "just" },
+    },
 }
