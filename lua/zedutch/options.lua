@@ -3,9 +3,6 @@
 local opt = vim.opt
 local fn = vim.fn
 
--- Font
-opt.termguicolors = true
-
 -- Indentation
 opt.autoindent = true
 opt.expandtab = true

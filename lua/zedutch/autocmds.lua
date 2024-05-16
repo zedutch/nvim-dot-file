@@ -24,8 +24,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "gs", function() vim.lsp.buf.signature_help() end, options)
         vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, options)
 
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, options)
-
+        vim.keymap.set("n", "<leader>lh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
+            options)
         vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format({ async = true }) end, options)
         vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, options)
         vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end, options)
