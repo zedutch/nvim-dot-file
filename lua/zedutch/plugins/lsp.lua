@@ -298,6 +298,14 @@ return {
                     })
                 end,
 
+                ["htmx"] = function()
+                    lspconfig.htmx.setup({
+                        filetypes = { "html", "htmldjango", "javascriptreact", "typescriptreact", "rust" },
+                        capabilities = capabilities,
+                        on_attach = on_attach,
+                    })
+                end,
+
                 ["yamlls"] = function()
                     lspconfig.yamlls.setup({
                         settings = {
