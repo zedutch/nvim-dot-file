@@ -5,7 +5,7 @@ local signs = {
     { name = "DiagnosticSignInfo", text = "" },
 }
 
-local formatting_disabled = {
+local file_formatting_disabled = {
     -- typescriptreact = true, -- Use prettier
     -- typescript = true,      -- Use prettier
     html = true,   -- Use prettier
@@ -13,6 +13,9 @@ local formatting_disabled = {
     python = true, -- Use black
     svelte = true, -- Use prettier
     cpp = true,    -- Use clang-format
+}
+local client_formatting_disabled = {
+    html = true, -- Never use html lsp for formatting
 }
 
 for _, sign in ipairs(signs) do
@@ -117,9 +120,10 @@ return {
         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
         local on_attach = function(client, _)
-            if formatting_disabled[vim.bo.filetype] then
+            if file_formatting_disabled[vim.bo.filetype] or client_formatting_disabled[client.name] then
                 client.server_capabilities.documentFormattingProvider = false
-                vim.notify("LSP Formatting disabled for " .. vim.bo.filetype, vim.log.levels.INFO)
+                vim.notify("LSP Formatting disabled for " .. client.name .. " in " .. vim.bo.filetype,
+                    vim.log.levels.INFO)
             end
         end
 
@@ -153,9 +157,6 @@ return {
                         capabilities = capabilities,
                         checkOnSave = {
                             command = "clippy",
-                        },
-                        rustfmt = {
-                            overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" },
                         },
                     },
                 },
@@ -292,7 +293,7 @@ return {
                 ["html"] = function()
                     lspconfig.html.setup({
                         root_dir = util.root_pattern('~angular.json', 'package.json', '.git'),
-                        filetypes = { "html", "htmldjango" },
+                        filetypes = { "html", "htmldjango", "rust" },
                         capabilities = capabilities,
                         on_attach = on_attach,
                     })
