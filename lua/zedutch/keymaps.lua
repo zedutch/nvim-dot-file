@@ -25,6 +25,8 @@ vim.keymap.set("n", "cd.", "<cmd>lcd %:p:h<CR>")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- Delete words
 vim.keymap.set("i", "<C-BS>", "<Esc>cvb")
+-- Open netrw in current folder
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 ---- Windows ----
 -- Change height
