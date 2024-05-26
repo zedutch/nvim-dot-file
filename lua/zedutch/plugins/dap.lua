@@ -46,7 +46,7 @@ return {
             -- https://github.com/theHamsta/nvim-dap-virtual-text
             {
                 "theHamsta/nvim-dap-virtual-text",
-                lazy_ = true,
+                lazy = true,
             },
 
             -- https://github.com/nvim-telescope/telescope-dap.nvim
