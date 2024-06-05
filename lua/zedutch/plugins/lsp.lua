@@ -307,6 +307,16 @@ return {
                     })
                 end,
 
+                -- This does not work very well currently, maybe try again later? (- 05/2024)
+                -- ["sqlls"] = function()
+                --     lspconfig.sqlls.setup({
+                --         root_dir = util.root_pattern('.git'),
+                --         filetypes = { "sql", "rust" },
+                --         capabilities = capabilities,
+                --         on_attach = on_attach,
+                --     })
+                -- end,
+
                 ["html"] = function()
                     lspconfig.html.setup({
                         root_dir = util.root_pattern('~angular.json', 'package.json', '.git'),

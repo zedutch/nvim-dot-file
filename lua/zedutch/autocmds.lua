@@ -16,6 +16,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
             noremap = true,
             buffer = ev.buf,
         }
+
+        -- local client = vim.lsp.get_client_by_id(ev.data.client_id);
+        -- local buffer = vim.bo[ev.buf];
+
         vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, options)
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, options)
         vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, options)
