@@ -287,6 +287,20 @@ return {
                         filetypes = { "*" },
                         capabilities = capabilities,
                         on_attach = on_attach,
+                        settings = {
+                            tailwindCSS = {
+                                includeLanguages = {
+                                    rust = "html",
+                                    ["*.rs"] = "html",
+                                }
+                            }
+                        },
+                        init_options = {
+                            userLanguages = {
+                                rust = "html",
+                                ["*.rs"] = "html",
+                            }
+                        }
                     })
                 end,
 
