@@ -310,7 +310,7 @@ return {
                 ["html"] = function()
                     lspconfig.html.setup({
                         root_dir = util.root_pattern('~angular.json', 'package.json', '.git'),
-                        filetypes = { "html", "htmldjango", "rust" },
+                        filetypes = { "html", "htmldjango", "rust", "templ" },
                         capabilities = capabilities,
                         on_attach = on_attach,
                     })
