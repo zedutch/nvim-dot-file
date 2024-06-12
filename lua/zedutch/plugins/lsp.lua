@@ -237,12 +237,8 @@ return {
                             on_attach(client, bufnr)
                             vim.keymap.set("n", "<leader>gie", "<cmd>GoIfErr<cr>",
                                 { buffer = bufnr, desc = "if err != nil" })
-                            vim.keymap.set("n", "<leader>rr", "<cmd>make run<cr>",
-                                { desc = "Run application" })
-                            vim.keymap.set("n", "<leader>cc", "<cmd>make build<cr>",
-                                { desc = "Compile application" })
-                            vim.keymap.set("n", "<leader>rt", "<cmd>make test<cr>",
-                                { desc = "Run tests" })
+                            vim.keymap.set("n", "<leader>gmt", "<cmd>GoMod tidy<cr>",
+                                { buffer = bufnr, desc = "go mod tidy" })
                         end,
                     })
                 end,
@@ -328,7 +324,7 @@ return {
 
                 ["htmx"] = function()
                     lspconfig.htmx.setup({
-                        filetypes = { "html", "htmldjango", "javascriptreact", "typescriptreact", "rust" },
+                        filetypes = { "html", "htmldjango", "javascriptreact", "typescriptreact", "rust", "templ" },
                         capabilities = capabilities,
                         on_attach = on_attach,
                     })
