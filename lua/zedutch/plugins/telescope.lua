@@ -24,6 +24,8 @@ return {
 					'.git\\',
 					'.godot',
 					'vendor',
+                    '_templ.go',
+                    '_templ.txt',
 				},
 				mappings = {
 					i = {
