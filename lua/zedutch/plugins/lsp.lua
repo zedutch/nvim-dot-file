@@ -222,14 +222,74 @@ return {
                         settings = {
                             gopls = {
                                 analyses = {
-                                    nilness = true,
-                                    unusedparams = true,
                                     unusedvariable = true,
+                                    useany = true,
+                                    -- https://staticcheck.io/docs/checks/
+                                    SA1002 = true, -- Invalid format in time.Parse
+                                    SA1012 = true, -- A nil context.Context is being passed to a function, consider using context.TODO instead
+                                    SA1014 = true, -- Non-pointer value passed to Unmarshal or Decode
+                                    SA1017 = true, -- Channels used with os/signal.Notify should be buffered
+                                    SA1023 = true, -- Modifying the buffer in an io.Writer implementation
+                                    SA1026 = true, -- Cannot marshal channels or functions
+                                    SA1028 = true, -- sort.Slice can only be used on slices
+                                    SA1029 = true, -- Inappropriate key in call to context.WithValue
+                                    SA2000 = true, -- sync.WaitGroup.Add called inside the goroutine, leading to a race condition
+                                    SA2001 = true, -- Empty critical section, did you mean to defer the unlock?
+                                    SA2002 = true, -- Called testing.T.FailNow or SkipNow in a goroutine, which isn’t allowed
+                                    SA3000 = true, -- TestMain doesn’t call os.Exit, hiding test failures
+                                    SA3001 = true, -- Assigning to b.N in benchmarks distorts the results
+                                    SA5000 = true, -- Assignment to nil map
+                                    SA5001 = true, -- Deferring Close before checking for a possible error
+                                    SA5007 = true, -- Infinite recursive call
+                                    SA5010 = true, -- Impossible type assertion
+                                    SA5011 = true, -- Possible nil pointer dereference
+                                    SA6000 = true, -- Using regexp.Match or related in a loop, should use regexp.Compile
+                                    SA6002 = true, -- Storing non-pointer values in sync.Pool allocates memory
+                                    SA6005 = true, -- Inefficient string comparison with strings.ToLower or strings.ToUpper
+                                    S1001 = true,  -- Replace for loop with call to copy
+                                    S1005 = true,  -- Drop unnecessary use of the blank identifier
+                                    S1007 = true,  -- Simplify regular expression by using raw string literal
+                                    S1008 = true,  -- Simplify returning boolean expression
+                                    S1009 = true,  -- Omit redundant nil check on slices
+                                    S1011 = true,  -- Use a single append to concatenate two slices
+                                    S1012 = true,  -- Replace time.Now().Sub(x) with time.Since(x)
+                                    S1016 = true,  -- Use a type conversion instead of manually copying struct fields
+                                    S1019 = true,  -- Simplify make call by omitting redundant arguments
+                                    S1020 = true,  -- Omit redundant nil check in type assertion
+                                    S1023 = true,  -- Omit redundant control flow
+                                    S1024 = true,  -- Replace x.Sub(time.Now()) with time.Until(x)
+                                    S1025 = true,  -- Don’t use fmt.Sprintf("%s", x) unnecessarily
+                                    S1028 = true,  -- Simplify error construction with fmt.Errorf
+                                    S1038 = true,  -- Unnecessarily complex way of printing formatted string
+                                    S1039 = true,  -- Unnecessary use of fmt.Sprint
+                                    S1040 = true,  -- Type assertion to current type
+                                    ST1000 = true, -- Incorrect or missing package comment
+                                    QF1001 = true, -- Apply De Morgan’s law
+                                    QF1002 = true, -- Convert untagged switch to tagged switch
+                                    QF1003 = true, -- Convert if/else-if chain to tagged switch
+                                    QF1006 = true, -- Lift if+break into loop condition
+                                    QF1009 = true, -- Use time.Time.Equal instead of == operator
+                                    QF1011 = true, -- Omit redundant type from variable declaration
+                                },
+                                codelenses = {
+                                    test = true,
+                                    run_govulncheck = true,
+                                    tidy = true,
+                                    upgrade_dependency = true,
+                                    vendor = true,
                                 },
                                 usePlaceholders = true,
                                 completeUnimported = true,
                                 staticcheck = true,
+                                vulncheck = "Imports",
                                 gofumpt = true,
+                                hints = {
+                                    assignVariableTypes = true,
+                                    compositeLiteralFields = true,
+                                    constantValues = true,
+                                    parameterNames = true,
+                                    rangeVariableTypes = true,
+                                },
                             },
                         },
                         capabilities = capabilities,
@@ -307,7 +367,7 @@ return {
                 -- ["sqlls"] = function()
                 --     lspconfig.sqlls.setup({
                 --         root_dir = util.root_pattern('.git'),
-                --         filetypes = { "sql", "rust" },
+                --         filetypes = { "sql" },
                 --         capabilities = capabilities,
                 --         on_attach = on_attach,
                 --     })
