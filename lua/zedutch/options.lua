@@ -30,6 +30,7 @@ opt.fillchars.eob = ' '
 opt.textwidth = 0
 opt.laststatus = 2
 opt.mouse = ''
+opt.listchars = "space:·,tab:-> "
 
 -- Files
 opt.backup = false
