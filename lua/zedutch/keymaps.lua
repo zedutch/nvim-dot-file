@@ -38,7 +38,7 @@ vim.keymap.set("n", "<leader><C-l>", "<cmd>vertical resize +2<CR>")
 -- Make all windows equally sized
 vim.keymap.set("n", "<leader>=", "<C-w>=")
 -- Delete buffer without closing splits
-vim.keymap.set("n", "<leader>bd", "<cmd>bp|bd #<CR>")
+vim.keymap.set("n", "<leader>bd", "<cmd>bp<bar>bd #<CR>")
 
 ---- Text manipulation ----
 -- Remain in visual mode
@@ -52,6 +52,10 @@ vim.keymap.set('n', "<leader>ie", "a…<Esc>")
 -- Insert comments (todo: use comment plugin to define comment shape)
 vim.keymap.set('n', "<leader>in", "0a// NOTE(robin): ")
 vim.keymap.set('n', "<leader>it", "0a// TODO(robin): ")
+-- Toggle conceallevel
+vim.keymap.set('n', "<leader>cl",
+    ---@diagnostic disable-next-line: undefined-field
+    function() if vim.opt.conceallevel._value > 0 then vim.opt.conceallevel = 0 else vim.opt.conceallevel = 2 end end)
 
 ---- Quickfix list ----
 vim.keymap.set("n", "<leader>qo", "<cmd>copen<CR>")

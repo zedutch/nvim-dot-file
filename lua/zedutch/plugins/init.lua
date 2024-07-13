@@ -1,5 +1,4 @@
 -- @TODO: plugins
---  • https://github.com/epwalsh/obsidian.nvim ??
 --  • https://github.com/rcarriga/cmp-dap
 return {
     {
@@ -171,5 +170,37 @@ return {
         -- https://github.com/NoahTheDuke/vim-just
         "NoahTheDuke/vim-just",
         ft = { "just" },
+    },
+
+    {
+        -- https://github.com/epwalsh/obsidian.nvim
+        "epwalsh/obsidian.nvim",
+        version = "*", -- recommended, use latest release instead of latest commit
+        lazy = true,
+        ft = "markdown",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "hrsh7th/nvim-cmp",
+            "nvim-telescope/telescope.nvim",
+        },
+        config = {
+            workspaces = {
+                {
+                    name = "notes",
+                    path = "~/Notes",
+                },
+            },
+            completion = {
+                nvim_cmp = true,
+                min_chars = 2,
+            },
+        },
+        keys = {
+            { "<leader>ot", "<cmd>ObsidianToday<cr>" },
+            { "<leader>od", "<cmd>ObsidianDailies<cr>" },
+            { "<leader>oc", "<cmd>ObsidianToggleCheckbox<cr>" },
+            { "<leader>oe", "<cmd>ObsidianExtractNote<cr>" },
+            { "<leader>of", "<cmd>ObsidianSearch<cr>" },
+        },
     },
 }
