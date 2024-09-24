@@ -17,8 +17,8 @@ return {
             dotenv = { "dotenv_linter" },
             typescript = { "eslint_d" },
             typescriptreact = { "eslint_d" },
-            javascript = { "eslint_d" },
-            html = { "eslint_d" },
+            -- javascript = { "eslint_d" },
+            -- html = { "eslint_d" },
             gd = { "gdlint" },
             go = { "golangcilint" },
         }

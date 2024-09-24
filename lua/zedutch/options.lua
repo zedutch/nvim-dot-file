@@ -28,7 +28,7 @@ opt.whichwrap:append '<,>,[,],h,l'
 opt.iskeyword:append '-'
 opt.fillchars.eob = ' '
 opt.textwidth = 0
-opt.laststatus = 2
+opt.laststatus = 3
 opt.mouse = ''
 opt.listchars = "space:·,tab:-> "
 
@@ -51,6 +51,7 @@ opt.showcmd = true
 opt.showmatch = true
 opt.splitbelow = true
 opt.splitright = true
+opt.splitkeep = "screen"
 
 -- Search
 opt.hlsearch = true

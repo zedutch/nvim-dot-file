@@ -177,7 +177,7 @@ return {
                 "gopls",
                 "lua_ls",
                 "rust_analyzer",
-                "tsserver",
+                "ts_ls",
                 "vimls",
             },
             handlers = {
@@ -351,6 +351,8 @@ return {
                                 includeLanguages = {
                                     rust = "html",
                                     ["*.rs"] = "html",
+                                    templ = "html",
+                                    ["*.templ"] = "html",
                                 }
                             }
                         },
@@ -358,6 +360,8 @@ return {
                             userLanguages = {
                                 rust = "html",
                                 ["*.rs"] = "html",
+                                templ = "html",
+                                ["*.templ"] = "html",
                             }
                         }
                     })
@@ -441,7 +445,7 @@ return {
         lspconfig.gdscript.setup({
             capabilities = capabilities,
             on_attach = on_attach,
-            cmd = { 'ncat', '127.0.0.1', '6008' }
+            cmd = { 'nc', '127.0.0.1', '6005' }
         })
 
         local cmp = require("cmp")

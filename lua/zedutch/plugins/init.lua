@@ -203,4 +203,26 @@ return {
             { "<leader>of", "<cmd>ObsidianSearch<cr>" },
         },
     },
+
+    {
+        -- https://github.com/mbbill/undotree
+        "mbbill/undotree",
+        keys = {
+            { "<leader>u", "<cmd>UndotreeToggle<cr>" },
+        },
+    },
+
+    {
+        -- https://github.com/laytan/tailwind-sorter.nvim
+        'laytan/tailwind-sorter.nvim',
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+            'nvim-lua/plenary.nvim',
+        },
+        build = 'cd formatter && npm ci && npm run build',
+        config = {
+            on_save_enabled = true,
+            trim_spaces = true,
+        },
+    },
 }

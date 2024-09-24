@@ -36,9 +36,25 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 })
 
+-- Zig keybindings
+vim.api.nvim_create_autocmd("LspAttach", {
+    pattern = "*.zig",
+    group = MyGroup,
+    callback = function(ev)
+        local options = {
+            silent = true,
+            noremap = true,
+            buffer = ev.buf,
+        }
+
+        vim.keymap.set("n", "<leader>rr", "<cmd>!zig build run<cr>", options)
+    end
+})
+
 -- Go onsave
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.go",
+    group = MyGroup,
     callback = function()
         local params = vim.lsp.util.make_range_params()
         params.context = { only = { "source.organizeImports" } }

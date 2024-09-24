@@ -42,6 +42,9 @@ return {
                 code_actions.gomodifytags,
                 code_actions.impl,
 
+                -- GDScript
+                formatting.gdformat,
+
                 -- OCaml
                 -- formatting.ocamlformat,
 
