@@ -23,6 +23,7 @@ return {
                 ["sql"] = "sql",
                 ["vert"] = "glsl",
                 ["frag"] = "glsl",
+                ["tf"] = "terraform",
             },
         },
     },

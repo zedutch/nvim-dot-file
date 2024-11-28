@@ -31,6 +31,8 @@ return {
                     -- vim.notify('Conflict detected in ' .. vim.fn.expand('<afile>'))
                     vim.keymap.set("n", "<leader>gj", "<cmd>GitConflictNextConflict<cr>")
                     vim.keymap.set("n", "<leader>gk", "<cmd>GitConflictPrevConflict<cr>")
+                    vim.keymap.set("n", "<leader>go", "<cmd>GitConflictChooseOurs<cr>")
+                    vim.keymap.set("n", "<leader>gt", "<cmd>GitConflictChooseTheirs<cr>")
                 end
             })
         end,

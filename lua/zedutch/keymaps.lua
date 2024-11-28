@@ -39,6 +39,9 @@ vim.keymap.set("n", "<leader><C-l>", "<cmd>vertical resize +2<CR>")
 vim.keymap.set("n", "<leader>=", "<C-w>=")
 -- Delete buffer without closing splits
 vim.keymap.set("n", "<leader>bd", "<cmd>bp<bar>bd #<CR>")
+-- Delete all buffers except current
+vim.keymap.set("n", "<leader>ba", "<cmd>%bd<bar>edit#<bar>bd#<CR>")
+
 
 ---- Text manipulation ----
 -- Remain in visual mode

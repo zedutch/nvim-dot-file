@@ -38,6 +38,14 @@ return {
     },
 
     {
+        -- https://github.com/kylechui/nvim-surround
+        "kylechui/nvim-surround",
+        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        event = "VeryLazy",
+        config = true,
+    },
+
+    {
         "p00f/clangd_extensions.nvim",
         ft = { "c", "cpp" },
     },
@@ -108,6 +116,12 @@ return {
         opts = {
             options = {
                 theme = "tokyonight",
+            },
+            sections = {
+                lualine_b = {
+                    "macro-recording",
+                    fmt = show_macro_recording,
+                },
             },
         },
     },
@@ -222,7 +236,7 @@ return {
         build = 'cd formatter && npm ci && npm run build',
         config = {
             on_save_enabled = true,
-            trim_spaces = true,
+            trim_spaces = false,
         },
     },
 }

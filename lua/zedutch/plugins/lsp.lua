@@ -353,17 +353,11 @@ return {
                                     ["*.rs"] = "html",
                                     templ = "html",
                                     ["*.templ"] = "html",
+                                    heex = "html",
+                                    ["*.heex"] = "html",
                                 }
                             }
                         },
-                        init_options = {
-                            userLanguages = {
-                                rust = "html",
-                                ["*.rs"] = "html",
-                                templ = "html",
-                                ["*.templ"] = "html",
-                            }
-                        }
                     })
                 end,
 

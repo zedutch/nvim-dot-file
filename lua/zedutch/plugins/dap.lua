@@ -21,7 +21,8 @@ return {
                 "rcarriga/nvim-dap-ui",
                 keys = {
                     { "<leader>du", function() require("dapui").toggle({}) end, desc = "DAP UI" },
-                    { "<leader>de", function() require("dapui").eval() end,     desc = "DAP Eval", mode = { "n", "v" } },
+                    { "<leader>dU", function() require("dapui").setup() end,    desc = "DAP Re-setup" },
+                    { "<leader>de", function() require("dapui").eval() end,     desc = "DAP Eval",    mode = { "n", "v" } },
                 },
                 dependencies = {
                     -- https://github.com/nvim-neotest/nvim-nio
@@ -31,15 +32,23 @@ return {
                     local dap = require("dap")
                     local dui = require("dapui")
                     dui.setup()
-                    dap.listeners.after.event_initialized["dapui_config"] = function()
-                        dui.open({})
+
+                    dap.listeners.before.attach.dapui_config = function()
+                        dui.open()
                     end
-                    dap.listeners.before.event_terminated["dapui_config"] = function()
-                        dui.close({})
+                    dap.listeners.before.launch.dapui_config = function()
+                        dui.open()
                     end
-                    dap.listeners.before.event_exited["dapui_config"] = function()
-                        dui.close({})
+                    dap.listeners.before.event_terminated.dapui_config = function()
+                        dui.close()
                     end
+                    dap.listeners.before.event_exited.dapui_config = function()
+                        dui.close()
+                    end
+
+                    -- dap.listeners.after.event_initialized["dapui_config"] = function()
+                    --     dui.open({})
+                    -- end
                 end,
             },
 
@@ -75,13 +84,14 @@ return {
                     -- You'll need to check that you have the required things installed online
                     ensure_installed = {
                         "codelldb",
+                        "delve",
                     },
                 },
             },
         },
         config = function()
             local dap = require("dap")
-            local launch = {
+            local lldb_launch = {
                 name = "Launch",
                 type = "codelldb",
                 request = "launch",
@@ -93,28 +103,73 @@ return {
                 args = {},
                 runInTerminal = false,
             }
-            local attach = {
+            local lldb_attach = {
                 name = "Attach to process",
                 type = 'codelldb', -- Adjust this to match your adapter name (`dap.adapters.<name>`)
                 request = 'attach',
-                pid = require('dap.utils').pick_process,
+                processId = require('dap.utils').pick_process,
                 args = {},
             }
             dap.configurations.cpp = {
-                launch, attach,
+                lldb_launch, lldb_attach,
             }
             dap.configurations.c = {
-                launch, attach,
+                lldb_launch, lldb_attach,
             }
             dap.configurations.rust = {
-                launch, attach,
+                lldb_launch, lldb_attach,
             }
+
+            dap.adapters.delve = {
+                type = "server",
+                host = "127.0.0.1",
+                port = "8086",
+                executable = {
+                    command = "dlv",
+                    args = { "dap", "-l", "127.0.0.1:8086", "--log" },
+                },
+            }
+            dap.adapters.rawdlv = {
+                type = "executable",
+                command = "dlv",
+            }
+            dap.configurations.go = {
+                {
+                    name = "Debug file",
+                    request = "launch",
+                    type = "delve",
+                    program = "${file}",
+                    cwd = "${workspaceFolder}",
+                },
+                {
+                    name = "Debug program",
+                    request = "launch",
+                    type = "delve",
+                    program = function()
+                        return vim.fn.input("Executable: ")
+                    end,
+                    cwd = "${workspaceFolder}",
+                },
+                {
+                    name = "Attach to process",
+                    request = "attach",
+                    type = "delve",
+                    processId = require('dap.utils').pick_process,
+                },
+                {
+                    name = "Attach to remote dlv (port 8086)", -- Started with `dlv debug --headless -l 127.0.0.1:8086 <file>`
+                    request = "attach",
+                    mode = "remote",
+                    type = "delve",
+                    cwd = "${workspaceFolder}",
+                },
+            }
+
             dap.adapters.godot = {
                 type = "server",
                 host = "127.0.0.1",
                 port = 6006,
             }
-
             dap.configurations.gdscript = {
                 {
                     launch_game_instance = false,
@@ -129,101 +184,3 @@ return {
         end,
     },
 }
-
--- OLD DAP CONFIG (saved for reference if i ever set DAP up again - which I probably will):
--- local dap, dapui = require("dap"), require("dapui")
---
--- dapui.setup {}
---
--- dap.listeners.after.event_initialized["dapui_config"] = function()
---     dapui.open()
--- end
---
--- dap.listeners.before.event_terminated["dapui_config"] = function()
---     dapui.close()
--- end
---
--- dap.listeners.before.event_exited["dapui_config"] = function()
---     dapui.close()
--- end
---
--- if false then
---     local mason_registry = require("mason-registry")
---     local cpptools = mason_registry.get_package("cpptools")
---     local adapter_path = cpptools:get_install_path() .. "/extension/debugAdapters/bin"
---     local od7_path = adapter_path .. "/OpenDebugAD7"
---     local options = {}
---
---     local os = vim.loop.os_uname().sysname;
---     if os:find "Windows" then
---         od7_path = adapter_path .. "/OpenDebugAD7.exe"
---         options = {
---             detached = false
---         }
---     end
---
---     print("Debugger path:", od7_path)
---
---     dap.adapters.cppdbg = {
---         id = 'cppdbg',
---         type = 'executable',
---         command = od7_path,
---         options = options,
---     }
---
---     dap.configurations.c = {
---         {
---             name = "Launch file",
---             type = "cppdbg",
---             request = "launch",
---             program = function()
---                 return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
---             end,
---             cwd = '${workspaceFolder}',
---             stopAtEntry = true,
---         },
---     }
--- end
---
--- local mason_registry = require("mason-registry")
--- local codelldb = mason_registry.get_package("codelldb")
--- local ext_path = codelldb:get_install_path() .. "/extension/"
--- local os = vim.loop.os_uname().sysname;
--- local codelldb_path = ext_path .. "adapter/codelldb"
--- local liblldb_path = ext_path .. "lldb/lib/liblldb"
--- if os:find "Windows" then
---     codelldb_path = ext_path .. "adapter/codelldb.exe"
---     liblldb_path = ext_path .. "lldb/lib/liblldb.dll"
--- else
---     liblldb_path = ext_path .. "lldb/lib/liblldb" .. (os == "Linux" and ".so" or ".dylib")
--- end
---
--- dap.adapters.codelldb = {
---     type = 'server',
---     port = "${port}",
---     executable = {
---         command = codelldb_path,
---         args = { "--port", "${port}" },
---
---         -- On windows you may have to uncomment this:
---         -- detached = false,
---     }
--- }
---
--- dap.configurations.c = {
---     {
---         name = "Launch file",
---         type = "codelldb",
---         request = "launch",
---         program = function()
---             return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
---         end,
---         cwd = '${workspaceFolder}/build',
---         stopOnEntry = false,
---     },
--- }
---
--- -- Third option:
--- -- /opt/homebrew/opt/llvm/bin/lldb-vscode
---
--- dap.configurations.cpp = dap.configurations.c

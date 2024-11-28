@@ -51,6 +51,31 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 })
 
+-- Odin keybindings
+vim.api.nvim_create_autocmd("LspAttach", {
+    pattern = "*.odin",
+    group = MyGroup,
+    callback = function(ev)
+        local options = {
+            silent = true,
+            noremap = true,
+            buffer = ev.buf,
+        }
+
+        vim.keymap.set("n", "<leader>rr", "<cmd>!odin run src --out:main<cr>", options)
+    end
+})
+
+-- Terraform autoformat on save
+vim.api.nvim_create_autocmd("BufWritePost", {
+    group = MyGroup,
+    pattern = "*.tf",
+    callback = function()
+        vim.cmd([[:silent !tofu fmt]])
+        vim.cmd([[:e]])
+    end
+})
+
 -- Go onsave
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.go",
@@ -74,4 +99,39 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         end
         vim.lsp.buf.format({ async = false })
     end
+})
+
+-- Update lualine recording macro status
+vim.api.nvim_create_autocmd("RecordingEnter", {
+    callback = function()
+        local recording_register = vim.fn.reg_recording()
+        if recording_register ~= "" then
+            vim.notify("Macro recording @ " .. recording_register)
+        end
+        local lualine = require("lualine")
+        lualine.refresh({
+            place = { "statusline" },
+        })
+    end,
+})
+
+vim.api.nvim_create_autocmd("RecordingLeave", {
+    callback = function()
+        -- Instead of just calling refresh we need to wait a moment because of the nature of
+        -- `vim.fn.reg_recording`. If we tell lualine to refresh right now it actually will
+        -- still show a recording occuring because `vim.fn.reg_recording` hasn't emptied yet.
+        -- So what we need to do is wait a tiny amount of time (in this instance 50 ms) to
+        -- ensure `vim.fn.reg_recording` is purged before asking lualine to refresh.
+        local lualine = require("lualine")
+        local timer = vim.loop.new_timer()
+        timer:start(
+            50,
+            0,
+            vim.schedule_wrap(function()
+                lualine.refresh({
+                    place = { "statusline" },
+                })
+            end)
+        )
+    end,
 })
