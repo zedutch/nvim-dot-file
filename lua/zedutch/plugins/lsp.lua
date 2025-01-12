@@ -351,6 +351,8 @@ return {
                                 includeLanguages = {
                                     rust = "html",
                                     ["*.rs"] = "html",
+                                    markdown = "html",
+                                    ["*.md"] = "html",
                                     templ = "html",
                                     ["*.templ"] = "html",
                                     heex = "html",
