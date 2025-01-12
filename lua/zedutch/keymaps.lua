@@ -81,11 +81,11 @@ vim.keymap.set("n", "<leader>ldd", function() vim.diagnostic.enable() end)
 vim.keymap.set("n", "<leader>ldl", function() vim.diagnostic.disable() end)
 
 ---- Make ----
-vim.keymap.set("n", "<leader>mr", "<cmd>make run<cr>",
-    { desc = "Make run" })
-vim.keymap.set("n", "<leader>mb", "<cmd>make build<cr>",
-    { desc = "Make build" })
-vim.keymap.set("n", "<leader>mt", "<cmd>make test<cr>",
-    { desc = "Make tests" })
-vim.keymap.set("n", "<leader>m<space>", "<cmd>make<cr>",
-    { desc = "Make" })
+vim.keymap.set("n", "<leader>mr", "<cmd>!just run<cr>",
+    { desc = "Just run" })
+vim.keymap.set("n", "<leader>mb", "<cmd>!just build<cr>",
+    { desc = "Just build" })
+vim.keymap.set("n", "<leader>mt", "<cmd>!just test<cr>",
+    { desc = "Just test" })
+vim.keymap.set("n", "<leader>m<space>", "<cmd>!just<cr>",
+    { desc = "Just" })
