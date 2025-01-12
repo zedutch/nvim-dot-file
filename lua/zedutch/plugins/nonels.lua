@@ -38,7 +38,7 @@ return {
 
                 -- Go
                 formatting.goimports_reviser,
-                formatting.golines,
+                -- formatting.golines, -- I don't want a max line length anymore
                 code_actions.gomodifytags,
                 code_actions.impl,
 
