@@ -103,11 +103,15 @@ return {
         end,
     },
 
-    -- Disabled for now as I no longer have free access to copilot and I want to test writing without it again for a couple of weeks
-    -- {
-    --     "github/copilot.vim",
-    --     event = "InsertEnter",
-    -- },
+    {
+        -- https://github.com/github/copilot.vim
+        "github/copilot.vim",
+        event = "InsertEnter",
+        keys = {
+            { "<leader>ce", "<cmd>Copilot enable<cr>" },
+            { "<leader>cd", "<cmd>Copilot disable<cr>" },
+        },
+    },
 
     {
         -- https://github.com/nvim-lualine/lualine.nvim
