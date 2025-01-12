@@ -1,3 +1,16 @@
+RunLinters = function(bufnr)
+    local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
+    local linters = nil
+
+    if vim.tbl_contains({ "typescript", "typescriptreact", "javascript", "html" }, filetype) then
+        if vim.fs.root(0, { ".eslintrc.cjs", ".eslintrc" }) then
+            linters = { "eslint_d" }
+        end
+    end
+
+    require("lint").try_lint(linters)
+end
+
 return {
     -- https://github.com/rshkarin/mason-nvim-lint
     "rshkarin/mason-nvim-lint",
@@ -15,8 +28,8 @@ return {
             ["yaml.action"] = { "actionlint" },
             htmldjango = { "djlint" },
             dotenv = { "dotenv_linter" },
-            typescript = { "eslint_d" },
-            typescriptreact = { "eslint_d" },
+            -- typescript = { "eslint_d" },
+            -- typescriptreact = { "eslint_d" },
             -- javascript = { "eslint_d" },
             -- html = { "eslint_d" },
             gd = { "gdlint" },
@@ -28,14 +41,22 @@ return {
             automatic_installation = true,
         })
 
-        vim.api.nvim_create_autocmd({ "BufReadPre", "BufWritePost" }, {
-            callback = function()
-                require("lint").try_lint()
+        -- This is no longer necessary, the next autocmd already does autolinting
+        -- vim.api.nvim_create_autocmd({ "BufReadPre", "BufWritePost" }, {
+        --     callback = function()
+        --         require("lint").try_lint()
+        --     end,
+        -- })
+
+        -- Only run eslint_d if an eslintrc is present
+        vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+            callback = function(args)
+                RunLinters(args.buf)
             end,
         })
 
         vim.keymap.set("n", "<leader>ll", function()
-            require("lint").try_lint()
+            RunLinters(vim.api.nvim_get_current_buf())
             local linters = require("lint").get_running()
             if #linters == 0 then
                 vim.notify("No linters active", vim.log.levels.ERROR)
