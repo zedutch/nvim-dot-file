@@ -33,6 +33,7 @@ return {
                         "typescriptreact",
                         "htmldjango",
                         "templ",
+                        "svelte",
                     },
                 }),
 

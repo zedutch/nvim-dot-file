@@ -2,8 +2,8 @@ RunLinters = function(bufnr)
     local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
     local linters = nil
 
-    if vim.tbl_contains({ "typescript", "typescriptreact", "javascript", "html" }, filetype) then
-        if vim.fs.root(0, { ".eslintrc.cjs", ".eslintrc" }) then
+    if vim.tbl_contains({ "typescript", "typescriptreact", "javascript", "html", "svelte" }, filetype) then
+        if vim.fs.root(0, { ".eslintrc.cjs", ".eslintrc", "eslint.config.js" }) then
             linters = { "eslint_d" }
         end
     end
