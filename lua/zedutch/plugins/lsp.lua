@@ -382,6 +382,20 @@ return {
                     })
                 end,
 
+                ["cssls"] = function()
+                    lspconfig.cssls.setup({
+                        capabilities = capabilities,
+                        on_attach = on_attach,
+                        settings = {
+                            css = {
+                                lint = {
+                                    unknownAtRules = "ignore",
+                                },
+                            },
+                        },
+                    })
+                end,
+
                 ["htmx"] = function()
                     lspconfig.htmx.setup({
                         filetypes = { "html", "htmldjango", "javascriptreact", "typescriptreact", "rust", "templ" },
