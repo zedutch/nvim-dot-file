@@ -201,7 +201,7 @@ return {
             "hrsh7th/nvim-cmp",
             "nvim-telescope/telescope.nvim",
         },
-        config = {
+        opts = {
             workspaces = {
                 {
                     name = "notes",
@@ -238,7 +238,7 @@ return {
             'nvim-lua/plenary.nvim',
         },
         build = 'cd formatter && npm ci && npm run build',
-        config = {
+        opts = {
             on_save_enabled = true,
             trim_spaces = false,
         },
