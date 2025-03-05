@@ -1,2 +1,2 @@
-vim.opt.guifont = 'LigaSFMonoNerdFont:h12'
+vim.opt.guifont = 'HackNerdFont:h12'
 
