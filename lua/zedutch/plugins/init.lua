@@ -230,17 +230,17 @@ return {
         },
     },
 
-    {
-        -- https://github.com/laytan/tailwind-sorter.nvim
-        'laytan/tailwind-sorter.nvim',
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter',
-            'nvim-lua/plenary.nvim',
-        },
-        build = 'cd formatter && npm ci && npm run build',
-        opts = {
-            on_save_enabled = true,
-            trim_spaces = false,
-        },
-    },
+    -- {
+    --     -- https://github.com/laytan/tailwind-sorter.nvim
+    --     'laytan/tailwind-sorter.nvim',
+    --     dependencies = {
+    --         'nvim-treesitter/nvim-treesitter',
+    --         'nvim-lua/plenary.nvim',
+    --     },
+    --     build = 'cd formatter && npm ci && npm run build',
+    --     opts = {
+    --         on_save_enabled = true,
+    --         trim_spaces = false,
+    --     },
+    -- },
 }
