@@ -3,8 +3,17 @@ RunLinters = function(bufnr)
     local linters = nil
 
     if vim.tbl_contains({ "typescript", "typescriptreact", "javascript", "html", "svelte" }, filetype) then
-        if vim.fs.root(0, { ".eslintrc.cjs", ".eslintrc", "eslint.config.js" }) then
+        local eslintfiles = { ".eslintrc.cjs", ".eslintrc", "eslint.config.js", "eslint.config.mjs" }
+        if vim.fs.root(0, eslintfiles) then
+            vim.notify("Eslint file found in root");
             linters = { "eslint_d" }
+        --[[ else
+            -- Search recursively downwards
+            local matches = vim.fs.find(eslintfiles, { limit = 1, type = 'file' })
+            if matches then
+                vim.notify("Eslint dir found: " .. vim.inspect(matches));
+                linters = { "eslint_d" }
+            end ]]
         end
     end
 
