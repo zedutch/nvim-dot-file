@@ -1,23 +1,44 @@
+vim.env.ESLINT_D_PPID = vim.fn.getpid()
+
 RunLinters = function(bufnr)
     local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
     local linters = nil
+    local lintersRan = false
 
     if vim.tbl_contains({ "typescript", "typescriptreact", "javascript", "html", "svelte" }, filetype) then
         local eslintfiles = { ".eslintrc.cjs", ".eslintrc", "eslint.config.js", "eslint.config.mjs" }
-        if vim.fs.root(0, eslintfiles) then
-            vim.notify("Eslint file found in root");
+        local rootmatch = vim.fs.root(0, eslintfiles)
+        if rootmatch then
+            vim.notify("Eslint file found in root: " .. vim.inspect(rootmatch));
+            vim.env.ESLINT_D_ROOT = rootmatch
             linters = { "eslint_d" }
-        --[[ else
+
+            local original_cwd = vim.fn.getcwd()
+            vim.cmd("cd " .. rootmatch)
+            require("lint").try_lint(linters)
+            vim.cmd("cd " .. original_cwd)
+            lintersRan = true
+            --[[ else
             -- Search recursively downwards
             local matches = vim.fs.find(eslintfiles, { limit = 1, type = 'file' })
             if matches then
                 vim.notify("Eslint dir found: " .. vim.inspect(matches));
+                vim.env.ESLINT_D_PPID = vim.fn.getpid()
                 linters = { "eslint_d" }
             end ]]
         end
     end
 
-    require("lint").try_lint(linters)
+    if not lintersRan then
+        require("lint").try_lint(linters)
+    end
+
+    local numlinters = require("lint").get_running()
+    if #numlinters == 0 then
+        vim.notify("No linters active", vim.log.levels.ERROR)
+    else
+        vim.notify("Running " .. table.concat(numlinters, ", "), vim.log.levels.INFO)
+    end
 end
 
 return {
@@ -27,7 +48,6 @@ return {
     dependencies = {
         -- https://github.com/mfussenegger/nvim-lint
         "mfussenegger/nvim-lint",
-
         "williamboman/mason.nvim",
         "neovim/nvim-lspconfig", -- This will do mason setup
     },
@@ -43,6 +63,17 @@ return {
             -- html = { "eslint_d" },
             gd = { "gdlint" },
             go = { "golangcilint" },
+        }
+
+        require("lint").linters.eslint_d.args = {
+            "--no-warn-ignored",
+            "--format",
+            "json",
+            "--stdin",
+            "--stdin-filename",
+            function()
+                return vim.api.nvim_buf_get_name(0)
+            end,
         }
 
         require("mason-nvim-lint").setup({
@@ -66,12 +97,6 @@ return {
 
         vim.keymap.set("n", "<leader>ll", function()
             RunLinters(vim.api.nvim_get_current_buf())
-            local linters = require("lint").get_running()
-            if #linters == 0 then
-                vim.notify("No linters active", vim.log.levels.ERROR)
-            else
-                vim.notify("Running " .. table.concat(linters, ", "), vim.log.levels.INFO)
-            end
         end, {
             silent = false,
             noremap = true,
