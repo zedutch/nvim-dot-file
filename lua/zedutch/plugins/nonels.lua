@@ -31,6 +31,7 @@ return {
                         "javascriptreact",
                         "typescript",
                         "typescriptreact",
+                        "json",
                         "htmldjango",
                         "templ",
                         "svelte",

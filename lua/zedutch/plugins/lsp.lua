@@ -217,6 +217,20 @@ return {
                     })
                 end,
 
+                ["ts_ls"] = function()
+                    lspconfig.ts_ls.setup({
+                        settings = {
+                            ts_ls = {
+                                experimental = {
+                                    allowDefaultProject = true
+                                },
+                            },
+                        },
+                        capabilities = capabilities,
+                        on_attach = on_attach,
+                    })
+                end,
+
                 ["gopls"] = function()
                     lspconfig.gopls.setup({
                         settings = {
