@@ -237,7 +237,8 @@ return {
         config = function()
             -- I just want a function for now, might turn this into a full keybind later
             vim.api.nvim_create_user_command('JsonPath', function()
-                local path = require("jsonpath").get()
+                -- Drop the first `.` since I don't want it.
+                local path = require("jsonpath").get():sub(2)
                 vim.fn.setreg("+", path)
                 vim.notify("PATH: " .. path)
             end, {})
