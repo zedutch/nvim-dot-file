@@ -28,8 +28,9 @@ vim.diagnostic.config({
     signs = {
         active = signs,
     },
+    virtual_text = true,
     float = {
-        style = "minimal",
+        --style = "minimal",
         border = "rounded",
         source = "always",
         header = "",
