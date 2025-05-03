@@ -74,8 +74,10 @@ vim.keymap.set("n", "<leader>ql", "<cmd>clast<CR>")
 vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<CR>")
 
 ---- Diagnostics ----
-vim.keymap.set("n", "<leader>lj", function() vim.diagnostic.goto_next() end)
-vim.keymap.set("n", "<leader>lk", function() vim.diagnostic.goto_prev() end)
+-- No default: [d
+-- vim.keymap.set("n", "<leader>lj", function() vim.diagnostic.jump({count=1, float=true}) end)
+-- No default: ]d
+-- vim.keymap.set("n", "<leader>lk", function() vim.diagnostic.jump({count=-1, float=true}) end)
 vim.keymap.set("n", "gl", function() vim.diagnostic.open_float() end)
 vim.keymap.set("n", "<leader>ldd", function() vim.diagnostic.enable() end)
 vim.keymap.set("n", "<leader>ldl", function() vim.diagnostic.disable() end)
