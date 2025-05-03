@@ -17,6 +17,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
             buffer = ev.buf,
         }
 
+        -- Enable inlay hints by default
+        vim.lsp.inlay_hint.enable()
+
         -- local client = vim.lsp.get_client_by_id(ev.data.client_id);
         -- local buffer = vim.bo[ev.buf];
 
@@ -27,10 +30,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "go", function() vim.lsp.buf.type_definition() end, options)
         -- now default: grr
         -- vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, options)
-        vim.keymap.set("n", "gs", function() vim.lsp.buf.signature_help({border='rounded'}) end, options)
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover({border='rounded'}) end, options)
-        -- now default: C-s
-        -- vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, options)
+        vim.keymap.set("n", "gs", function() vim.lsp.buf.signature_help({ border = 'rounded' }) end, options)
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = 'rounded' }) end, options)
+        vim.keymap.set("i", "<C-s>", function() vim.lsp.buf.signature_help({ border = 'rounded' }) end, options)
 
         vim.keymap.set("n", "<leader>lh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
             options)

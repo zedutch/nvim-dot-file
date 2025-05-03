@@ -74,7 +74,7 @@ vim.g.netrw_liststyle = 1
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
-vim.g.copilot_enabled = false
+vim.g.copilot_enabled = true
 
 -- Disable all clients by default
 vim.lsp.stop_client(vim.lsp.get_clients())
