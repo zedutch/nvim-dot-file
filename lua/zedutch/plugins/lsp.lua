@@ -347,6 +347,14 @@ return {
                     })
                 end,
 
+                ["hyprls"] = function()
+                    lspconfig.hyprls.setup({
+                        filetypes = { "hypr*.conf" },
+                        capabilities = capabilities,
+                        on_attach = on_attach,
+                    })
+                end,
+
                 ["tailwindcss"] = function()
                     lspconfig.tailwindcss.setup({
                         filetypes = { "*" },
