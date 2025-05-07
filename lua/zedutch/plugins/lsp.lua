@@ -65,6 +65,25 @@ local kind_icons = {
     TypeParameter = ""
 }
 
+--- Specialized root pattern that allows for an exclusion
+--- @param opt { root: string[], exclude: string[] }
+--- @return fun(file_name: string): string | nil
+--- Source: https://www.npbee.me/posts/deno-and-typescript-in-a-monorepo-neovim-lsp
+local function root_pattern_exclude(opt)
+    local util = require('lspconfig.util')
+
+    return function(fname)
+        local excluded_root = util.root_pattern(opt.exclude)(fname)
+        local included_root = util.root_pattern(opt.root)(fname)
+
+        if excluded_root then
+            return nil
+        else
+            return included_root
+        end
+    end
+end
+
 return {
     -- https://github.com/neovim/nvim-lspconfig
     "neovim/nvim-lspconfig",
@@ -218,6 +237,19 @@ return {
                                 },
                             },
                         },
+                        root_dir = root_pattern_exclude({
+                            root = { "package.json" },
+                            exclude = { "deno.json", "deno.jsonc" },
+                        }),
+                        single_file_support = false,
+                        capabilities = capabilities,
+                        on_attach = on_attach,
+                    })
+                end,
+
+                ["denols"] = function()
+                    lspconfig.denols.setup({
+                        root_dir = util.root_pattern("deno.json", "deno.jsonc"),
                         capabilities = capabilities,
                         on_attach = on_attach,
                     })
