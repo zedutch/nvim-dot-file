@@ -245,6 +245,11 @@ return {
         end
     },
 
+    {
+        -- https://github.com/vuciv/golf
+        'vuciv/golf',
+    },
+
     -- {
     --     -- https://github.com/laytan/tailwind-sorter.nvim
     --     'laytan/tailwind-sorter.nvim',
