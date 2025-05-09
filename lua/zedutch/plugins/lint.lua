@@ -23,7 +23,6 @@ RunLinters = function(bufnr)
             local matches = vim.fs.find(eslintfiles, { limit = 1, type = 'file' })
             if matches then
                 vim.notify("Eslint dir found: " .. vim.inspect(matches));
-                vim.env.ESLINT_D_PPID = vim.fn.getpid()
                 linters = { "eslint_d" }
             end ]]
         end

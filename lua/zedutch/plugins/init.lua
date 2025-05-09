@@ -212,6 +212,10 @@ return {
                 nvim_cmp = true,
                 min_chars = 2,
             },
+            -- This setting conflicts with render-markdown
+            ui = {
+                enable = false,
+            }
         },
         keys = {
             { "<leader>ot", "<cmd>ObsidianToday<cr>" },
