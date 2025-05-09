@@ -12,6 +12,7 @@ return {
         "MunifTanjim/nui.nvim",
         "nvim-telescope/telescope.nvim",
         "hrsh7th/nvim-cmp",
+        "stevearc/dressing.nvim",
         "zbirenbaum/copilot.lua",
         {
             'MeanderingProgrammer/render-markdown.nvim',
