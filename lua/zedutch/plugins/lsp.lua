@@ -185,11 +185,16 @@ return {
         require("mason-lspconfig").setup({
             automatic_installation = true,
             ensure_installed = {
+                "cssls",
+                "denols",
                 "gopls",
+                "html",
                 "lua_ls",
-                "rust_analyzer",
+                "pylsp",
+                "tailwindcss",
                 "ts_ls",
                 "vimls",
+                "yamlls",
             },
             handlers = {
 
