@@ -17,9 +17,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
             buffer = ev.buf,
         }
 
-        -- Enable inlay hints by default
-        vim.lsp.inlay_hint.enable()
-
         -- local client = vim.lsp.get_client_by_id(ev.data.client_id);
         -- local buffer = vim.bo[ev.buf];
 

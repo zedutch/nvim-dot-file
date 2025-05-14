@@ -506,7 +506,7 @@ return {
         lspconfig.gdscript.setup({
             capabilities = capabilities,
             on_attach = on_attach,
-            cmd = { 'nc', '127.0.0.1', '6005' }
+            cmd = { 'nc', '127.0.0.1', '6005' } -- This should match Godot settings
         })
 
         local cmp = require("cmp")
