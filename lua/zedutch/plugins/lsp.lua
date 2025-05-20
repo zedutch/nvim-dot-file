@@ -15,8 +15,9 @@ local file_formatting_disabled = {
     cpp = true,    -- Use clang-format
 }
 local client_formatting_disabled = {
-    html = true,   -- Never use html lsp for formatting
-    denols = true, -- Never use deno lsp for formatting
+    html = true,   -- Never use html lsp for formatting, it sucks
+    ts_ls = true,  -- Never use ts_ls for formatting, use prettier instead
+    denols = true, -- Never use deno lsp for formatting, use prettier instead
 }
 
 for _, sign in ipairs(signs) do
