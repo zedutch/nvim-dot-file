@@ -15,7 +15,8 @@ local file_formatting_disabled = {
     cpp = true,    -- Use clang-format
 }
 local client_formatting_disabled = {
-    html = true, -- Never use html lsp for formatting
+    html = true,   -- Never use html lsp for formatting
+    denols = true, -- Never use deno lsp for formatting
 }
 
 for _, sign in ipairs(signs) do
@@ -242,6 +243,7 @@ return {
                                 },
                             },
                         },
+                        filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "mdx" },
                         root_dir = root_pattern_exclude({
                             root = { "package.json" },
                             exclude = { "deno.json", "deno.jsonc" },
