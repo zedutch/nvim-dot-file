@@ -1,6 +1,7 @@
 ------ Settings ------
 require "zedutch.options"
 require "zedutch.keymaps"
+require "zedutch.filetypes"
 
 ------ Platforms ------
 if vim.fn.has("macunix") == 1 then

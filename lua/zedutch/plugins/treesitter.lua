@@ -1,7 +1,9 @@
 return {
+    -- https://github.com/nvim-treesitter/nvim-treesitter
     "nvim-treesitter/nvim-treesitter",
+    branch = "master", -- @TODO: Update to main but this requires more changes
     build = ":TSUpdate",
-    event = "BufRead",
+    lazy = false,
     config = function()
         local configs = require("nvim-treesitter.configs")
         configs.setup({
@@ -11,16 +13,23 @@ return {
                 "javascript",
                 "jsdoc",
                 "lua",
+                "markdown",
+                "markdown_inline",
+                "odin",
                 "python",
                 "rust",
                 "typescript",
+                "vim",
                 "vimdoc",
             },
             sync_install = false,
             auto_install = true,
+            ignore_install = {},
+            modules = {},
             highlight = {
                 enable = true,
             },
+            additional_vim_regex_highlighting = false,
             indent = { enable = true },
             incremental_selection = {
                 enable = true,

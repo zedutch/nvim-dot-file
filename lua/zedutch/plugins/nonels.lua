@@ -39,10 +39,10 @@ return {
                 }),
 
                 -- Go
-                formatting.goimports_reviser,
+                -- formatting.goimports_reviser,
                 -- formatting.golines, -- I don't want a max line length anymore
-                code_actions.gomodifytags,
-                code_actions.impl,
+                -- code_actions.gomodifytags,
+                -- code_actions.impl,
 
                 -- GDScript
                 formatting.gdformat,
@@ -54,14 +54,14 @@ return {
                 -- formatting.ktlint,
 
                 -- C / C++
-                formatting.clang_format.with({
-                    filetypes = {
-                        "c",
-                        "cpp",
-                        "objc",
-                        "objcpp",
-                    },
-                }),
+                -- formatting.clang_format.with({
+                --     filetypes = {
+                --         "c",
+                --         "cpp",
+                --         "objc",
+                --         "objcpp",
+                --     },
+                -- }),
 
                 -- SQL
                 formatting.pg_format,

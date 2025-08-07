@@ -37,47 +37,47 @@ return {
         },
     },
 
-    {
-        -- https://github.com/kylechui/nvim-surround
-        "kylechui/nvim-surround",
-        version = "*", -- Use for stability; omit to use `main` branch for the latest features
-        event = "VeryLazy",
-        config = true,
-    },
+    -- {
+    --     -- https://github.com/kylechui/nvim-surround
+    --     "kylechui/nvim-surround",
+    --     version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    --     event = "VeryLazy",
+    --     config = true,
+    -- },
 
-    {
-        "p00f/clangd_extensions.nvim",
-        ft = { "c", "cpp" },
-    },
+    -- {
+    --     "p00f/clangd_extensions.nvim",
+    --     ft = { "c", "cpp" },
+    -- },
 
-    {
-        "olexsmir/gopher.nvim",
-        ft = "go",
-        config = true,
-    },
+    -- {
+    --     "olexsmir/gopher.nvim",
+    --     ft = "go",
+    --     config = true,
+    -- },
 
-    {
-        "saecki/crates.nvim",
-        event = { "BufRead Cargo.toml" },
-        dependencies = { "nvim-lua/plenary.nvim" },
-        opts = {
-            popup = {
-                border = "rounded",
-                keys = {
-                    open_url = { "gx", "<cr>" },
-                    jump_forward = { "<leader>j" },
-                    jump_back = { "<leader>k" },
-                },
-            },
-            on_attach = function(bufnr)
-                vim.keymap.set("n", "K", "<cmd>Crates show_popup<cr>", {
-                    silent = true,
-                    noremap = true,
-                    buffer = bufnr,
-                })
-            end,
-        },
-    },
+    -- {
+    --     "saecki/crates.nvim",
+    --     event = { "BufRead Cargo.toml" },
+    --     dependencies = { "nvim-lua/plenary.nvim" },
+    --     opts = {
+    --         popup = {
+    --             border = "rounded",
+    --             keys = {
+    --                 open_url = { "gx", "<cr>" },
+    --                 jump_forward = { "<leader>j" },
+    --                 jump_back = { "<leader>k" },
+    --             },
+    --         },
+    --         on_attach = function(bufnr)
+    --             vim.keymap.set("n", "K", "<cmd>Crates show_popup<cr>", {
+    --                 silent = true,
+    --                 noremap = true,
+    --                 buffer = bufnr,
+    --             })
+    --         end,
+    --     },
+    -- },
 
     {
         -- https://github.com/vuki656/package-info.nvim
@@ -130,12 +130,12 @@ return {
         },
     },
 
-    {
-        -- https://github.com/mrcjkb/rustaceanvim
-        "mrcjkb/rustaceanvim",
-        version = '^4', -- Recommended
-        ft = { 'rust' },
-    },
+    -- {
+    --     -- https://github.com/mrcjkb/rustaceanvim
+    --     "mrcjkb/rustaceanvim",
+    --     version = '^4', -- Recommended
+    --     ft = { 'rust' },
+    -- },
 
     {
         -- https://github.com/j-hui/fidget.nvim
@@ -190,41 +190,41 @@ return {
         ft = { "just" },
     },
 
-    {
-        -- https://github.com/epwalsh/obsidian.nvim
-        "epwalsh/obsidian.nvim",
-        version = "*", -- recommended, use latest release instead of latest commit
-        lazy = true,
-        ft = "markdown",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "hrsh7th/nvim-cmp",
-            "nvim-telescope/telescope.nvim",
-        },
-        opts = {
-            workspaces = {
-                {
-                    name = "notes",
-                    path = "~/Notes",
-                },
-            },
-            completion = {
-                nvim_cmp = true,
-                min_chars = 2,
-            },
-            -- This setting conflicts with render-markdown
-            ui = {
-                enable = false,
-            }
-        },
-        keys = {
-            { "<leader>ot", "<cmd>ObsidianToday<cr>" },
-            { "<leader>od", "<cmd>ObsidianDailies<cr>" },
-            { "<leader>oc", "<cmd>ObsidianToggleCheckbox<cr>" },
-            { "<leader>oe", "<cmd>ObsidianExtractNote<cr>" },
-            { "<leader>of", "<cmd>ObsidianSearch<cr>" },
-        },
-    },
+    -- {
+    --     -- https://github.com/epwalsh/obsidian.nvim
+    --     "epwalsh/obsidian.nvim",
+    --     version = "*", -- recommended, use latest release instead of latest commit
+    --     lazy = true,
+    --     ft = "markdown",
+    --     dependencies = {
+    --         "nvim-lua/plenary.nvim",
+    --         "hrsh7th/nvim-cmp",
+    --         "nvim-telescope/telescope.nvim",
+    --     },
+    --     opts = {
+    --         workspaces = {
+    --             {
+    --                 name = "notes",
+    --                 path = "~/Notes",
+    --             },
+    --         },
+    --         completion = {
+    --             nvim_cmp = true,
+    --             min_chars = 2,
+    --         },
+    --         -- This setting conflicts with render-markdown
+    --         ui = {
+    --             enable = false,
+    --         }
+    --     },
+    --     keys = {
+    --         { "<leader>ot", "<cmd>ObsidianToday<cr>" },
+    --         { "<leader>od", "<cmd>ObsidianDailies<cr>" },
+    --         { "<leader>oc", "<cmd>ObsidianToggleCheckbox<cr>" },
+    --         { "<leader>oe", "<cmd>ObsidianExtractNote<cr>" },
+    --         { "<leader>of", "<cmd>ObsidianSearch<cr>" },
+    --     },
+    -- },
 
     {
         -- https://github.com/mbbill/undotree
@@ -249,10 +249,10 @@ return {
         end
     },
 
-    {
-        -- https://github.com/vuciv/golf
-        'vuciv/golf',
-    },
+    -- {
+    --     -- https://github.com/vuciv/golf
+    --     'vuciv/golf',
+    -- },
 
     -- {
     --     -- https://github.com/laytan/tailwind-sorter.nvim

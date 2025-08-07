@@ -1,4 +1,5 @@
 return {
+    -- https://github.com/nvim-telescope/telescope.nvim
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
     dependencies = {
@@ -31,7 +32,9 @@ return {
                 mappings = {
                     i = {
                         ['<C-k>'] = actions.move_selection_previous,
+                        ['<C-u>'] = actions.move_selection_previous,
                         ['<C-j>'] = actions.move_selection_next,
+                        ['<C-d>'] = actions.move_selection_next,
                     },
                 },
             },
@@ -47,7 +50,9 @@ return {
                     mappings = {
                         i = {
                             ['<C-k>'] = actions.move_selection_previous,
+                            ['<C-u>'] = actions.move_selection_previous,
                             ['<C-j>'] = actions.move_selection_next,
+                            ['<C-d>'] = actions.move_selection_next,
                         },
                     },
                 }
