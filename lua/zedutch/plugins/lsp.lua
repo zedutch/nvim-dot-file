@@ -33,7 +33,7 @@ vim.diagnostic.config({
     virtual_text = true,
     float = {
         border = "rounded",
-        source = "always",
+        source = true,
         header = "",
         prefix = "",
     },
@@ -151,6 +151,7 @@ return {
                 "gopls",
                 "html",
                 "lua_ls",
+                "ols",
                 "pylsp",
                 "tailwindcss",
                 "ts_ls",
