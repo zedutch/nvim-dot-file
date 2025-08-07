@@ -175,7 +175,6 @@ return {
             capabilities = capabilities,
             on_attach = on_attach,
         })
-        vim.lsp.enable('ts_ls')
 
         vim.lsp.config('lua_ls', {
             settings = {
@@ -198,7 +197,6 @@ return {
             capabilities = capabilities,
             on_attach = on_attach,
         })
-        vim.lsp.enable('lua_ls')
 
         vim.lsp.config('denols', {
             root_dir = root_pattern_exclude({
@@ -208,7 +206,6 @@ return {
             capabilities = capabilities,
             on_attach = on_attach,
         })
-        vim.lsp.enable('denols')
 
         vim.lsp.config('tailwindcss', {
             capabilities = capabilities,
@@ -228,7 +225,6 @@ return {
                 }
             },
         })
-        vim.lsp.enable('tailwindcss')
 
         local cmp = require("cmp")
         local luasnip = require("luasnip")
