@@ -1,3 +1,4 @@
+return {}
 -- return {
 --     -- https://github.com/yetone/avante.nvim
 --     "yetone/avante.nvim",
