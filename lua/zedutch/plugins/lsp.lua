@@ -69,19 +69,16 @@ local kind_icons = {
 
 --- Specialized root pattern that allows for an exclusion
 --- @param opt { root: string[], exclude: string[] }
---- @return fun(file_name: string): string | nil
---- Source: https://www.npbee.me/posts/deno-and-typescript-in-a-monorepo-neovim-lsp
+--- @return fun(bufnr: integer, on_dir: fun(root_dir?:string))
 local function root_pattern_exclude(opt)
-    local util = require('lspconfig.util')
-
-    return function(fname)
-        local excluded_root = util.root_pattern(opt.exclude)(fname)
-        local included_root = util.root_pattern(opt.root)(fname)
-
-        if excluded_root then
-            return nil
+    return function(_, on_dir)
+        local excl_root = vim.fs.root(0, opt.exclude)
+        local incl_root = vim.fs.root(0, opt.root)
+        if not excl_root and incl_root then
+            vim.notify("LSP root found: " .. vim.inspect(incl_root))
+            on_dir(vim.fn.getcwd())
         else
-            return included_root
+            vim.notify("LSP root not found: " .. vim.inspect(incl_root) .. " - " .. vim.inspect(excl_root))
         end
     end
 end
@@ -204,14 +201,16 @@ return {
         vim.lsp.enable('lua_ls')
 
         vim.lsp.config('denols', {
-            root_markers = { "deno.json", "deno.jsonc" },
+            root_dir = root_pattern_exclude({
+                root = { "deno.json", "deno.jsonc" },
+                exclude = { "tsconfig.json" },
+            }),
             capabilities = capabilities,
             on_attach = on_attach,
         })
         vim.lsp.enable('denols')
 
         vim.lsp.config('tailwindcss', {
-            filetypes = { "*" },
             capabilities = capabilities,
             on_attach = on_attach,
             settings = {
