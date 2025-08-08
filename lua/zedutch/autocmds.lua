@@ -22,22 +22,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, options)
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, options)
-        -- now default: gri
-        -- vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, options)
         vim.keymap.set("n", "go", function() vim.lsp.buf.type_definition() end, options)
-        -- now default: grr
-        -- vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, options)
-        vim.keymap.set("n", "gs", function() vim.lsp.buf.signature_help({ border = 'rounded' }) end, options)
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = 'rounded' }) end, options)
-        vim.keymap.set("i", "<C-s>", function() vim.lsp.buf.signature_help({ border = 'rounded' }) end, options)
+        vim.keymap.set("n", "gs", function() vim.lsp.buf.signature_help() end, options)
+        vim.keymap.set("i", "<C-s>", function() vim.lsp.buf.signature_help() end, options)
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, options)
 
         vim.keymap.set("n", "<leader>lh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
             options)
         vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format({ async = true }) end, options)
-        -- now default: gra
-        -- vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, options)
-        -- now default: grn
-        -- vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end, options)
     end
 })
 

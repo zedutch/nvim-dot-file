@@ -32,7 +32,6 @@ vim.diagnostic.config({
     },
     virtual_text = true,
     float = {
-        border = "rounded",
         source = true,
         header = "",
         prefix = "",
@@ -135,11 +134,7 @@ return {
             end
         end
 
-        require('mason').setup({
-            ui = {
-                border = "rounded",
-            },
-        })
+        require('mason').setup()
         require('mason-lspconfig').setup()
         require('mason-tool-installer').setup({
             ensure_installed = {
@@ -286,27 +281,6 @@ return {
             })
         })
     end
-    -- config = function()
-    --     require("mason").setup({
-    --         ui = {
-    --             border = "rounded",
-    --         },
-    --     })
-    --
-    --     local lspconfig = require("lspconfig")
-    --
-    --     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    --     capabilities.textDocument.completion.completionItem.snippetSupport = true
-    --     capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-    --
-    --     local on_attach = function(client, _)
-    --         if file_formatting_disabled[vim.bo.filetype] or client_formatting_disabled[client.name] then
-    --             client.server_capabilities.documentFormattingProvider = false
-    --             vim.notify("LSP Formatting disabled for " .. client.name .. " in " .. vim.bo.filetype,
-    --                 vim.log.levels.INFO)
-    --         end
-    --     end
-    --
     --     -- Rust LSP settings
     --     vim.g.rustaceanvim = {
     --         -- Plugin configuration
@@ -509,16 +483,6 @@ return {
     --                     on_attach = on_attach,
     --                 })
     --             end,
-    --
-    --             -- This does not work very well currently, maybe try again later? (- 05/2024)
-    --             -- ["sqlls"] = function()
-    --             --     lspconfig.sqlls.setup({
-    --             --         root_dir = util.root_pattern('.git'),
-    --             --         filetypes = { "sql" },
-    --             --         capabilities = capabilities,
-    --             --         on_attach = on_attach,
-    --             --     })
-    --             -- end,
     --
     --             ["html"] = function()
     --                 lspconfig.html.setup({
