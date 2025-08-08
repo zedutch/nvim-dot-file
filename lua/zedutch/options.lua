@@ -52,6 +52,7 @@ opt.showmatch = true
 opt.splitbelow = true
 opt.splitright = true
 opt.splitkeep = "screen"
+opt.winborder = "rounded"
 
 -- Search
 opt.hlsearch = true
