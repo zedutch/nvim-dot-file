@@ -7,6 +7,7 @@ vim.filetype.add({
         frag = "glsl",
         tf = "terraform",
         tfvars = "terraform",
+        mdx = "markdown-react",
     },
     filename = {
         ["justfile"] = "just",
