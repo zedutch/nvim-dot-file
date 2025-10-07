@@ -221,6 +221,9 @@ return {
             },
         })
 
+        vim.lsp.config('null-ls')
+        vim.lsp.config('GitHub Copilot')
+
         local cmp = require("cmp")
         local luasnip = require("luasnip")
 
