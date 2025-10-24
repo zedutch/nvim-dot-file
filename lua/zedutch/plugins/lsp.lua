@@ -25,7 +25,7 @@ for _, sign in ipairs(signs) do
 end
 
 vim.diagnostic.config({
-    update_in_insert = true,
+    update_in_insert = false,
     severity_sort = true,
     signs = {
         active = signs,
@@ -67,17 +67,19 @@ local kind_icons = {
 }
 
 --- Specialized root pattern that allows for an exclusion
---- @param opt { root: string[], exclude: string[] }
+--- @param opt { root: string[], exclude: string[], server?: string }
 --- @return fun(bufnr: integer, on_dir: fun(root_dir?:string))
 local function root_pattern_exclude(opt)
     return function(_, on_dir)
         local excl_root = vim.fs.root(0, opt.exclude)
         local incl_root = vim.fs.root(0, opt.root)
+        local server_name = opt.server or '[unknown]'
         if not excl_root and incl_root then
-            vim.notify("LSP root found: " .. vim.inspect(incl_root))
-            on_dir(vim.fn.getcwd())
+            vim.notify(server_name .. " LSP root found: " .. vim.inspect(incl_root) .. " CWD: " .. vim.fn.getcwd())
+            on_dir(incl_root)
         else
-            vim.notify("LSP root not found: " .. vim.inspect(incl_root) .. " - " .. vim.inspect(excl_root))
+            vim.notify(server_name ..
+            " LSP root not found: " .. vim.inspect(incl_root) .. " - " .. vim.inspect(excl_root))
         end
     end
 end
@@ -165,8 +167,9 @@ return {
             root_dir = root_pattern_exclude({
                 root = { "package.json" },
                 exclude = { "deno.json", "deno.jsonc" },
+                server = "ts_ls",
             }),
-            single_file_support = false,
+            workspace_required = false,
             capabilities = capabilities,
             on_attach = on_attach,
         })
@@ -197,6 +200,7 @@ return {
             root_dir = root_pattern_exclude({
                 root = { "deno.json", "deno.jsonc" },
                 exclude = { "tsconfig.json" },
+                server = "denols"
             }),
             capabilities = capabilities,
             on_attach = on_attach,
