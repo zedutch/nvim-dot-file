@@ -24,7 +24,7 @@ return {
                 }),
 
                 -- Web stuff
-                formatting.prettier.with({
+                formatting.prettierd.with({
                     filetypes = {
                         "html",
                         "javascript",
