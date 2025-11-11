@@ -52,6 +52,8 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv")
 -- Insert ellipsis
 vim.keymap.set('n', "<leader>ie", "a…<Esc>")
+-- Insert euro sign
+vim.keymap.set('n', "<leader>i4", "a€<Esc>")
 -- Insert comments (todo: use comment plugin to define comment shape)
 vim.keymap.set('n', "<leader>in", "0a// NOTE(robin): ")
 vim.keymap.set('n', "<leader>it", "0a// TODO(robin): ")

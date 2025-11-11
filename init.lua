@@ -22,7 +22,8 @@ require "zedutch.lazyloader"
 vim.g.skip_ts_context_commentstring_module = true
 
 ----- Colorscheme -----
-vim.cmd[[colorscheme tokyonight]]
+vim.o.background = "dark"
+vim.cmd[[colorscheme gruvbox]]
 
 ----- Autocommands -----
 require "zedutch.autocmds"

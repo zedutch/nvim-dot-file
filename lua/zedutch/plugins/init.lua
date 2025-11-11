@@ -119,7 +119,7 @@ return {
         dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {
             options = {
-                theme = "tokyonight",
+                theme = "gruvbox",
             },
             sections = {
                 lualine_b = {
