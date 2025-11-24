@@ -16,7 +16,7 @@ local file_formatting_disabled = {
 }
 local client_formatting_disabled = {
     html = true,   -- Never use html lsp for formatting, it sucks
-    ts_ls = true,  -- Never use ts_ls for formatting, use prettier instead
+    vtsls = true,  -- Never use vtsls for formatting, use prettier instead
     denols = true, -- Never use deno lsp for formatting, use prettier instead
 }
 
@@ -79,7 +79,7 @@ local function root_pattern_exclude(opt)
             on_dir(incl_root)
         else
             vim.notify(server_name ..
-            " LSP root not found: " .. vim.inspect(incl_root) .. " - " .. vim.inspect(excl_root))
+                " LSP root not found: " .. vim.inspect(incl_root) .. " - " .. vim.inspect(excl_root))
         end
     end
 end
@@ -148,16 +148,16 @@ return {
                 "ols",
                 "pylsp",
                 "tailwindcss",
-                "ts_ls",
+                "vtsls",
                 "yamlls",
             },
         })
 
         -- LSP Server Configuration
 
-        vim.lsp.config('ts_ls', {
+        vim.lsp.config('vtsls', {
             settings = {
-                ts_ls = {
+                vtsls = {
                     experimental = {
                         allowDefaultProject = true
                     },
@@ -167,7 +167,7 @@ return {
             root_dir = root_pattern_exclude({
                 root = { "package.json" },
                 exclude = { "deno.json", "deno.jsonc" },
-                server = "ts_ls",
+                server = "vtsls",
             }),
             workspace_required = false,
             capabilities = capabilities,
