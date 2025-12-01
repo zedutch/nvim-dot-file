@@ -158,6 +158,7 @@ return {
         vim.lsp.config('vtsls', {
             settings = {
                 vtsls = {
+                    autoUseWorkspaceTsdk = true,
                     experimental = {
                         allowDefaultProject = true
                     },
