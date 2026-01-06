@@ -172,8 +172,15 @@ return {
             }),
             workspace_required = false,
             capabilities = capabilities,
-            on_attach = on_attach,
+            on_attach = function(client, bufnr)
+                on_attach(client, bufnr)
+                require("twoslash-queries").attach(client, bufnr)
+            end
         })
+
+
+        vim.lsp.enable('tsgo', false)
+        vim.lsp.enable('ts_ls', false)
 
         vim.lsp.config('lua_ls', {
             settings = {

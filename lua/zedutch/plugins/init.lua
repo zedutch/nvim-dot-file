@@ -267,4 +267,14 @@ return {
     --         trim_spaces = false,
     --     },
     -- },
+
+    {
+        -- https://github.com/marilari88/twoslash-queries.nvim
+        "marilari88/twoslash-queries.nvim",
+        opts = {
+            multi_line = true,  -- to print types in multi line mode
+            is_enabled = true, -- to keep disabled at startup and enable it on request with the TwoslashQueriesEnable
+            highlight = "Type", -- to set up a highlight group for the virtual text
+        },
+    },
 }
