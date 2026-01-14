@@ -20,3 +20,6 @@ Libraries to consider for the next config rewrite:
 
 - [cloak.nvim](https://github.com/laytan/cloak.nvim) - prevent accidental secret sharing
 - nvim-treesitter/nvim-treesitter-textobjects - textobject (w, p) for treesitter objects (assignments, conditionals, parameters, function call, loop, etc)
+- [jj.nvim](https://github.com/NicolasGB/jj.nvim) - depending on if it's even more useful than `jjui` (which I love).
+    - Would prefer a way to open jjui from within neovim and callback between both rather than a full 'new' plugin...
+    - The only thing I really need from fugitive is a way to quickly see changes in the current changeset and to navigate to them. Commit / squash would be nice as well but less necessary.
