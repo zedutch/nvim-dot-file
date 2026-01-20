@@ -24,7 +24,8 @@ return {
                 }),
 
                 -- Web stuff
-                formatting.prettierd.with({
+                -- formatting.prettierd.with({
+                formatting.prettier.with({
                     filetypes = {
                         "html",
                         "javascript",
@@ -32,6 +33,7 @@ return {
                         "typescript",
                         "typescriptreact",
                         "json",
+                        "jsonc",
                         "htmldjango",
                         "templ",
                         "svelte",

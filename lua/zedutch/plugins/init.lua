@@ -273,8 +273,26 @@ return {
         "marilari88/twoslash-queries.nvim",
         opts = {
             multi_line = true,  -- to print types in multi line mode
-            is_enabled = true, -- to keep disabled at startup and enable it on request with the TwoslashQueriesEnable
+            is_enabled = true,  -- to keep disabled at startup and enable it on request with the TwoslashQueriesEnable
             highlight = "Type", -- to set up a highlight group for the virtual text
         },
     },
+
+    {
+        -- https://github.com/dmmulroy/ts-error-translator.nvim
+        'dmmulroy/ts-error-translator.nvim',
+    },
+
+    {
+        -- https://github.com/dmmulroy/tsc.nvim
+        "dmmulroy/tsc.nvim",
+        config = function()
+            require("tsc").setup({
+                use_trouble_qflist = true,
+                flags = {
+                    watch = true,
+                },
+            })
+        end,
+    }
 }
