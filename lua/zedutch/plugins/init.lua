@@ -287,12 +287,7 @@ return {
         -- https://github.com/dmmulroy/tsc.nvim
         "dmmulroy/tsc.nvim",
         config = function()
-            require("tsc").setup({
-                use_trouble_qflist = true,
-                flags = {
-                    watch = true,
-                },
-            })
+            require("tsc").setup({})
         end,
     }
 }
