@@ -82,7 +82,7 @@ vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<CR>")
 -- vim.keymap.set("n", "<leader>lk", function() vim.diagnostic.jump({count=-1, float=true}) end)
 vim.keymap.set("n", "gl", function() vim.diagnostic.open_float() end)
 vim.keymap.set("n", "<leader>ldd", function() vim.diagnostic.enable() end)
-vim.keymap.set("n", "<leader>ldl", function() vim.diagnostic.disable() end)
+vim.keymap.set("n", "<leader>ldl", function() vim.diagnostic.enable(false) end)
 
 ---- Make ----
 vim.keymap.set("n", "<leader>mr", "<cmd>!just run<cr>",
