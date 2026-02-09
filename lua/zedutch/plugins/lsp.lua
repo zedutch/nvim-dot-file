@@ -5,21 +5,6 @@ local signs = {
     { name = "DiagnosticSignInfo", text = "" },
 }
 
-local file_formatting_disabled = {
-    -- typescriptreact = true, -- Use prettier
-    -- typescript = true,      -- Use prettier
-    html = true,   -- Use prettier
-    --json = true,            -- Use prettier
-    python = true, -- Use black
-    svelte = true, -- Use prettier
-    cpp = true,    -- Use clang-format
-}
-local client_formatting_disabled = {
-    html = true,   -- Never use html lsp for formatting, it sucks
-    vtsls = true,  -- Never use vtsls for formatting, use prettier instead
-    denols = true, -- Never use deno lsp for formatting, use prettier instead
-}
-
 for _, sign in ipairs(signs) do
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 end
@@ -127,15 +112,6 @@ return {
         capabilities.textDocument.completion.completionItem.snippetSupport = true
         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-        --- Utility functions
-        local on_attach = function(client, _)
-            if file_formatting_disabled[vim.bo.filetype] or client_formatting_disabled[client.name] then
-                client.server_capabilities.documentFormattingProvider = false
-                vim.notify("LSP Formatting disabled for " .. client.name .. " in " .. vim.bo.filetype,
-                    vim.log.levels.INFO)
-            end
-        end
-
         require('mason').setup()
         require('mason-lspconfig').setup()
         require('mason-tool-installer').setup({
@@ -174,7 +150,6 @@ return {
             workspace_required = false,
             capabilities = capabilities,
             on_attach = function(client, bufnr)
-                on_attach(client, bufnr)
                 require("twoslash-queries").attach(client, bufnr)
             end
         })
@@ -182,12 +157,6 @@ return {
 
         vim.lsp.enable('tsgo', false)
         vim.lsp.enable('ts_ls', false)
-
-        vim.lsp.config('prettier', {
-            filetypes = { "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "jsonc", "htmldjango", "templ", "svelte" },
-            capabilities = capabilities,
-            on_attach = on_attach,
-        })
 
         vim.lsp.config('lua_ls', {
             settings = {
@@ -208,7 +177,6 @@ return {
                 },
             },
             capabilities = capabilities,
-            on_attach = on_attach,
         })
 
         vim.lsp.config('denols', {
@@ -218,12 +186,10 @@ return {
                 server = "denols"
             }),
             capabilities = capabilities,
-            on_attach = on_attach,
         })
 
         vim.lsp.config('tailwindcss', {
             capabilities = capabilities,
-            on_attach = on_attach,
             settings = {
                 tailwindCSS = {
                     includeLanguages = {
@@ -312,7 +278,6 @@ return {
     --         server = {
     --             capabilities = capabilities,
     --             on_attach = function(client, bufnr)
-    --                 on_attach(client, bufnr)
     --                 local opts = { silent = true, buffer = bufnr, noremap = false }
     --                 vim.keymap.set("n", "<leader>co", function() vim.cmd.RustLsp("openCargo") end, opts)
     --                 vim.keymap.set("n", "<leader>cb", function() vim.cmd("!cargo build") end, opts)
@@ -366,7 +331,6 @@ return {
     --             function(server_name)
     --                 lspconfig[server_name].setup({
     --                     capabilities = capabilities,
-    --                     on_attach = on_attach,
     --                 })
     --             end,
     --
@@ -451,7 +415,6 @@ return {
     --                     },
     --                     capabilities = capabilities,
     --                     on_attach = function(client, bufnr)
-    --                         on_attach(client, bufnr)
     --                         vim.keymap.set("n", "<leader>gie", "<cmd>GoIfErr<cr>",
     --                             { buffer = bufnr, desc = "if err != nil" })
     --                         vim.keymap.set("n", "<leader>gmt", "<cmd>GoMod tidy<cr>",
@@ -494,7 +457,6 @@ return {
     --                         },
     --                     },
     --                     capabilities = capabilities,
-    --                     on_attach = on_attach,
     --                 })
     --             end,
     --
@@ -502,7 +464,6 @@ return {
     --                 lspconfig.hyprls.setup({
     --                     filetypes = { "hypr*.conf" },
     --                     capabilities = capabilities,
-    --                     on_attach = on_attach,
     --                 })
     --             end,
     --
@@ -511,14 +472,12 @@ return {
     --                     root_dir = util.root_pattern('~angular.json', 'package.json', '.git'),
     --                     filetypes = { "html", "htmldjango", "rust", "templ" },
     --                     capabilities = capabilities,
-    --                     on_attach = on_attach,
     --                 })
     --             end,
     --
     --             ["cssls"] = function()
     --                 lspconfig.cssls.setup({
     --                     capabilities = capabilities,
-    --                     on_attach = on_attach,
     --                     settings = {
     --                         css = {
     --                             lint = {
@@ -533,7 +492,6 @@ return {
     --                 lspconfig.htmx.setup({
     --                     filetypes = { "html", "htmldjango", "javascriptreact", "typescriptreact", "rust", "templ" },
     --                     capabilities = capabilities,
-    --                     on_attach = on_attach,
     --                 })
     --             end,
     --
@@ -545,7 +503,6 @@ return {
     --                         },
     --                     },
     --                     capabilities = capabilities,
-    --                     on_attach = on_attach,
     --                 })
     --             end,
     --
@@ -554,7 +511,6 @@ return {
     --                 lspconfig.clangd.setup({
     --                     capabilities = capabilities,
     --                     on_attach = function(client, bufnr)
-    --                         on_attach(client, bufnr)
     --                         vim.keymap.set("n", "<leader>cc", "<cmd>!./build.sh<cr>")
     --                         vim.keymap.set("n", "<leader>rr", "<cmd>!./run.sh<cr>")
     --                         vim.keymap.set("n", "<leader><leader>", "<cmd>ClangdSwitchSourceHeader<cr>")
@@ -564,7 +520,6 @@ return {
     --                 require('clangd_extensions').setup({
     --                     server = {
     --                         capabilities = capabilities,
-    --                         on_attach = on_attach,
     --                     },
     --                     extensions = {
     --                         autoSetHints = true,
@@ -587,7 +542,6 @@ return {
     --     -- GDScript is currently not supported by mason-lspconfig
     --     lspconfig.gdscript.setup({
     --         capabilities = capabilities,
-    --         on_attach = on_attach,
     --         cmd = { 'nc', '127.0.0.1', '6005' } -- This should match Godot settings
     --     })
     -- end,
