@@ -21,22 +21,29 @@ return {
             lua = { "stylua" },
             python = { "isort", "black" },
             javascript = { "prettierd", "prettier", stop_after_first = true },
+            typescript = { "prettierd", "prettier", stop_after_first = true },
+            javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+            typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+            html = { "prettierd", "prettier", stop_after_first = true },
+            json = { "prettierd", "prettier", stop_after_first = true },
+            jsonc = { "prettierd", "prettier", stop_after_first = true },
+            markdown = { "prettierd", "prettier", stop_after_first = true },
+            ["markdown.mdx"] = { "prettierd", "prettier", stop_after_first = true },
         },
         -- Set default options
         default_format_opts = {
             lsp_format = "fallback",
         },
         -- Set up format-on-save
-        format_on_save = { timeout_ms = 500 },
-        -- Customize formatters
-        formatters = {
-            shfmt = {
-                append_args = { "-i", "2" },
-            },
+        format_on_save = {
+            timeout_ms = 500,
+            lsp_format = "fallback",
         },
+        notify_on_error = true,
+        notify_no_formatters = true,
     },
-    init = function()
-        -- If you want the formatexpr, here is the place to set it
-        vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-    end,
+    -- init = function()
+    -- If you want the formatexpr, here is the place to set it
+    -- vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    -- end,
 }
