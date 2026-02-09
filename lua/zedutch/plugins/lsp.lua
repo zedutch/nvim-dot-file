@@ -146,6 +146,7 @@ return {
                 "html",
                 "lua_ls",
                 "ols",
+                "prettier",
                 "pylsp",
                 "tailwindcss",
                 "vtsls",
@@ -181,6 +182,12 @@ return {
 
         vim.lsp.enable('tsgo', false)
         vim.lsp.enable('ts_ls', false)
+
+        vim.lsp.config('prettier', {
+            filetypes = { "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "jsonc", "htmldjango", "templ", "svelte" },
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
 
         vim.lsp.config('lua_ls', {
             settings = {

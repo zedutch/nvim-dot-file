@@ -25,20 +25,20 @@ return {
 
                 -- Web stuff
                 -- formatting.prettierd.with({
-                formatting.prettier.with({
-                    filetypes = {
-                        "html",
-                        "javascript",
-                        "javascriptreact",
-                        "typescript",
-                        "typescriptreact",
-                        "json",
-                        "jsonc",
-                        "htmldjango",
-                        "templ",
-                        "svelte",
-                    },
-                }),
+                -- formatting.prettier.with({
+                --     filetypes = {
+                --         "html",
+                --         "javascript",
+                --         "javascriptreact",
+                --         "typescript",
+                --         "typescriptreact",
+                --         "json",
+                --         "jsonc",
+                --         "htmldjango",
+                --         "templ",
+                --         "svelte",
+                --     },
+                -- }),
 
                 -- Go
                 -- formatting.goimports_reviser,
