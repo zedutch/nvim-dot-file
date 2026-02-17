@@ -29,6 +29,7 @@ return {
             jsonc = { "prettierd", "prettier", stop_after_first = true },
             markdown = { "prettierd", "prettier", stop_after_first = true },
             ["markdown.mdx"] = { "prettierd", "prettier", stop_after_first = true },
+            yaml = { "prettierd", "prettier", stop_after_first = true },
         },
         -- Set default options
         default_format_opts = {
