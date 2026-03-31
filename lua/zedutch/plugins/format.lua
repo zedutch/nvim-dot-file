@@ -36,10 +36,16 @@ return {
             lsp_format = "fallback",
         },
         -- Set up format-on-save
-        format_on_save = {
-            timeout_ms = 500,
-            lsp_format = "fallback",
-        },
+        format_on_save = function(bufnr)
+            if vim.bo[bufnr].filetype == "sql" then
+                return nil
+            end
+
+            return {
+                timeout_ms = 500,
+                lsp_format = "fallback",
+            }
+        end,
         notify_on_error = true,
         notify_no_formatters = true,
     },
