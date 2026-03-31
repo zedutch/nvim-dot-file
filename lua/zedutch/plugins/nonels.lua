@@ -66,8 +66,7 @@ return {
                 -- }),
 
                 -- SQL
-                -- formatting.pg_format,
-                formatting.sql_formatter,
+                formatting.pg_format,
 
                 -- General
                 code_actions.gitsigns,
