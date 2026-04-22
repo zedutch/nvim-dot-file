@@ -78,4 +78,6 @@ vim.g.loaded_ruby_provider = 0
 vim.g.copilot_enabled = true
 
 -- Disable all clients by default
-vim.lsp.stop_client(vim.lsp.get_clients())
+for _, client in ipairs(vim.lsp.get_clients()) do
+    client:stop()
+end
