@@ -1,27 +1,13 @@
 return {
     -- https://github.com/nvim-treesitter/nvim-treesitter
     "nvim-treesitter/nvim-treesitter",
-    branch = "master", -- @TODO: Update to main but this requires more changes
+    branch = "main",
     build = ":TSUpdate",
     lazy = false,
     config = function()
-        local configs = require("nvim-treesitter.configs")
-        configs.setup({
-            ensure_installed = {
-                "c",
-                "go",
-                "javascript",
-                "jsdoc",
-                "lua",
-                "markdown",
-                "markdown_inline",
-                "odin",
-                "python",
-                "rust",
-                "typescript",
-                "vim",
-                "vimdoc",
-            },
+        local ts = require('nvim-treesitter')
+        ts.setup({
+            install_dir = vim.fn.stdpath('data') .. '/site',
             sync_install = false,
             auto_install = true,
             ignore_install = {},
@@ -39,6 +25,21 @@ return {
                     node_decremental = "<BS>",
                 },
             },
+        })
+        ts.install({
+            "c",
+            "go",
+            "javascript",
+            "jsdoc",
+            "lua",
+            "markdown",
+            "markdown_inline",
+            "odin",
+            "python",
+            "rust",
+            "typescript",
+            "vim",
+            "vimdoc",
         })
     end
 }
