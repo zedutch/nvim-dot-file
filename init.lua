@@ -23,8 +23,8 @@ vim.g.skip_ts_context_commentstring_module = true
 
 ----- Colorscheme -----
 vim.o.background = "dark"
-vim.cmd[[colorscheme gruvbox]]
+vim.cmd [[colorscheme gruvbox]]
 
------ Autocommands -----
+----- Commands -----
 require "zedutch.autocmds"
-
+require "zedutch.usercmds"
