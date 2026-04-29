@@ -25,6 +25,8 @@ return {
                     '.git\\',
                     '.godot',
                     'vendor',
+                    'pdfjs',
+                    '.xsd',
                     '_templ.go',
                     '_templ.txt',
                 },
