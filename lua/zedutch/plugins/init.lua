@@ -86,7 +86,7 @@ return {
         event = { "BufRead package.json" },
         config = function()
             require("package-info").setup({
-                package_manager = "pnpm",
+                package_manager = "bun",
             })
             vim.api.nvim_set_keymap(
                 "n",
