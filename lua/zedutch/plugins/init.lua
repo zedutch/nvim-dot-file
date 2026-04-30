@@ -105,12 +105,12 @@ return {
 
     {
         -- https://github.com/github/copilot.vim
-        "github/copilot.vim",
-        event = "InsertEnter",
-        keys = {
-            { "<leader>ce", "<cmd>Copilot enable<cr>" },
-            { "<leader>cd", "<cmd>Copilot disable<cr>" },
-        },
+        -- "github/copilot.vim",
+        -- event = "InsertEnter",
+        -- keys = {
+        --     { "<leader>ce", "<cmd>Copilot enable<cr>" },
+        --     { "<leader>cd", "<cmd>Copilot disable<cr>" },
+        -- },
     },
 
     {
@@ -274,5 +274,17 @@ return {
         config = function()
             require("tsc").setup({})
         end,
+    },
+
+    {
+        -- https://github.com/monkoose/neocodeium
+        "monkoose/neocodeium",
+        event = "VeryLazy",
+        config = function()
+            local neocodeium = require("neocodeium")
+            neocodeium.setup()
+            vim.keymap.set("i", "<Tab>", neocodeium.accept)
+        end,
     }
+
 }
