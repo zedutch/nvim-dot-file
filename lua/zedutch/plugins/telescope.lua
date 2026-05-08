@@ -26,9 +26,14 @@ return {
                     '.godot',
                     'vendor',
                     'pdfjs',
-                    '.xsd',
                     '_templ.go',
                     '_templ.txt',
+                    -- These used to work previously but something broke in nvim 0.12
+                    '.xsd',
+                    '.svg',
+                    '.png',
+                    '.jpg',
+                    '.ico',
                 },
                 mappings = {
                     i = {
