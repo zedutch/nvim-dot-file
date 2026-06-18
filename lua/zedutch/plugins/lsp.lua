@@ -140,6 +140,11 @@ return {
                         allowDefaultProject = true
                     },
                 },
+                typescript = {
+                    tsserver = {
+                        maxTsServerMemory = 8192,
+                    }
+                }
             },
             filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "mdx" },
             root_dir = root_pattern_exclude({
